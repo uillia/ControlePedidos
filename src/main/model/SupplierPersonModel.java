@@ -5,6 +5,9 @@
  */
 package main.model;
 
+import java.time.LocalDate;
+import java.util.Date;
+
 /**
  *
  * @author uillia
@@ -12,8 +15,10 @@ package main.model;
 public class SupplierPersonModel {
     private int idSupplierPerson;
     private int idCompany;
+    private String cpf; 
     private String name;
     private String role;
+    private LocalDate registerDate;
 
     public int getIdSupplierPerson() {
         return idSupplierPerson;
@@ -54,7 +59,15 @@ public class SupplierPersonModel {
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
-    private String cpf; 
+
+
+    public LocalDate getRegisterDate() {
+        return registerDate;
+    }
+
+    public void setRegisterDate(LocalDate registerDate) {
+        this.registerDate = registerDate;
+    }
     
     
 }

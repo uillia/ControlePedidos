@@ -1,4 +1,3 @@
-
 package main.DAO;
 
 import util.CriptoController;
@@ -13,37 +12,23 @@ public class LoginDAO {
     public CriptoController otp = new CriptoController();
 
     public EmployeeModel authLogin(String login) {
-        EmployeeModel funcLog = new EmployeeModel();    
+        EmployeeModel funcLog = new EmployeeModel();
         MySqlConnection c = new MySqlConnection();
         c.Conectar();
-        
-        
+
         try {
-            
-            String sql="Select * from funcionarios where login ='" +login+ "'";
+
+            String sql = "Select * from employees where login ='" + login + "'";
             PreparedStatement pst = c.con.prepareStatement(sql);
             pst.execute();
 
             ResultSet rs = pst.getResultSet();
-            
-            while (rs.next()) {
 
-                funcLog.setCod(rs.getInt("codFuncionario"));
-                funcLog.setName(rs.getString("nome"));
-                funcLog.setCpf(rs.getString("cpf"));
-                funcLog.setPhone(rs.getString("numtel"));
-                funcLog.setBirthDate(rs.getDate("datanasc"));
-                funcLog.setEstado(rs.getString("estado"));
-                funcLog.setCity(rs.getString("cidade"));
-                funcLog.setDistrict(rs.getString("bairro"));
-                funcLog.setHouseNumber(rs.getString("numcasa"));
+            while (rs.next()) {
                 funcLog.setLogin(rs.getString("login"));
-                funcLog.setPassword(rs.getString("senha"));
-                funcLog.setGroup(rs.getString("grupo"));
-                
-                
+                funcLog.setPassword(rs.getString("password"));
             }
-            
+
             System.out.println("Usuario Encontrado");
             pst.close();
             return funcLog;
@@ -51,9 +36,7 @@ public class LoginDAO {
             JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage(), "Alerta", 2);
             return null;
         }
-        
-       
-        
+
     }
 
 }

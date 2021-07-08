@@ -1,9 +1,11 @@
 package main.model;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class EmployeeModel {
-    private int cod;
+
+    private int idEmployee;
     private String name;
     private String cpf;
     private Date birthDate;
@@ -16,15 +18,16 @@ public class EmployeeModel {
     private String Login;
     private String password;
     private String group;
+    private LocalDate registerDate;
 
-    public int getCod() {
-        return cod;
+    public int getIdEmployee() {
+        return idEmployee;
     }
 
-    public void setCod(int cod) {
-        this.cod = cod;
+    public void setIdEmployee(int idEmployee) {
+        this.idEmployee = idEmployee;
     }
-    
+
     public String getName() {
         return name;
     }
@@ -32,7 +35,7 @@ public class EmployeeModel {
     public void setName(String name) {
         this.name = name;
     }
-    
+
     public String getCpf() {
         return cpf;
     }
@@ -40,15 +43,15 @@ public class EmployeeModel {
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
-    
-     public Date getBirthDate() {
+
+    public Date getBirthDate() {
         return birthDate;
     }
 
     public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
     }
-    
+
     public String getPhone() {
         return phone;
     }
@@ -56,8 +59,8 @@ public class EmployeeModel {
     public void setPhone(String phone) {
         this.phone = phone;
     }
-    
-     public String getHouseNumber() {
+
+    public String getHouseNumber() {
         return houseNumber;
     }
 
@@ -112,19 +115,21 @@ public class EmployeeModel {
     public void setPassword(String password) {
         this.password = password;
     }
-    
+
     public String getGroup() {
         return group;
     }
-    
+
     public void setGroup(String group) {
         this.group = group;
     }
 
-    
-    
+    public LocalDate getRegisterDate() {
+        return registerDate;
+    }
 
-    
-    
+    public void setRegisterDate(LocalDate registerDate) {
+        this.registerDate = registerDate;
+    }
+
 }
-

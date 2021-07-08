@@ -5,6 +5,7 @@
  */
 package main.model;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -12,6 +13,7 @@ import java.util.Date;
  * @author uillia
  */
 public class SupplierCompanyModel {
+
     private int idCompany;
     private String name;
     private String cnpj;
@@ -24,6 +26,7 @@ public class SupplierCompanyModel {
     private String district;
     private String city;
     private String estado;
+    private LocalDate registerDate;
 
     public int getIdCompany() {
         return idCompany;
@@ -40,7 +43,6 @@ public class SupplierCompanyModel {
     public void setLocalnum(String Localnum) {
         this.Localnum = Localnum;
     }
-
 
     public String getStreet() {
         return street;
@@ -73,7 +75,6 @@ public class SupplierCompanyModel {
     public void setEstado(String estado) {
         this.estado = estado;
     }
-
 
     public String getName() {
         return name;
@@ -122,4 +123,13 @@ public class SupplierCompanyModel {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public LocalDate getRegisterDate() {
+        return registerDate;
+    }
+
+    public void setRegisterDate(LocalDate registerDate) {
+        this.registerDate = registerDate;
+    }
+
 }

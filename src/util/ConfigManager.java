@@ -30,16 +30,13 @@ public class ConfigManager { // classe criada exclusivamente para ler e escrever
             }
             System.out.println("arquivo criado");
             setValue(key, DefautV, path); // chama se o metodo que escreve valores
-            System.out.println("arquivo salvo e setado valor padão");
-            
+            System.out.println("arquivo salvo e setado valor padão"); 
         }
-        
         try {
             in = new FileInputStream(path);
             props.load(in);
 
             in.close();
-
         } catch (IOException e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
@@ -48,11 +45,10 @@ public class ConfigManager { // classe criada exclusivamente para ler e escrever
         System.out.println(wValorChave);
         return wValorChave;
     }
+    
 
     public void setValue(String key, String value, String path) {
-        
         FileInputStream fis = null;
-
         File arquivo = new File(path);
         if (arquivo.exists()) {
 

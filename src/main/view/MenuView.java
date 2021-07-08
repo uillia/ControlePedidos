@@ -26,12 +26,13 @@ public class MenuView extends javax.swing.JFrame {
     FileManager ac = new FileManager();
     ConfigManager conf = new ConfigManager();
     EmployeeController empc = new EmployeeController();
-    EmployeeModel userLog= lc.getLoggedData(); // this declaration get data from the logged user in this system 
+    EmployeeModel userLog= empc.getLoggedData(); // this declaration get data from the logged user in this system 
     String path = "C:\\Users\\"+ System.getProperty("user.name") +"\\Documents\\Controle de Estoque\\preferences\\theme.properties";
     String theme = conf.getValue("theme","light",path);
     
 //Para ler o valor que esta em um arquivo é importante mandar seu valor padrão. Caso ele não exista, ele sea craido com este valorrr padrão;
 //To read a file value, is important to send the default value. So if the file doesn't exist, it will be created with the this defauld value
+    
     Color btf;
     int xMouse, yMouse;
 

@@ -11,7 +11,7 @@ public class LoginView extends javax.swing.JFrame {
 
     int xMouse, yMouse;
     ConfigManager conf = new ConfigManager();
-    public String path = "C:\\Users\\"+ System.getProperty("user.name") +"\\Documents\\NetBeansProjects\\ControleEstoque\\dados\\usuario.txt";
+    public String path = "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\NetBeansProjects\\ControleEstoque\\dados\\usuario.txt";
 
     public LoginView() {
         initComponents();
@@ -231,7 +231,9 @@ public class LoginView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     @SuppressWarnings("empty-statement")
+
     private void bttLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttLoginActionPerformed
+
         String user;
         String password;
         int protLog = 3; //protlog is a protocol to administrate the login in this program
@@ -246,14 +248,14 @@ public class LoginView extends javax.swing.JFrame {
         if (protLog == 1) {
             if (radbttSavelogin.isSelected()) {
                 lc.saveLogin(user, password);
+
             } else {
-                
+
             }
-            saveLogcache();
+            lc.saveLogcache(txtUser.getText()); // calls the auxiliar methods to save the user name 
             dispose();
             MenuView t = new MenuView();
             t.setVisible(true);
-            
 
         }
         if (protLog == 2) {
@@ -323,7 +325,7 @@ public class LoginView extends javax.swing.JFrame {
         } else {
 
             String usuario = ac.Read(path);
-            path = "C:\\Users\\"+ System.getProperty("user.name") +"\\Documents\\NetBeansProjects\\ControleEstoque\\dados\\senha.txt";
+            path = "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\NetBeansProjects\\ControleEstoque\\dados\\senha.txt";
             String senha = ac.Read(path);
 
             if (usuario.equals("null")) {
@@ -343,12 +345,7 @@ public class LoginView extends javax.swing.JFrame {
         getContentPane().setBackground(Color.LIGHT_GRAY);
         panelTitleBar.setBackground(Color.lightGray);
     }
-    
-    public void saveLogcache(){
-        String chachePath= "C:\\Users\\"+ System.getProperty("user.name") +"\\Documents\\NetBeansProjects\\ControleEstoque\\dados\\cacheLoguin";
-         conf.setValue("user",txtUser.getText(), chachePath);
-         System.out.println("loguinCache salvo com sucesso");
-    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bttClose;
