@@ -35,7 +35,6 @@ public class EmployeeController {
     }
 
     public void refreshTable(DefaultTableModel table) {
-        EmployeeModel f = new EmployeeModel();
         empdao.refreshEmployeeTable(table);
     }
 

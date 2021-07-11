@@ -19,9 +19,9 @@ public class LoginController {
     public int login(String user, String password) {
         EmployeeModel interEmp = new EmployeeModel();
 
-        if ((logDao.authLogin(user) != null)) {
+        if ((logDao.authLogin(user).getLogin() != null)) {
 
-            interEmp = logDao.authLogin(user); //the randon instace get the data became the MySql BD in this line 
+            interEmp = logDao.authLogin(user); //the auxiliary instace get the data became the MySql BD in this line 
 
             if (interEmp.getPassword().equals(password)) {
                 System.out.println("as senhas bateram");

@@ -16,6 +16,7 @@ import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -81,8 +82,8 @@ public class RegEmployeeView extends javax.swing.JFrame {
         lbPassword = new javax.swing.JLabel();
         txtPasswordConf = new javax.swing.JPasswordField();
         lbPasswordConf = new javax.swing.JLabel();
-        lbGroup = new javax.swing.JLabel();
-        txtGroup = new javax.swing.JTextField();
+        lbRole = new javax.swing.JLabel();
+        comboRole = new javax.swing.JComboBox<>();
         panelExluirFunc = new javax.swing.JPanel();
         panelTab = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -247,9 +248,9 @@ public class RegEmployeeView extends javax.swing.JFrame {
 
         lbPasswordConf.setText("Repetir Senha");
 
-        lbGroup.setText("Grupo");
+        lbRole.setText("Cargo");
 
-        txtGroup.setBorder(null);
+        comboRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Funcionário" }));
 
         javax.swing.GroupLayout panelSisLayout = new javax.swing.GroupLayout(panelSis);
         panelSis.setLayout(panelSisLayout);
@@ -262,18 +263,18 @@ public class RegEmployeeView extends javax.swing.JFrame {
                         .addComponent(lbLogin)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(txtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelSisLayout.createSequentialGroup()
-                        .addComponent(lbPassword)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSisLayout.createSequentialGroup()
-                        .addComponent(lbGroup)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtGroup, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSisLayout.createSequentialGroup()
                         .addComponent(lbPasswordConf)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtPasswordConf, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtPasswordConf, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSisLayout.createSequentialGroup()
+                        .addGroup(panelSisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbPassword)
+                            .addComponent(lbRole))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(panelSisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(comboRole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         panelSisLayout.setVerticalGroup(
@@ -285,8 +286,8 @@ public class RegEmployeeView extends javax.swing.JFrame {
                     .addComponent(lbLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelSisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtGroup, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbGroup, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lbRole, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboRole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelSisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -510,7 +511,7 @@ public class RegEmployeeView extends javax.swing.JFrame {
         panelClose.setLayout(panelCloseLayout);
         panelCloseLayout.setHorizontalGroup(
             panelCloseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bttClose, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+            .addComponent(bttClose, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         panelCloseLayout.setVerticalGroup(
             panelCloseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -655,7 +656,6 @@ public class RegEmployeeView extends javax.swing.JFrame {
 
     private void bttRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttRegisterActionPerformed
         String passwordRep= null;
-
         EmployeeModel func = new EmployeeModel();
         func.setName(txtName.getText());
         func.setCpf(txtCpf.getText());
@@ -666,7 +666,7 @@ public class RegEmployeeView extends javax.swing.JFrame {
         func.setCity(txtCity.getText());
         func.setEstado(txtState.getText());
         func.setLogin(txtLogin.getText());
-        func.setGroup(txtGroup.getText());
+        func.setGroup(comboRole.getSelectedItem().toString());
         func.setPassword(txtPassword.getText());
         passwordRep = txtPasswordConf.getText();
 
@@ -760,14 +760,15 @@ public class RegEmployeeView extends javax.swing.JFrame {
         
         JButton[] btt = {bttRegister, bttVoltar, bttDelete};
         JTextField[] txt = {txtName, txtHomeNum, txtDistrict, txtStreet, txtCity,
-        txtState, txtLogin, txtGroup, txtId};
+        txtState, txtLogin, txtId};
         JFormattedTextField[] txtf = {txtCpf, txtPhone, txtBirthdate};
         JPasswordField[] txtp = {txtPassword, txtPasswordConf};
-        JLabel[] lb = {lbDistrict,lbCity,lbBirthdate,lbState,lbGroup,lbId,lbLogin,
+        JLabel[] lb = {lbDistrict,lbCity,lbBirthdate,lbState,lbRole,lbId,lbLogin,
         lbName,lbHomeNum,lbPhone,lbStreet,lbTextMid,lbTextTop,lbTextleft,lbcpf,lbPassword,lbPasswordConf};     
         JPanel[] panel = {panelMin,panelRegEmp,panelAdress,panelExluirFunc,panelClose,panelIconfied,
         panelSis,panelTab,panelTitleBar};
         JTable[] tab = {tabFuncionarios};
+//        JComboBox[] combo = {comboRole};
         
         t.refreshButtons(btt, theme);
         t.refreshFrame(this, theme);
@@ -777,6 +778,7 @@ public class RegEmployeeView extends javax.swing.JFrame {
         t.refreshFormatedTextfields(txtf, theme);
         t.refreshPanels(panel, theme);
         t.refreshTables(tab, theme);
+//        t.refreshComboBox(combo, theme);
         
         if (theme.equals("dark")) {
             
@@ -825,11 +827,11 @@ public class RegEmployeeView extends javax.swing.JFrame {
     private javax.swing.JButton bttMin;
     private javax.swing.JButton bttRegister;
     private javax.swing.JButton bttVoltar;
+    private javax.swing.JComboBox<String> comboRole;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbBirthdate;
     private javax.swing.JLabel lbCity;
     private javax.swing.JLabel lbDistrict;
-    private javax.swing.JLabel lbGroup;
     private javax.swing.JLabel lbHomeNum;
     private javax.swing.JLabel lbId;
     private javax.swing.JLabel lbLogin;
@@ -837,6 +839,7 @@ public class RegEmployeeView extends javax.swing.JFrame {
     private javax.swing.JLabel lbPassword;
     private javax.swing.JLabel lbPasswordConf;
     private javax.swing.JLabel lbPhone;
+    private javax.swing.JLabel lbRole;
     private javax.swing.JLabel lbState;
     private javax.swing.JLabel lbStreet;
     private javax.swing.JLabel lbTextMid;
@@ -857,7 +860,6 @@ public class RegEmployeeView extends javax.swing.JFrame {
     private javax.swing.JTextField txtCity;
     private javax.swing.JFormattedTextField txtCpf;
     private javax.swing.JTextField txtDistrict;
-    private javax.swing.JTextField txtGroup;
     private javax.swing.JTextField txtHomeNum;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtLogin;

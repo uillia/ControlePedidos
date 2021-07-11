@@ -18,15 +18,16 @@ public class SupplierCompanyModel {
     private String name;
     private String cnpj;
     private String mainActivity;
-    private Date lastDelivery_Date;
+    private String hierarchicaltype;
     private String phone;
-    private String email;
     private String Localnum;
     private String street;
     private String district;
     private String city;
     private String estado;
     private LocalDate registerDate;
+    private String email;
+    private String site;
 
     public int getIdCompany() {
         return idCompany;
@@ -34,6 +35,17 @@ public class SupplierCompanyModel {
 
     public void setIdCompany(int idCompany) {
         this.idCompany = idCompany;
+    }
+    
+     public void setRegisterDate(LocalDate registerDate) {
+        this.registerDate = registerDate;
+    }
+    public String getHierarchicaltype() {
+        return hierarchicaltype;
+    }
+
+    public void setHierarchicaltype(String hierarchicaltype) {
+        this.hierarchicaltype = hierarchicaltype;
     }
 
     public String getLocalnum() {
@@ -100,14 +112,6 @@ public class SupplierCompanyModel {
         this.mainActivity = mainActivity;
     }
 
-    public Date getLastDelivery_Date() {
-        return lastDelivery_Date;
-    }
-
-    public void setLastDelivery_Date(Date lastDelivery_Date) {
-        this.lastDelivery_Date = lastDelivery_Date;
-    }
-
     public String getPhone() {
         return phone;
     }
@@ -128,8 +132,13 @@ public class SupplierCompanyModel {
         return registerDate;
     }
 
-    public void setRegisterDate(LocalDate registerDate) {
-        this.registerDate = registerDate;
+
+    public String getSite() {
+        return site;
+    }
+
+    public void setSite(String site) {
+        this.site = site;
     }
 
 }

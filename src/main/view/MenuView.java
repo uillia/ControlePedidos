@@ -21,12 +21,12 @@ import util.GraphElementsManipulator.Theme;
 import util.GraphElementsManipulator.TitleBar;
 
 public class MenuView extends javax.swing.JFrame {
-
+    //Global variables and instaces are avaliable to be used in all this class
     LoginController lc = new LoginController();
     FileManager ac = new FileManager();
     ConfigManager conf = new ConfigManager();
     EmployeeController empc = new EmployeeController();
-    EmployeeModel userLog= empc.getLoggedData(); // this declaration get data from the logged user in this system 
+    EmployeeModel userLog= empc.getLoggedData(); // this Global instacy get data from the logged user in this system 
     String path = "C:\\Users\\"+ System.getProperty("user.name") +"\\Documents\\Controle de Estoque\\preferences\\theme.properties";
     String theme = conf.getValue("theme","light",path);
     
@@ -429,13 +429,13 @@ public class MenuView extends javax.swing.JFrame {
 
         if (tgbttTema.isSelected()) {
             theme = "dark";
-            attTema();
+            refreshTheme();
 
         } else {
             theme = "light";
-            attTema();
+            refreshTheme();
         }
-          conf.setValue("theme",theme,path); // Escreve no arquivo de configuração os novos valores 
+            conf.setValue("theme",theme,path); // Write in a file the theme 
           
 //        ac.Write(path, theme);//escreve qual tema foi selecionado e é escrito no arquivo em preferencias/theme
             
@@ -524,17 +524,17 @@ public class MenuView extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
 
-        /* Create and display the form */
+        // Create and display the form 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MenuView().setVisible(true);
-
             }
         });
 
     }
 
-    public void attTema() {
+    public void refreshTheme() { // This function is basically putt all J elementes in Arrray,
+        //and call all the functions to rfresh the theme. All theses functions are in util.GraphElelementsManipulator.Theme
         
         TitleBar tb = new TitleBar();
         tb.configTitleBar(panelClose, panelIconfied, panelTitleBar, bttClose, bttIconfied, theme);
@@ -619,17 +619,17 @@ public class MenuView extends javax.swing.JFrame {
         
     }
 
-    public void checkTheme() {
+    public void checkTheme() { // this funcion check the theme when you get back to this view
         if (theme.equals("dark")) {
             tgbttTema.setSelected(true);
-            attTema();
+            refreshTheme();
         } else {
-            attTema();
+            refreshTheme();
         }
     }
-    public void checkGroup(){
+    public void checkGroup(){ // this function check if the logged user is a Administrator
         
-        String group= userLog.getGroup();
+        String group= userLog.getGroup(); //get the group in the global Employee instacy
         System.out.println(group);
         if (group.equals("Administrador")||group.equals("Dev")) {
             bttEmployee.setVisible(true);
