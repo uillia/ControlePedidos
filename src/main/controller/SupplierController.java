@@ -5,7 +5,11 @@
  */
 package main.controller;
 
+import java.time.LocalDate;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import main.DAO.SupplierDAO;
+import main.model.SupplierCompanyModel;
 
 /**
  *
@@ -13,8 +17,17 @@ import javax.swing.table.DefaultTableModel;
  */
 public class SupplierController {
 
-    public void cadastrarEmpresa() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    SupplierDAO suppDAO = new SupplierDAO();
+
+    public void registerCompany(SupplierCompanyModel suppCompReg) {
+
+        if (suppCompReg.getCnpj().equals(suppDAO.getDataCompanySupp("cnpj", suppCompReg.getCnpj()).getCnpj())) {
+
+            JOptionPane.showMessageDialog(null, this, "Empresa ja cadastrada", 0);
+        } else {
+            suppCompReg.setRegisterDate(LocalDate.now());
+            suppDAO.registerSupplierCompany(suppCompReg);
+        }
     }
 
     public void CadastrarFpessoa() {
@@ -28,5 +41,5 @@ public class SupplierController {
     public String getData() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

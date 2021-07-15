@@ -87,7 +87,7 @@ public class RegEmployeeView extends javax.swing.JFrame {
         panelExluirFunc = new javax.swing.JPanel();
         panelTab = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabFuncionarios = new javax.swing.JTable();
+        tabEmployees = new javax.swing.JTable();
         bttDelete = new javax.swing.JButton();
         txtId = new javax.swing.JTextField();
         lbId = new javax.swing.JLabel();
@@ -366,7 +366,7 @@ public class RegEmployeeView extends javax.swing.JFrame {
 
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
 
-        tabFuncionarios.setModel(new javax.swing.table.DefaultTableModel(
+        tabEmployees.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -396,10 +396,10 @@ public class RegEmployeeView extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tabFuncionarios.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        tabFuncionarios.setMinimumSize(new java.awt.Dimension(60, 100));
-        tabFuncionarios.setPreferredSize(new java.awt.Dimension(215, 200));
-        jScrollPane1.setViewportView(tabFuncionarios);
+        tabEmployees.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tabEmployees.setMinimumSize(new java.awt.Dimension(60, 100));
+        tabEmployees.setPreferredSize(new java.awt.Dimension(215, 200));
+        jScrollPane1.setViewportView(tabEmployees);
 
         javax.swing.GroupLayout panelTabLayout = new javax.swing.GroupLayout(panelTab);
         panelTab.setLayout(panelTabLayout);
@@ -664,7 +664,7 @@ public class RegEmployeeView extends javax.swing.JFrame {
         func.setStreet(txtStreet.getText());
         func.setDistrict(txtDistrict.getText());
         func.setCity(txtCity.getText());
-        func.setEstado(txtState.getText());
+        func.setState(txtState.getText());
         func.setLogin(txtLogin.getText());
         func.setGroup(comboRole.getSelectedItem().toString());
         func.setPassword(txtPassword.getText());
@@ -767,7 +767,7 @@ public class RegEmployeeView extends javax.swing.JFrame {
         lbName,lbHomeNum,lbPhone,lbStreet,lbTextMid,lbTextTop,lbTextleft,lbcpf,lbPassword,lbPasswordConf};     
         JPanel[] panel = {panelMin,panelRegEmp,panelAdress,panelExluirFunc,panelClose,panelIconfied,
         panelSis,panelTab,panelTitleBar};
-        JTable[] tab = {tabFuncionarios};
+        JTable[] tab = {tabEmployees};
 //        JComboBox[] combo = {comboRole};
         
         t.refreshButtons(btt, theme);
@@ -815,7 +815,7 @@ public class RegEmployeeView extends javax.swing.JFrame {
     public void refreshTable() { //envia a tabela para ser carregada
 
         DefaultTableModel tabFmodel = new DefaultTableModel();
-        tabFmodel = (DefaultTableModel) tabFuncionarios.getModel();
+        tabFmodel = (DefaultTableModel) tabEmployees.getModel();
         tabFmodel.setRowCount(0);
         fc.refreshTable(tabFmodel);
     }
@@ -855,7 +855,7 @@ public class RegEmployeeView extends javax.swing.JFrame {
     private javax.swing.JPanel panelSis;
     private javax.swing.JPanel panelTab;
     private javax.swing.JPanel panelTitleBar;
-    private javax.swing.JTable tabFuncionarios;
+    private javax.swing.JTable tabEmployees;
     private javax.swing.JFormattedTextField txtBirthdate;
     private javax.swing.JTextField txtCity;
     private javax.swing.JFormattedTextField txtCpf;

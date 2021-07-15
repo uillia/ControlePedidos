@@ -12,7 +12,7 @@ import java.util.Date;
  *
  * @author uillia
  */
-public class SupplierCompanyModel {
+public class SupplierCompanyModel extends HierarchicalTypeModel {
 
     private int idCompany;
     private String name;
@@ -20,14 +20,14 @@ public class SupplierCompanyModel {
     private String mainActivity;
     private String hierarchicaltype;
     private String phone;
-    private String Localnum;
+    private int Localnum;
     private String street;
     private String district;
     private String city;
-    private String estado;
-    private LocalDate registerDate;
+    private String state;
     private String email;
     private String site;
+    private LocalDate registerDate;
 
     public int getIdCompany() {
         return idCompany;
@@ -48,11 +48,11 @@ public class SupplierCompanyModel {
         this.hierarchicaltype = hierarchicaltype;
     }
 
-    public String getLocalnum() {
+    public int getLocalnum() {
         return Localnum;
     }
 
-    public void setLocalnum(String Localnum) {
+    public void setLocalnum(int Localnum) {
         this.Localnum = Localnum;
     }
 
@@ -80,12 +80,12 @@ public class SupplierCompanyModel {
         this.city = city;
     }
 
-    public String getEstado() {
-        return estado;
+    public String getState() {
+        return state;
     }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
+    public void setState(String state) {
+        this.state = state;
     }
 
     public String getName() {

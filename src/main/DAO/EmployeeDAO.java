@@ -1,11 +1,8 @@
 package main.DAO;
-
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import java.sql.SQLException;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import main.model.EmployeeModel;
 
@@ -17,39 +14,39 @@ public class EmployeeDAO {
 
     MySqlConnection c = new MySqlConnection();
 
-    public void insertEmployee(EmployeeModel func) {
+    public void insertEmployee(EmployeeModel emp) {
         try {
 
-            c.Conectar();
+            c.Connect();
             PreparedStatement pst = c.con.prepareStatement("insert into employees "
                     + " (name, cpf, birthDate, phone, houseNum, street, district, city, state, login, password, role, registerDate) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)");
-            pst.setString(1, func.getName());
-            pst.setString(2, func.getCpf());
-            pst.setDate(3, new java.sql.Date(func.getBirthDate().getTime()));
-            pst.setString(4, func.getPhone());
-            pst.setString(5, func.getHouseNumber());
-            pst.setString(6, func.getStreet());
-            pst.setString(7, func.getDistrict());
-            pst.setString(8, func.getCity());
-            pst.setString(9, func.getEstado());
-            pst.setString(10, func.getLogin());
-            pst.setString(11, func.getPassword());
-            pst.setString(12, func.getGroup());
-            pst.setString(13, func.getRegisterDate().toString());
+            pst.setString(1, emp.getName());
+            pst.setString(2, emp.getCpf());
+            pst.setDate(3, new java.sql.Date(emp.getBirthDate().getTime()));
+            pst.setString(4, emp.getPhone());
+            pst.setString(5, emp.getHouseNumber());
+            pst.setString(6, emp.getStreet());
+            pst.setString(7, emp.getDistrict());
+            pst.setString(8, emp.getCity());
+            pst.setString(9, emp.getState());
+            pst.setString(10, emp.getLogin());
+            pst.setString(11, emp.getPassword());
+            pst.setString(12, emp.getGroup());
+            pst.setString(13, emp.getRegisterDate().toString());
 
             pst.execute();
 
             JOptionPane.showMessageDialog(null, "Cadastro Realizado com Sucesso ", "", 1);
 
             pst.close();
-            c.fechar_Conexao();
+            c.close_Connection();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage(), "Alerta", 2);
         }
     }
 
     public void refreshEmployeeTable(DefaultTableModel table) {
-        c.Conectar();
+        c.Connect();
 
         try {
 
@@ -70,66 +67,66 @@ public class EmployeeDAO {
             }
 
             pst.close();
-
+            c.close_Connection();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage(), "Alerta", 2);
         }
     }
 
     public void deleteEmployee(int id) {
-        c.Conectar();
+        c.Connect();
         try {
             String sql = "delete from employees where idEmployee = " + id + "";
             PreparedStatement pst = c.con.prepareStatement(sql);
             pst.execute();
+            pst.close();
 
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage(), "Alerta", 2);
         }
+        c.close_Connection();
 
     }
-    public EmployeeModel getDataEmployeeByUser(String login) {
-        EmployeeModel funcLog = new EmployeeModel();    
-        MySqlConnection c = new MySqlConnection();
-        c.Conectar();
-        
-        
+
+    public EmployeeModel getDataEmployee(String field, String value) {
+        EmployeeModel empLog = new EmployeeModel();
+        c.Connect();
+
         try {
-            
-            String sql="Select * from employees where login ='" +login+ "'";
+
+            String sql = "Select * from employees where " + field + " ='" + value + "'";
             PreparedStatement pst = c.con.prepareStatement(sql);
             pst.execute();
 
             ResultSet rs = pst.getResultSet();
-            
+
             while (rs.next()) {
 
-                funcLog.setIdEmployee(rs.getInt("idEmployee"));
-                funcLog.setName(rs.getString("name"));
-                funcLog.setCpf(rs.getString("cpf"));
-                funcLog.setPhone(rs.getString("phone"));
-                funcLog.setBirthDate(rs.getDate("birthDate"));
-                funcLog.setEstado(rs.getString("state"));
-                funcLog.setCity(rs.getString("city"));
-                funcLog.setDistrict(rs.getString("district"));
-                funcLog.setHouseNumber(rs.getString("houseNum"));
-                funcLog.setLogin(rs.getString("login"));
-                funcLog.setPassword(rs.getString("password"));
-                funcLog.setGroup(rs.getString("role"));
-                funcLog.setRegisterDate(rs.getDate("registerDate").toLocalDate());
-                
-                
+                empLog.setIdEmployee(rs.getInt("idEmployee"));
+                empLog.setName(rs.getString("name"));
+                empLog.setCpf(rs.getString("cpf"));
+                empLog.setPhone(rs.getString("phone"));
+                empLog.setBirthDate(rs.getDate("birthDate"));
+                empLog.setState(rs.getString("state"));
+                empLog.setCity(rs.getString("city"));
+                empLog.setDistrict(rs.getString("district"));
+                empLog.setHouseNumber(rs.getString("houseNum"));
+                empLog.setLogin(rs.getString("login"));
+                empLog.setPassword(rs.getString("password"));
+                empLog.setGroup(rs.getString("role"));
+                empLog.setRegisterDate(rs.getDate("registerDate").toLocalDate());
+
             }
-            
+
             System.out.println("Usuario Encontrado");
             pst.close();
-            return funcLog;
+
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage(), "Alerta", 2);
             return null;
         }
-        
-       
-        
+        c.close_Connection();
+        return empLog;
     }
+
 }

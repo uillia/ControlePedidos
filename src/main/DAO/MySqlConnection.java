@@ -10,7 +10,7 @@ public class MySqlConnection {
     public MySqlConnection() {
     }
 
-    public void Conectar() {
+    public void Connect() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             System.out.println("Driver Conectado");
@@ -27,7 +27,7 @@ public class MySqlConnection {
         }
 
     }
-     public  void fechar_Conexao()  {
+     public  void close_Connection()  {
        try{
            con.close(); 
        } catch(SQLException exc) {

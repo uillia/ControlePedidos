@@ -14,7 +14,7 @@ public class LoginDAO {
     public EmployeeModel authLogin(String login) {
         EmployeeModel funcLog = new EmployeeModel();
         MySqlConnection c = new MySqlConnection();
-        c.Conectar();
+        c.Connect();
 
         try {
 

@@ -1,6 +1,5 @@
 package main.controller;
 
-import javax.swing.JTextField;
 import main.DAO.EmployeeDAO;
 import util.FileManager;
 import main.DAO.LoginDAO;
@@ -13,15 +12,14 @@ public class LoginController {
     LoginDAO ld = new LoginDAO();
     EmployeeDAO empdao = new EmployeeDAO();
     String cachePath = "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\NetBeansProjects\\ControleEstoque\\dados\\cacheLoguin";
-
-    LoginDAO logDao = new LoginDAO();
+    LoginDAO logdao = new LoginDAO();
 
     public int login(String user, String password) {
         EmployeeModel interEmp = new EmployeeModel();
 
-        if ((logDao.authLogin(user).getLogin() != null)) {
+        if ((logdao.authLogin(user).getLogin() != null)) {
 
-            interEmp = logDao.authLogin(user); //the auxiliary instace get the data became the MySql BD in this line 
+            interEmp = logdao.authLogin(user); //the auxiliary instace get the data became the MySql BD in this line 
 
             if (interEmp.getPassword().equals(password)) {
                 System.out.println("as senhas bateram");
@@ -38,13 +36,13 @@ public class LoginController {
     }
 
     public void saveLogin(String user, String password) {
-        
+
         FileManager fm = new FileManager();
         String path = "C:\\Users\\uillia\\Documents\\NetBeansProjects\\ControleEstoque\\dados\\usuario.txt";
         fm.Write(path, "" + user + "");
         path = "C:\\Users\\uillia\\Documents\\NetBeansProjects\\ControleEstoque\\dados\\senha.txt";
         fm.Write(path, "" + password + "");
-        
+
     }
 
     public void logout() {
@@ -65,7 +63,7 @@ public class LoginController {
     }
 
     public void delLogcache() {
-        
+
         config.setValue("user", "null", cachePath);
         System.out.println("usuario chache apagado");
     }

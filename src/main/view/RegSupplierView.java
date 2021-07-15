@@ -83,7 +83,7 @@ public class RegSupplierView extends javax.swing.JFrame {
         panelRegSuppPerson = new javax.swing.JPanel();
         panelTab = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabEmpresasForn = new javax.swing.JTable();
+        tabSuppCompany = new javax.swing.JTable();
         txtNamePerson = new javax.swing.JTextField();
         lbNamePerson = new javax.swing.JLabel();
         txtCpf = new javax.swing.JFormattedTextField();
@@ -369,7 +369,7 @@ public class RegSupplierView extends javax.swing.JFrame {
 
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
 
-        tabEmpresasForn.setModel(new javax.swing.table.DefaultTableModel(
+        tabSuppCompany.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -399,10 +399,10 @@ public class RegSupplierView extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tabEmpresasForn.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        tabEmpresasForn.setMinimumSize(new java.awt.Dimension(60, 100));
-        tabEmpresasForn.setPreferredSize(new java.awt.Dimension(217, 200));
-        jScrollPane1.setViewportView(tabEmpresasForn);
+        tabSuppCompany.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tabSuppCompany.setMinimumSize(new java.awt.Dimension(60, 100));
+        tabSuppCompany.setPreferredSize(new java.awt.Dimension(217, 200));
+        jScrollPane1.setViewportView(tabSuppCompany);
 
         javax.swing.GroupLayout panelTabLayout = new javax.swing.GroupLayout(panelTab);
         panelTab.setLayout(panelTabLayout);
@@ -723,18 +723,18 @@ public class RegSupplierView extends javax.swing.JFrame {
         suppCompany.setName(txtNameCompany.getText());
         suppCompany.setPhone(txtPhone.getText());
         suppCompany.setMainActivity(txtMainActivity.getText());
-        suppCompany.setHierarchicaltype(comboHierarchicaltype.getSelectedItem().toString());
+        suppCompany.setIdHierarchicaltype(comboHierarchicaltype.getSelectedIndex());
 
         
         suppCompany.setEmail(txtEmail.getText());
         suppCompany.setSite(txtSite.getText());
 
-        suppCompany.setLocalnum(txtLocalNum.getText());
+        suppCompany.setLocalnum(Integer.parseInt(txtLocalNum.getText()));
         suppCompany.setStreet(txtStreet.getText());
         suppCompany.setDistrict(txtDistrict.getText());
         suppCompany.setCity(txtCity.getText());
-        suppCompany.setEstado(txtState.getText());
-        sc.cadastrarEmpresa();
+        suppCompany.setState(txtState.getText());
+        sc.registerCompany(suppCompany);
 
         refreshTable();
 
@@ -845,7 +845,7 @@ public class RegSupplierView extends javax.swing.JFrame {
         JPanel[] panel = {panelAdress,
             panelBaseInfo, panelClose, panelIconfied, panelInfoAdc, panelMin,
             panelRegSuppComp, panelRegSuppPerson, panelTab, panelTitleBar};
-        JTable[] tab = {tabEmpresasForn};
+        JTable[] tab = {tabSuppCompany};
         
 //        JComboBox[] combo = {comboHierarchicaltype};
         
@@ -869,7 +869,7 @@ public class RegSupplierView extends javax.swing.JFrame {
             lbTextMid.setForeground(new Color (153,153,153));
             TitledBorder f = BorderFactory.createTitledBorder(null, "Tabela Fornecedores");
             f.setTitleColor(a);
-            tabEmpresasForn.setBorder(f);
+            tabSuppCompany.setBorder(f);
 
         } else {
 
@@ -884,7 +884,7 @@ public class RegSupplierView extends javax.swing.JFrame {
                 //painel da tabela
                 TitledBorder f = BorderFactory.createTitledBorder(null, "Tabela Fornecedores");
                 f.setTitleColor(b);
-                tabEmpresasForn.setBorder(f);
+                tabSuppCompany.setBorder(f);
                 
 
             }
@@ -902,7 +902,7 @@ public class RegSupplierView extends javax.swing.JFrame {
     public void refreshTable() { //envia a tabela para ser carregada
         SupplierCompanyModel forn = new SupplierCompanyModel();
         DefaultTableModel tabFmodel = new DefaultTableModel();
-        tabFmodel = (DefaultTableModel) tabEmpresasForn.getModel();
+        tabFmodel = (DefaultTableModel) tabSuppCompany.getModel();
         tabFmodel.setRowCount(0);
 //        sc.refreshTable(tabFmodel);
     }
@@ -945,7 +945,7 @@ public class RegSupplierView extends javax.swing.JFrame {
     private javax.swing.JPanel panelRegSuppPerson;
     private javax.swing.JPanel panelTab;
     private javax.swing.JPanel panelTitleBar;
-    private javax.swing.JTable tabEmpresasForn;
+    private javax.swing.JTable tabSuppCompany;
     private javax.swing.JTextField txtCity;
     private javax.swing.JFormattedTextField txtCnpj;
     private javax.swing.JFormattedTextField txtCpf;
