@@ -1,8 +1,10 @@
-package main.DAO;
+package main.repository;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import main.model.EmployeeModel;
 
@@ -10,11 +12,12 @@ import main.model.EmployeeModel;
  *
  * @author uillia
  */
-public class EmployeeDAO {
+public class EmployeeRepository {
 
     MySqlConnection c = new MySqlConnection();
 
     public void insertEmployee(EmployeeModel emp) {
+
         try {
 
             c.Connect();
@@ -45,25 +48,24 @@ public class EmployeeDAO {
         }
     }
 
-    public void refreshEmployeeTable(DefaultTableModel table) {
+    public ArrayList<EmployeeModel> getAllEmployeesData() {
+        ArrayList<EmployeeModel> arrayListEmp = new ArrayList< EmployeeModel>();
         c.Connect();
-
         try {
 
-            String sql = "Select idEmployee, name, phone, role from employees Order by idEmployee asc";
+            String sql = "Select * from employees Order by idEmployee asc";
             PreparedStatement pst = c.con.prepareStatement(sql);
             pst.execute();
 
             ResultSet rs = pst.getResultSet();
 
             while (rs.next()) {
-
-                table.addRow(new Object[]{
-                    rs.getString("idEmployee"),
-                    rs.getString("name"),
-                    rs.getString("phone"),
-                    rs.getString("role")
-                });
+                EmployeeModel emp = new EmployeeModel();
+                emp.setIdEmployee(rs.getInt("idEmployee"));
+                emp.setName(rs.getString("name"));
+                emp.setPhone(rs.getString("phone"));
+                emp.setGroup(rs.getString("role"));
+                arrayListEmp.add(emp);
             }
 
             pst.close();
@@ -71,6 +73,7 @@ public class EmployeeDAO {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage(), "Alerta", 2);
         }
+        return arrayListEmp;
     }
 
     public void deleteEmployee(int id) {
@@ -88,13 +91,13 @@ public class EmployeeDAO {
 
     }
 
-    public EmployeeModel getDataEmployee(String field, String value) {
+    public EmployeeModel getDataEmployeeByUser(String user) {
         EmployeeModel empLog = new EmployeeModel();
         c.Connect();
 
         try {
 
-            String sql = "Select * from employees where " + field + " ='" + value + "'";
+            String sql = "Select * from employees where login ='" + user + "'";
             PreparedStatement pst = c.con.prepareStatement(sql);
             pst.execute();
 

@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -33,7 +34,7 @@ public class RegSupplierView extends javax.swing.JFrame {
     SupplierController sc = new SupplierController();
     ConfigManager conf = new ConfigManager();
     FileManager fm = new FileManager();
-    String theme = conf.getValue("theme", "light", "C:\\Users\\"+System.getProperty("user.name") +"\\Documents\\Controle de Estoque\\preferences\\theme.properties");
+    String theme = conf.getValue("theme", "light", "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\Controle de Estoque\\preferences\\theme.properties");
     Color btf;
     int xMouse, yMouse;
 
@@ -716,7 +717,7 @@ public class RegSupplierView extends javax.swing.JFrame {
     }//GEN-LAST:event_bttVoltarActionPerformed
 
     private void bttRegisterSuppCompanyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttRegisterSuppCompanyActionPerformed
-        
+
         SupplierCompanyModel suppCompany = new SupplierCompanyModel();
 
         suppCompany.setCnpj(txtCnpj.getText());
@@ -725,7 +726,6 @@ public class RegSupplierView extends javax.swing.JFrame {
         suppCompany.setMainActivity(txtMainActivity.getText());
         suppCompany.setIdHierarchicaltype(comboHierarchicaltype.getSelectedIndex());
 
-        
         suppCompany.setEmail(txtEmail.getText());
         suppCompany.setSite(txtSite.getText());
 
@@ -751,12 +751,14 @@ public class RegSupplierView extends javax.swing.JFrame {
         yMouse = evt.getY();
     }//GEN-LAST:event_formMousePressed
 
+    @SuppressWarnings("empty-statement")
     private void bttRegisterSuppPersonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttRegisterSuppPersonActionPerformed
         SupplierPersonModel fp = new SupplierPersonModel();
         fp.setName(txtNamePerson.getText());
         fp.setCpf(txtCpf.getText());
         fp.setIdCompany(Integer.parseInt(txtIdCompany.getText()));
         sc.CadastrarFpessoa();
+
 
     }//GEN-LAST:event_bttRegisterSuppPersonActionPerformed
 
@@ -840,15 +842,14 @@ public class RegSupplierView extends javax.swing.JFrame {
         JFormattedTextField[] txtf = {txtCnpj, txtPhone, txtCpf};
 
         JLabel[] lb = {lbNameCompany, lbNamePerson, lbCnpj, lbCpf, lbPhone, lbIdCompany, lbRole, lbMainActivity,
-            lbCity, lbLocalNum, lbStreet, lbDistrict, lbState, lbEmail, lbSite,lbHierarchicaltype};
+            lbCity, lbLocalNum, lbStreet, lbDistrict, lbState, lbEmail, lbSite, lbHierarchicaltype};
 
         JPanel[] panel = {panelAdress,
             panelBaseInfo, panelClose, panelIconfied, panelInfoAdc, panelMin,
             panelRegSuppComp, panelRegSuppPerson, panelTab, panelTitleBar};
         JTable[] tab = {tabSuppCompany};
-        
+
 //        JComboBox[] combo = {comboHierarchicaltype};
-        
         t.refreshButtons(btt, theme);
         t.refreshFormatedTextfields(txtf, theme);
         t.refreshTextFields(txt, theme);
@@ -857,16 +858,14 @@ public class RegSupplierView extends javax.swing.JFrame {
         t.refreshLabels(lb, theme);
         t.refreshTables(tab, theme);
 //        t.refreshComboBox(combo, theme);
-        
-        
 
         if (theme.equals("dark")) {
 
             bttRegisterSuppCompany.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/addfuncIconDark.png")));
             bttRegisterSuppPerson.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/bttfornIconDark.png")));
-            lbTextleft.setForeground(new Color (153,153,153));
-            lbTextTop.setForeground(new Color (153,153,153));
-            lbTextMid.setForeground(new Color (153,153,153));
+            lbTextleft.setForeground(new Color(153, 153, 153));
+            lbTextTop.setForeground(new Color(153, 153, 153));
+            lbTextMid.setForeground(new Color(153, 153, 153));
             TitledBorder f = BorderFactory.createTitledBorder(null, "Tabela Fornecedores");
             f.setTitleColor(a);
             tabSuppCompany.setBorder(f);
@@ -885,7 +884,6 @@ public class RegSupplierView extends javax.swing.JFrame {
                 TitledBorder f = BorderFactory.createTitledBorder(null, "Tabela Fornecedores");
                 f.setTitleColor(b);
                 tabSuppCompany.setBorder(f);
-                
 
             }
         }

@@ -1,38 +1,21 @@
 package main.controller;
 
-import main.DAO.EmployeeDAO;
+import main.repository.EmployeeRepository;
 import util.FileManager;
-import main.DAO.LoginDAO;
-import main.model.EmployeeModel;
+import main.repository.LoginRepository;
 import util.ConfigManager;
 
 public class LoginController {
 
     ConfigManager config = new ConfigManager();
-    LoginDAO ld = new LoginDAO();
-    EmployeeDAO empdao = new EmployeeDAO();
+    LoginRepository ld = new LoginRepository();
+    EmployeeRepository empRep = new EmployeeRepository();
     String cachePath = "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\NetBeansProjects\\ControleEstoque\\dados\\cacheLoguin";
-    LoginDAO logdao = new LoginDAO();
+    LoginRepository logRep = new LoginRepository();
 
     public int login(String user, String password) {
-        EmployeeModel interEmp = new EmployeeModel();
-
-        if ((logdao.authLogin(user).getLogin() != null)) {
-
-            interEmp = logdao.authLogin(user); //the auxiliary instace get the data became the MySql BD in this line 
-
-            if (interEmp.getPassword().equals(password)) {
-                System.out.println("as senhas bateram");
-                return 1; // in this case, the protocol to login is 1
-
-            } else {
-                return 2;// 2 if the passwords doesn't match
-            }
-
-        } else {
-            return 0;// 0 if the search doesn't find any user 
-        }
-
+        int protLog = logRep.authLogin(user, password);
+        return protLog;
     }
 
     public void saveLogin(String user, String password) {
