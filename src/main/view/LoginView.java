@@ -333,6 +333,7 @@ public class LoginView extends javax.swing.JFrame {
             } else {
                 txtUser.setText(usuario);
                 txtPassword.setText(senha);
+                radbttSavelogin.setSelected(true);   
             }
         }
     }

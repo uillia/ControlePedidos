@@ -1,4 +1,4 @@
-package main.DAO;
+package main.repository;
 
 import java.sql.*;
 import javax.swing.JOptionPane;

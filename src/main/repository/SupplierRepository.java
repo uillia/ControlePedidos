@@ -3,23 +3,25 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package main.DAO;
+package main.repository;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import main.model.SupplierCompanyModel;
 import main.model.SupplierPersonModel;
 
-public class SupplierDAO {
+public class SupplierRepository {
 
     SupplierCompanyModel compInter = new SupplierCompanyModel();
     SupplierPersonModel personInter = new SupplierPersonModel();
     MySqlConnection c = new MySqlConnection();
 
-    public void registerSupplierCompany(SupplierCompanyModel comp) {
+    public void insertSupplierCompany(SupplierCompanyModel comp) {
+        
         try {
 
             c.Connect();
@@ -54,19 +56,15 @@ public class SupplierDAO {
         }
     }
 
-    public SupplierCompanyModel getDataCompanySupp(String field, String value) {
-
+    public SupplierCompanyModel getDataCompanySuppById(int id) {
         SupplierCompanyModel compInter = new SupplierCompanyModel();
         c.Connect();
-
         try {
-
             String sql = "Select sc.*, ht.description from suppliercompany sc "
                     + "INNER JOIN hierarchicaltype ht on sc.idhierarchicalType = ht.idhierarchicalType "
-                    + " where " + field + " ='" + value + "'";
+                    + " where idSupplierCompany='" + id + "'";
             PreparedStatement pst = c.con.prepareStatement(sql);
             pst.execute();
-
             ResultSet rs = pst.getResultSet();
 
             while (rs.next()) {
@@ -93,10 +91,37 @@ public class SupplierDAO {
             JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage(), "Alerta", 2);
             return null;
         }
-
     }
 
-    public void registerSupplierPerson() {
+    public SupplierCompanyModel getDataCompanySuppByCnpj(String cnpj) {
+        SupplierCompanyModel retComp = new SupplierCompanyModel();
+        int id = -1;
+        if (cnpj.length() != 18) {
+        } else {
+            try {
+                c.Connect();
+                String sql = "Select idSupplierCompany from suppliercompany where cnpj='" + cnpj + "'";
+                PreparedStatement pst;
+
+                pst = c.con.prepareStatement(sql);
+
+                pst.execute();
+                ResultSet rs = pst.getResultSet();
+                while (rs.next()) {
+                    id = rs.getInt("idSupplierCompany");
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(SupplierRepository.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            if (id > 0) {
+                retComp = getDataCompanySuppById(id);
+            }
+
+        }
+        return retComp;
+    }
+
+    public void insertSupplierPerson() {
     }
 
 //    public SupplierPersonModel getDataPersonSupp() {

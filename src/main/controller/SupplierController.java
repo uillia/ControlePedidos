@@ -8,7 +8,7 @@ package main.controller;
 import java.time.LocalDate;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import main.DAO.SupplierDAO;
+import main.repository.SupplierRepository;
 import main.model.SupplierCompanyModel;
 
 /**
@@ -17,16 +17,16 @@ import main.model.SupplierCompanyModel;
  */
 public class SupplierController {
 
-    SupplierDAO suppDAO = new SupplierDAO();
+    SupplierRepository suppRep = new SupplierRepository();
 
     public void registerCompany(SupplierCompanyModel suppCompReg) {
 
-        if (suppCompReg.getCnpj().equals(suppDAO.getDataCompanySupp("cnpj", suppCompReg.getCnpj()).getCnpj())) {
+        if (suppCompReg.getCnpj().equals(suppRep.getDataCompanySuppByCnpj(suppCompReg.getCnpj()).getCnpj())) {
 
             JOptionPane.showMessageDialog(null, this, "Empresa ja cadastrada", 0);
         } else {
             suppCompReg.setRegisterDate(LocalDate.now());
-            suppDAO.registerSupplierCompany(suppCompReg);
+            suppRep.insertSupplierCompany(suppCompReg);
         }
     }
 

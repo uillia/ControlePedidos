@@ -16,6 +16,7 @@ import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -30,7 +31,7 @@ import main.model.EmployeeModel;
  *
  * @author uillia
  */
-public class OrderView extends javax.swing.JFrame {
+public class RegItensView extends javax.swing.JFrame {
 
     EmployeeController fc = new EmployeeController();
     ConfigManager conf = new ConfigManager();
@@ -42,7 +43,7 @@ public class OrderView extends javax.swing.JFrame {
     /**
      * Creates new form TelaCadFunc
      */
-    public OrderView() {
+    public RegItensView() {
         initComponents();
         checkTheme();
         refreshTable();
@@ -86,7 +87,7 @@ public class OrderView extends javax.swing.JFrame {
         panelExluirFunc = new javax.swing.JPanel();
         panelTab = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabOrders = new javax.swing.JTable();
+        tabItems = new javax.swing.JTable();
         bttDelete = new javax.swing.JButton();
         txtId = new javax.swing.JTextField();
         lbId = new javax.swing.JLabel();
@@ -184,7 +185,7 @@ public class OrderView extends javax.swing.JFrame {
                     .addComponent(lbState))
                 .addGap(13, 13, 13)
                 .addGroup(panelAdressLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtCity, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
+                    .addComponent(txtCity, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
                     .addComponent(txtStreet, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtDistrict, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(panelAdressLayout.createSequentialGroup()
@@ -365,7 +366,7 @@ public class OrderView extends javax.swing.JFrame {
 
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
 
-        tabOrders.setModel(new javax.swing.table.DefaultTableModel(
+        tabItems.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -395,10 +396,10 @@ public class OrderView extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tabOrders.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        tabOrders.setMinimumSize(new java.awt.Dimension(60, 100));
-        tabOrders.setPreferredSize(new java.awt.Dimension(215, 200));
-        jScrollPane1.setViewportView(tabOrders);
+        tabItems.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tabItems.setMinimumSize(new java.awt.Dimension(60, 100));
+        tabItems.setPreferredSize(new java.awt.Dimension(215, 200));
+        jScrollPane1.setViewportView(tabItems);
 
         javax.swing.GroupLayout panelTabLayout = new javax.swing.GroupLayout(panelTab);
         panelTab.setLayout(panelTabLayout);
@@ -418,7 +419,7 @@ public class OrderView extends javax.swing.JFrame {
         );
 
         bttDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/bttexcluirfuncIconLight.png"))); // NOI18N
-        bttDelete.setText("Excluir");
+        bttDelete.setText("Pesquisar");
         bttDelete.setBorderPainted(false);
         bttDelete.setContentAreaFilled(false);
         bttDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -480,17 +481,17 @@ public class OrderView extends javax.swing.JFrame {
         lbTextleft.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lbTextleft.setForeground(new java.awt.Color(153, 153, 153));
         lbTextleft.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbTextleft.setText("Pedidos");
+        lbTextleft.setText("Itens");
 
         lbTextMid.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lbTextMid.setForeground(new java.awt.Color(153, 153, 153));
         lbTextMid.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lbTextMid.setText("Pesquisar Pedido");
+        lbTextMid.setText("Pesquisar Item");
 
         lbTextTop.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lbTextTop.setForeground(new java.awt.Color(153, 153, 153));
         lbTextTop.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lbTextTop.setText("Cadastrar Pedido");
+        lbTextTop.setText("Cadastrar Item");
 
         panelTitleBar.setBackground(new java.awt.Color(242, 242, 242));
 
@@ -617,7 +618,7 @@ public class OrderView extends javax.swing.JFrame {
                     .addComponent(panelExluirFunc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lbTextMid, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(lbTextTop)
+                        .addComponent(lbTextTop, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(bttVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(panelRegEmp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -672,7 +673,7 @@ public class OrderView extends javax.swing.JFrame {
         try {
             func.setBirthDate(new SimpleDateFormat("dd/MM/yyyy").parse(txtBirthdate.getText()));
         } catch (ParseException ex) {
-            Logger.getLogger(OrderView.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RegItensView.class.getName()).log(Level.SEVERE, null, ex);
         }
         EmployeeController fc = new EmployeeController();
         fc.registerEmployee(func, passwordRep);
@@ -729,13 +730,13 @@ public class OrderView extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(OrderView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegItensView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(OrderView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegItensView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(OrderView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegItensView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(OrderView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegItensView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -749,7 +750,7 @@ public class OrderView extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new OrderView().setVisible(true);
+                new RegItensView().setVisible(true);
             }
         });
     }
@@ -770,7 +771,7 @@ public class OrderView extends javax.swing.JFrame {
         lbName,lbHomeNum,lbPhone,lbStreet,lbTextMid,lbTextTop,lbTextleft,lbcpf,lbPassword,lbPasswordConf};     
         JPanel[] panel = {panelMin,panelRegEmp,panelAdress,panelExluirFunc,panelClose,panelIconfied,
         panelSis,panelTab,panelTitleBar};
-        JTable[] tab = {tabOrders};
+        JTable[] tab = {tabItems};
 //        JComboBox[] combo = {comboRole};
         
         t.refreshButtons(btt, theme);
@@ -794,6 +795,8 @@ public class OrderView extends javax.swing.JFrame {
             
         } else {
 
+            
+
             if (theme.equals("light")) {
                 lbTextleft.setForeground(Color.lightGray);
                 lbTextTop.setForeground(Color.lightGray);
@@ -816,7 +819,7 @@ public class OrderView extends javax.swing.JFrame {
     public void refreshTable() { //envia a tabela para ser carregada
 
         DefaultTableModel tabFmodel = new DefaultTableModel();
-        tabFmodel = (DefaultTableModel) tabOrders.getModel();
+        tabFmodel = (DefaultTableModel) tabItems.getModel();
         tabFmodel.setRowCount(0);
         fc.refreshTable(tabFmodel);
     }
@@ -856,7 +859,7 @@ public class OrderView extends javax.swing.JFrame {
     private javax.swing.JPanel panelSis;
     private javax.swing.JPanel panelTab;
     private javax.swing.JPanel panelTitleBar;
-    private javax.swing.JTable tabOrders;
+    private javax.swing.JTable tabItems;
     private javax.swing.JFormattedTextField txtBirthdate;
     private javax.swing.JTextField txtCity;
     private javax.swing.JFormattedTextField txtCpf;

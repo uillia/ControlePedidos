@@ -125,7 +125,7 @@ public class SplashView extends javax.swing.JFrame {
             LoginView lv = new LoginView();
             lv.setVisible(true);
         }catch (Exception e) {
-            System.out.println("Erro ao contruir o frame");
+            System.out.println("Erro ao contruir o frame, "+ "erro: "+ e.getMessage());
         }}
 
     public void attTema() {
