@@ -10,8 +10,10 @@ import util.ConfigManager;
 import java.awt.Color;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -29,10 +31,10 @@ import util.GraphElementsManipulator.TitleBar;
  */
 public class RegSupplierView extends javax.swing.JFrame {
 
-    SupplierController fc = new SupplierController();
+    SupplierController sc = new SupplierController();
     ConfigManager conf = new ConfigManager();
-    FileManager ac = new FileManager();
-    String theme = conf.getValue("theme", "light", "C:\\Users\\"+System.getProperty("user.name") +"\\Documents\\Controle de Estoque\\preferences\\theme.properties");
+    FileManager fm = new FileManager();
+    String theme = conf.getValue("theme", "light", "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\Controle de Estoque\\preferences\\theme.properties");
     Color btf;
     int xMouse, yMouse;
 
@@ -72,15 +74,17 @@ public class RegSupplierView extends javax.swing.JFrame {
         lbLocalNum = new javax.swing.JLabel();
         txtMainActivity = new javax.swing.JTextField();
         lbMainActivity = new javax.swing.JLabel();
+        lbHierarchicaltype = new javax.swing.JLabel();
+        comboHierarchicaltype = new javax.swing.JComboBox<>();
         panelInfoAdc = new javax.swing.JPanel();
-        txSite = new javax.swing.JTextField();
+        txtSite = new javax.swing.JTextField();
         txtEmail = new javax.swing.JTextField();
         lbSite = new javax.swing.JLabel();
         lbEmail = new javax.swing.JLabel();
         panelRegSuppPerson = new javax.swing.JPanel();
         panelTab = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabEmpresasForn = new javax.swing.JTable();
+        tabSuppCompany = new javax.swing.JTable();
         txtNamePerson = new javax.swing.JTextField();
         lbNamePerson = new javax.swing.JLabel();
         txtCpf = new javax.swing.JFormattedTextField();
@@ -229,28 +233,42 @@ public class RegSupplierView extends javax.swing.JFrame {
 
         lbMainActivity.setText("Ramo");
 
+        lbHierarchicaltype.setText("Hierarquia");
+
+        comboHierarchicaltype.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Matriz", "Filial" }));
+        comboHierarchicaltype.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        comboHierarchicaltype.setFocusable(false);
+        comboHierarchicaltype.setKeySelectionManager(null);
+        comboHierarchicaltype.setLightWeightPopupEnabled(false);
+        comboHierarchicaltype.setOpaque(false);
+        comboHierarchicaltype.setRequestFocusEnabled(false);
+        comboHierarchicaltype.setVerifyInputWhenFocusTarget(false);
+
         javax.swing.GroupLayout panelBaseInfoLayout = new javax.swing.GroupLayout(panelBaseInfo);
         panelBaseInfo.setLayout(panelBaseInfoLayout);
         panelBaseInfoLayout.setHorizontalGroup(
             panelBaseInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBaseInfoLayout.createSequentialGroup()
-                .addGap(12, 12, 12)
                 .addGroup(panelBaseInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBaseInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(lbCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lbNameCompany, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(lbPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbMainActivity, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelBaseInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(panelBaseInfoLayout.createSequentialGroup()
-                        .addGroup(panelBaseInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtPhone)
-                            .addComponent(txtMainActivity, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(31, 31, 31))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBaseInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtNameCompany, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(12, 12, 12)
+                        .addGroup(panelBaseInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBaseInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lbCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lbNameCompany, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lbPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbMainActivity, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(panelBaseInfoLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lbHierarchicaltype)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelBaseInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtMainActivity, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboHierarchicaltype, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNameCompany, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panelBaseInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(txtCnpj, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                        .addComponent(txtPhone, javax.swing.GroupLayout.Alignment.LEADING)))
                 .addGap(18, 18, 18)
                 .addComponent(panelAdress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(14, Short.MAX_VALUE))
@@ -278,10 +296,14 @@ public class RegSupplierView extends javax.swing.JFrame {
                 .addGroup(panelBaseInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbMainActivity, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtMainActivity, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelBaseInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbHierarchicaltype)
+                    .addComponent(comboHierarchicaltype, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        txSite.setBorder(null);
+        txtSite.setBorder(null);
 
         txtEmail.setBorder(null);
 
@@ -300,7 +322,7 @@ public class RegSupplierView extends javax.swing.JFrame {
                     .addComponent(lbEmail, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelInfoAdcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txSite, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                    .addComponent(txtSite, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
                     .addComponent(txtEmail))
                 .addGap(37, 37, 37))
         );
@@ -310,7 +332,7 @@ public class RegSupplierView extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addGroup(panelInfoAdcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbSite, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txSite, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtSite, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelInfoAdcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -348,7 +370,7 @@ public class RegSupplierView extends javax.swing.JFrame {
 
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
 
-        tabEmpresasForn.setModel(new javax.swing.table.DefaultTableModel(
+        tabSuppCompany.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -378,10 +400,10 @@ public class RegSupplierView extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tabEmpresasForn.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        tabEmpresasForn.setMinimumSize(new java.awt.Dimension(60, 100));
-        tabEmpresasForn.setPreferredSize(new java.awt.Dimension(217, 200));
-        jScrollPane1.setViewportView(tabEmpresasForn);
+        tabSuppCompany.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tabSuppCompany.setMinimumSize(new java.awt.Dimension(60, 100));
+        tabSuppCompany.setPreferredSize(new java.awt.Dimension(217, 200));
+        jScrollPane1.setViewportView(tabSuppCompany);
 
         javax.swing.GroupLayout panelTabLayout = new javax.swing.GroupLayout(panelTab);
         panelTab.setLayout(panelTabLayout);
@@ -534,7 +556,7 @@ public class RegSupplierView extends javax.swing.JFrame {
         panelClose.setLayout(panelCloseLayout);
         panelCloseLayout.setHorizontalGroup(
             panelCloseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bttClose, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+            .addComponent(bttClose, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         panelCloseLayout.setVerticalGroup(
             panelCloseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -696,21 +718,23 @@ public class RegSupplierView extends javax.swing.JFrame {
 
     private void bttRegisterSuppCompanyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttRegisterSuppCompanyActionPerformed
 
-        SupplierCompanyModel forn = new SupplierCompanyModel();
+        SupplierCompanyModel suppCompany = new SupplierCompanyModel();
 
-        forn.setCnpj(txtCnpj.getText());
-        forn.setName(txtNameCompany.getText());
-        forn.setPhone(txtPhone.getText());
+        suppCompany.setCnpj(txtCnpj.getText());
+        suppCompany.setName(txtNameCompany.getText());
+        suppCompany.setPhone(txtPhone.getText());
+        suppCompany.setMainActivity(txtMainActivity.getText());
+        suppCompany.setIdHierarchicaltype(comboHierarchicaltype.getSelectedIndex());
 
-        forn.setMainActivity(txtMainActivity.getText());
-        forn.setEmail(txtEmail.getText());
+        suppCompany.setEmail(txtEmail.getText());
+        suppCompany.setSite(txtSite.getText());
 
-        forn.setLocalnum(txtLocalNum.getText());
-        forn.setStreet(txtStreet.getText());
-        forn.setDistrict(txtDistrict.getText());
-        forn.setCity(txtCity.getText());
-        forn.setEstado(txtState.getText());
-        fc.cadastrarEmpresa();
+        suppCompany.setLocalnum(Integer.parseInt(txtLocalNum.getText()));
+        suppCompany.setStreet(txtStreet.getText());
+        suppCompany.setDistrict(txtDistrict.getText());
+        suppCompany.setCity(txtCity.getText());
+        suppCompany.setState(txtState.getText());
+        sc.registerCompany(suppCompany);
 
         refreshTable();
 
@@ -727,12 +751,14 @@ public class RegSupplierView extends javax.swing.JFrame {
         yMouse = evt.getY();
     }//GEN-LAST:event_formMousePressed
 
+    @SuppressWarnings("empty-statement")
     private void bttRegisterSuppPersonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttRegisterSuppPersonActionPerformed
         SupplierPersonModel fp = new SupplierPersonModel();
         fp.setName(txtNamePerson.getText());
         fp.setCpf(txtCpf.getText());
         fp.setIdCompany(Integer.parseInt(txtIdCompany.getText()));
-        fc.CadastrarFpessoa();
+        sc.CadastrarFpessoa();
+
 
     }//GEN-LAST:event_bttRegisterSuppPersonActionPerformed
 
@@ -811,18 +837,19 @@ public class RegSupplierView extends javax.swing.JFrame {
         JButton[] btt = {bttRegisterSuppCompany, bttRegisterSuppPerson, bttVoltar};
 
         JTextField[] txt = {txtNameCompany, txtLocalNum, txtDistrict, txtStreet, txtCity,
-            txtState, txtNamePerson, txtIdCompany, txSite, txtEmail, txtMainActivity, txtRole};
+            txtState, txtNamePerson, txtIdCompany, txtSite, txtEmail, txtMainActivity, txtRole};
 
         JFormattedTextField[] txtf = {txtCnpj, txtPhone, txtCpf};
 
         JLabel[] lb = {lbNameCompany, lbNamePerson, lbCnpj, lbCpf, lbPhone, lbIdCompany, lbRole, lbMainActivity,
-            lbCity, lbLocalNum, lbStreet, lbDistrict, lbState, lbEmail, lbSite};
+            lbCity, lbLocalNum, lbStreet, lbDistrict, lbState, lbEmail, lbSite, lbHierarchicaltype};
 
         JPanel[] panel = {panelAdress,
             panelBaseInfo, panelClose, panelIconfied, panelInfoAdc, panelMin,
             panelRegSuppComp, panelRegSuppPerson, panelTab, panelTitleBar};
-        JTable[] tab = {tabEmpresasForn};
-        
+        JTable[] tab = {tabSuppCompany};
+
+//        JComboBox[] combo = {comboHierarchicaltype};
         t.refreshButtons(btt, theme);
         t.refreshFormatedTextfields(txtf, theme);
         t.refreshTextFields(txt, theme);
@@ -830,19 +857,18 @@ public class RegSupplierView extends javax.swing.JFrame {
         t.refreshPanels(panel, theme);
         t.refreshLabels(lb, theme);
         t.refreshTables(tab, theme);
-        
-        
+//        t.refreshComboBox(combo, theme);
 
         if (theme.equals("dark")) {
 
             bttRegisterSuppCompany.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/addfuncIconDark.png")));
             bttRegisterSuppPerson.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/bttfornIconDark.png")));
-            lbTextleft.setForeground(new Color (153,153,153));
-            lbTextTop.setForeground(new Color (153,153,153));
-            lbTextMid.setForeground(new Color (153,153,153));
+            lbTextleft.setForeground(new Color(153, 153, 153));
+            lbTextTop.setForeground(new Color(153, 153, 153));
+            lbTextMid.setForeground(new Color(153, 153, 153));
             TitledBorder f = BorderFactory.createTitledBorder(null, "Tabela Fornecedores");
             f.setTitleColor(a);
-            tabEmpresasForn.setBorder(f);
+            tabSuppCompany.setBorder(f);
 
         } else {
 
@@ -857,8 +883,7 @@ public class RegSupplierView extends javax.swing.JFrame {
                 //painel da tabela
                 TitledBorder f = BorderFactory.createTitledBorder(null, "Tabela Fornecedores");
                 f.setTitleColor(b);
-                tabEmpresasForn.setBorder(f);
-                
+                tabSuppCompany.setBorder(f);
 
             }
         }
@@ -875,9 +900,9 @@ public class RegSupplierView extends javax.swing.JFrame {
     public void refreshTable() { //envia a tabela para ser carregada
         SupplierCompanyModel forn = new SupplierCompanyModel();
         DefaultTableModel tabFmodel = new DefaultTableModel();
-        tabFmodel = (DefaultTableModel) tabEmpresasForn.getModel();
+        tabFmodel = (DefaultTableModel) tabSuppCompany.getModel();
         tabFmodel.setRowCount(0);
-//        fc.refreshTable(tabFmodel);
+//        sc.refreshTable(tabFmodel);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -887,12 +912,14 @@ public class RegSupplierView extends javax.swing.JFrame {
     private javax.swing.JButton bttRegisterSuppCompany;
     private javax.swing.JButton bttRegisterSuppPerson;
     private javax.swing.JButton bttVoltar;
+    private javax.swing.JComboBox<String> comboHierarchicaltype;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbCity;
     private javax.swing.JLabel lbCnpj;
     private javax.swing.JLabel lbCpf;
     private javax.swing.JLabel lbDistrict;
     private javax.swing.JLabel lbEmail;
+    private javax.swing.JLabel lbHierarchicaltype;
     private javax.swing.JLabel lbIdCompany;
     private javax.swing.JLabel lbLocalNum;
     private javax.swing.JLabel lbMainActivity;
@@ -916,8 +943,7 @@ public class RegSupplierView extends javax.swing.JFrame {
     private javax.swing.JPanel panelRegSuppPerson;
     private javax.swing.JPanel panelTab;
     private javax.swing.JPanel panelTitleBar;
-    private javax.swing.JTable tabEmpresasForn;
-    private javax.swing.JTextField txSite;
+    private javax.swing.JTable tabSuppCompany;
     private javax.swing.JTextField txtCity;
     private javax.swing.JFormattedTextField txtCnpj;
     private javax.swing.JFormattedTextField txtCpf;
@@ -930,6 +956,7 @@ public class RegSupplierView extends javax.swing.JFrame {
     private javax.swing.JTextField txtNamePerson;
     private javax.swing.JFormattedTextField txtPhone;
     private javax.swing.JTextField txtRole;
+    private javax.swing.JTextField txtSite;
     private javax.swing.JTextField txtState;
     private javax.swing.JTextField txtStreet;
     // End of variables declaration//GEN-END:variables

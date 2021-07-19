@@ -238,10 +238,9 @@
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
                       <Component id="jScrollPane2" min="-2" pref="222" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="22" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -260,7 +259,7 @@
                     <Property name="columns" type="int" value="20"/>
                     <Property name="lineWrap" type="boolean" value="true"/>
                     <Property name="rows" type="int" value="5"/>
-                    <Property name="text" type="java.lang.String" value="&#xa;   A tabela ao lado informa as entregas que est&#xe3;o mais  &#x9;   proximas da data prevista para entrega&#xa;&#xa;   Para cadastrar um funcion&#xe1;rio, clique em funcion&#xe1;rio          acima. Apos isso, aparecer&#xe1; uma nova janela para             cadastra-lo&#xa;&#xa;   Para cadastrar um fornecedor, clique em fornecedor          acima. Ap&#xf3;s isso, aparrecer&#xe1; uma nova janela para           cadastra-lo&#xa;&#xa;   Para cadastrar um pedido, clique em pedido, e em              seguida, cadastrar pedido" noResource="true"/>
+                    <Property name="text" type="java.lang.String" value="&#xa;   A tabela ao lado informa as entregas que est&#xe3;o mais proximas da data prevista para entrega&#xa;&#xa;   Para cadastrar funcion&#xe1;rios, clique no bot&#xe3;o &quot;funcion&#xe1;rio&quot; acima. Ap&#xf3;s isso, aparecer&#xe1; uma nova janela para cadastra-lo.&#xa;&#xa;   Para cadastrar um fornecedor, clique em fornecedor acima. Ap&#xf3;s isso, aparrecer&#xe1; uma nova janela para cadastra-lo&#xa;&#xa;   Para cadastrar ou consultar pedidos, clique no bot&#xe3;o &quot;pedido&quot;, e em seguida, cadastrar pedido" noResource="true"/>
                     <Property name="wrapStyleWord" type="boolean" value="true"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">

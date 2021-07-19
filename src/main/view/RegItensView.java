@@ -31,7 +31,7 @@ import main.model.EmployeeModel;
  *
  * @author uillia
  */
-public class RegEmployeeView extends javax.swing.JFrame {
+public class RegItensView extends javax.swing.JFrame {
 
     EmployeeController fc = new EmployeeController();
     ConfigManager conf = new ConfigManager();
@@ -43,7 +43,7 @@ public class RegEmployeeView extends javax.swing.JFrame {
     /**
      * Creates new form TelaCadFunc
      */
-    public RegEmployeeView() {
+    public RegItensView() {
         initComponents();
         checkTheme();
         refreshTable();
@@ -56,7 +56,7 @@ public class RegEmployeeView extends javax.swing.JFrame {
 
         panelRegEmp = new javax.swing.JPanel();
         txtName = new javax.swing.JTextField();
-        lbName = new javax.swing.JLabel();
+        lbDescripiton = new javax.swing.JLabel();
         lbcpf = new javax.swing.JLabel();
         lbPhone = new javax.swing.JLabel();
         txtPhone = new javax.swing.JFormattedTextField();
@@ -87,7 +87,7 @@ public class RegEmployeeView extends javax.swing.JFrame {
         panelExluirFunc = new javax.swing.JPanel();
         panelTab = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabEmployees = new javax.swing.JTable();
+        tabItems = new javax.swing.JTable();
         bttDelete = new javax.swing.JButton();
         txtId = new javax.swing.JTextField();
         lbId = new javax.swing.JLabel();
@@ -119,7 +119,7 @@ public class RegEmployeeView extends javax.swing.JFrame {
 
         txtName.setBorder(null);
 
-        lbName.setText("Nome");
+        lbDescripiton.setText("Descrição");
 
         lbcpf.setText("CPF");
 
@@ -185,7 +185,7 @@ public class RegEmployeeView extends javax.swing.JFrame {
                     .addComponent(lbState))
                 .addGap(13, 13, 13)
                 .addGroup(panelAdressLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtCity, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
+                    .addComponent(txtCity, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
                     .addComponent(txtStreet, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtDistrict, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(panelAdressLayout.createSequentialGroup()
@@ -309,10 +309,6 @@ public class RegEmployeeView extends javax.swing.JFrame {
                     .addGroup(panelRegEmpLayout.createSequentialGroup()
                         .addGroup(panelRegEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelRegEmpLayout.createSequentialGroup()
-                                .addComponent(lbName, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(4, 4, 4)
-                                .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(panelRegEmpLayout.createSequentialGroup()
                                 .addComponent(lbcpf, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(4, 4, 4)
                                 .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -323,7 +319,11 @@ public class RegEmployeeView extends javax.swing.JFrame {
                             .addGroup(panelRegEmpLayout.createSequentialGroup()
                                 .addComponent(lbBirthdate)
                                 .addGap(4, 4, 4)
-                                .addComponent(txtBirthdate, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtBirthdate, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelRegEmpLayout.createSequentialGroup()
+                                .addComponent(lbDescripiton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(16, 16, 16)
                         .addComponent(panelSis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(16, 16, 16)
@@ -341,7 +341,7 @@ public class RegEmployeeView extends javax.swing.JFrame {
                     .addGroup(panelRegEmpLayout.createSequentialGroup()
                         .addGap(13, 13, 13)
                         .addGroup(panelRegEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbName, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbDescripiton, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(11, 11, 11)
                         .addGroup(panelRegEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -366,7 +366,7 @@ public class RegEmployeeView extends javax.swing.JFrame {
 
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
 
-        tabEmployees.setModel(new javax.swing.table.DefaultTableModel(
+        tabItems.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -396,10 +396,10 @@ public class RegEmployeeView extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tabEmployees.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        tabEmployees.setMinimumSize(new java.awt.Dimension(60, 100));
-        tabEmployees.setPreferredSize(new java.awt.Dimension(215, 200));
-        jScrollPane1.setViewportView(tabEmployees);
+        tabItems.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tabItems.setMinimumSize(new java.awt.Dimension(60, 100));
+        tabItems.setPreferredSize(new java.awt.Dimension(215, 200));
+        jScrollPane1.setViewportView(tabItems);
 
         javax.swing.GroupLayout panelTabLayout = new javax.swing.GroupLayout(panelTab);
         panelTab.setLayout(panelTabLayout);
@@ -419,7 +419,7 @@ public class RegEmployeeView extends javax.swing.JFrame {
         );
 
         bttDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/bttexcluirfuncIconLight.png"))); // NOI18N
-        bttDelete.setText("Excluir");
+        bttDelete.setText("Pesquisar");
         bttDelete.setBorderPainted(false);
         bttDelete.setContentAreaFilled(false);
         bttDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -481,17 +481,17 @@ public class RegEmployeeView extends javax.swing.JFrame {
         lbTextleft.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lbTextleft.setForeground(new java.awt.Color(153, 153, 153));
         lbTextleft.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbTextleft.setText(" Funcionários");
+        lbTextleft.setText("Itens");
 
         lbTextMid.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lbTextMid.setForeground(new java.awt.Color(153, 153, 153));
         lbTextMid.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lbTextMid.setText("Excluir Funcionário");
+        lbTextMid.setText("Pesquisar Item");
 
         lbTextTop.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lbTextTop.setForeground(new java.awt.Color(153, 153, 153));
         lbTextTop.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lbTextTop.setText("Cadastrar Funcionário");
+        lbTextTop.setText("Cadastrar Item");
 
         panelTitleBar.setBackground(new java.awt.Color(242, 242, 242));
 
@@ -673,7 +673,7 @@ public class RegEmployeeView extends javax.swing.JFrame {
         try {
             func.setBirthDate(new SimpleDateFormat("dd/MM/yyyy").parse(txtBirthdate.getText()));
         } catch (ParseException ex) {
-            Logger.getLogger(RegEmployeeView.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RegItensView.class.getName()).log(Level.SEVERE, null, ex);
         }
         EmployeeController fc = new EmployeeController();
         fc.registerEmployee(func, passwordRep);
@@ -730,14 +730,18 @@ public class RegEmployeeView extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RegEmployeeView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegItensView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RegEmployeeView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegItensView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RegEmployeeView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegItensView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RegEmployeeView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegItensView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -746,7 +750,7 @@ public class RegEmployeeView extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RegEmployeeView().setVisible(true);
+                new RegItensView().setVisible(true);
             }
         });
     }
@@ -764,10 +768,10 @@ public class RegEmployeeView extends javax.swing.JFrame {
         JFormattedTextField[] txtf = {txtCpf, txtPhone, txtBirthdate};
         JPasswordField[] txtp = {txtPassword, txtPasswordConf};
         JLabel[] lb = {lbDistrict,lbCity,lbBirthdate,lbState,lbRole,lbId,lbLogin,
-        lbName,lbHomeNum,lbPhone,lbStreet,lbTextMid,lbTextTop,lbTextleft,lbcpf,lbPassword,lbPasswordConf};     
+        lbDescripiton,lbHomeNum,lbPhone,lbStreet,lbTextMid,lbTextTop,lbTextleft,lbcpf,lbPassword,lbPasswordConf};     
         JPanel[] panel = {panelMin,panelRegEmp,panelAdress,panelExluirFunc,panelClose,panelIconfied,
         panelSis,panelTab,panelTitleBar};
-        JTable[] tab = {tabEmployees};
+        JTable[] tab = {tabItems};
 //        JComboBox[] combo = {comboRole};
         
         t.refreshButtons(btt, theme);
@@ -815,7 +819,7 @@ public class RegEmployeeView extends javax.swing.JFrame {
     public void refreshTable() { //envia a tabela para ser carregada
 
         DefaultTableModel tabFmodel = new DefaultTableModel();
-        tabFmodel = (DefaultTableModel) tabEmployees.getModel();
+        tabFmodel = (DefaultTableModel) tabItems.getModel();
         tabFmodel.setRowCount(0);
         fc.refreshTable(tabFmodel);
     }
@@ -831,11 +835,11 @@ public class RegEmployeeView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbBirthdate;
     private javax.swing.JLabel lbCity;
+    private javax.swing.JLabel lbDescripiton;
     private javax.swing.JLabel lbDistrict;
     private javax.swing.JLabel lbHomeNum;
     private javax.swing.JLabel lbId;
     private javax.swing.JLabel lbLogin;
-    private javax.swing.JLabel lbName;
     private javax.swing.JLabel lbPassword;
     private javax.swing.JLabel lbPasswordConf;
     private javax.swing.JLabel lbPhone;
@@ -855,7 +859,7 @@ public class RegEmployeeView extends javax.swing.JFrame {
     private javax.swing.JPanel panelSis;
     private javax.swing.JPanel panelTab;
     private javax.swing.JPanel panelTitleBar;
-    private javax.swing.JTable tabEmployees;
+    private javax.swing.JTable tabItems;
     private javax.swing.JFormattedTextField txtBirthdate;
     private javax.swing.JTextField txtCity;
     private javax.swing.JFormattedTextField txtCpf;

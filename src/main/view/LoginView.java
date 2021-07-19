@@ -252,7 +252,7 @@ public class LoginView extends javax.swing.JFrame {
             } else {
 
             }
-            lc.saveLogcache(txtUser.getText()); // calls the auxiliar methods to save the user name 
+            lc.saveLogcache(txtUser.getText()); // calls the auxiliar method to save the user name 
             dispose();
             MenuView t = new MenuView();
             t.setVisible(true);
@@ -317,7 +317,7 @@ public class LoginView extends javax.swing.JFrame {
             }
         });
     }
-
+// auxiliar methods
     public void checkSave() {
         FileManager ac = new FileManager();
         if ((ac.Read(path).isEmpty())) {
@@ -333,6 +333,7 @@ public class LoginView extends javax.swing.JFrame {
             } else {
                 txtUser.setText(usuario);
                 txtPassword.setText(senha);
+                radbttSavelogin.setSelected(true);   
             }
         }
     }
@@ -345,7 +346,7 @@ public class LoginView extends javax.swing.JFrame {
         getContentPane().setBackground(Color.LIGHT_GRAY);
         panelTitleBar.setBackground(Color.lightGray);
     }
-
+// end auxiliar methods
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bttClose;

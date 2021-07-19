@@ -12,20 +12,21 @@ import java.util.Date;
  *
  * @author uillia
  */
-public class SupplierCompanyModel {
+public class SupplierCompanyModel extends HierarchicalTypeModel {
 
     private int idCompany;
     private String name;
     private String cnpj;
     private String mainActivity;
-    private Date lastDelivery_Date;
+    private String hierarchicaltype;
     private String phone;
-    private String email;
-    private String Localnum;
+    private int Localnum;
     private String street;
     private String district;
     private String city;
-    private String estado;
+    private String state;
+    private String email;
+    private String site;
     private LocalDate registerDate;
 
     public int getIdCompany() {
@@ -35,12 +36,23 @@ public class SupplierCompanyModel {
     public void setIdCompany(int idCompany) {
         this.idCompany = idCompany;
     }
+    
+     public void setRegisterDate(LocalDate registerDate) {
+        this.registerDate = registerDate;
+    }
+    public String getHierarchicaltype() {
+        return hierarchicaltype;
+    }
 
-    public String getLocalnum() {
+    public void setHierarchicaltype(String hierarchicaltype) {
+        this.hierarchicaltype = hierarchicaltype;
+    }
+
+    public int getLocalnum() {
         return Localnum;
     }
 
-    public void setLocalnum(String Localnum) {
+    public void setLocalnum(int Localnum) {
         this.Localnum = Localnum;
     }
 
@@ -68,12 +80,12 @@ public class SupplierCompanyModel {
         this.city = city;
     }
 
-    public String getEstado() {
-        return estado;
+    public String getState() {
+        return state;
     }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
+    public void setState(String state) {
+        this.state = state;
     }
 
     public String getName() {
@@ -100,14 +112,6 @@ public class SupplierCompanyModel {
         this.mainActivity = mainActivity;
     }
 
-    public Date getLastDelivery_Date() {
-        return lastDelivery_Date;
-    }
-
-    public void setLastDelivery_Date(Date lastDelivery_Date) {
-        this.lastDelivery_Date = lastDelivery_Date;
-    }
-
     public String getPhone() {
         return phone;
     }
@@ -128,8 +132,13 @@ public class SupplierCompanyModel {
         return registerDate;
     }
 
-    public void setRegisterDate(LocalDate registerDate) {
-        this.registerDate = registerDate;
+
+    public String getSite() {
+        return site;
+    }
+
+    public void setSite(String site) {
+        this.site = site;
     }
 
 }

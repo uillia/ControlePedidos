@@ -14,7 +14,7 @@ public class EmployeeModel {
     private String street;
     private String district;
     private String city;
-    private String estado;
+    private String state;
     private String Login;
     private String password;
     private String group;
@@ -92,12 +92,12 @@ public class EmployeeModel {
         this.city = city;
     }
 
-    public String getEstado() {
-        return estado;
+    public String getState() {
+        return state;
     }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
+    public void setState(String state) {
+        this.state = state;
     }
 
     public String getLogin() {

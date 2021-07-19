@@ -97,18 +97,14 @@ public class SplashView extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(OrderView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SplashView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(OrderView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SplashView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(OrderView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SplashView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(OrderView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SplashView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        
-                   
-
-//            javax.swing.UIManager.setLookAndFeel(new WindowsLookAndFeel());
 
             SplashView sv = new SplashView();
             sv.setVisible(true);
@@ -129,13 +125,8 @@ public class SplashView extends javax.swing.JFrame {
             LoginView lv = new LoginView();
             lv.setVisible(true);
         }catch (Exception e) {
-            System.out.println("Erro ao contruir o frame");
+            System.out.println("Erro ao contruir o frame, "+ "erro: "+ e.getMessage());
         }}
-    
-
-    
-
-    
 
     public void attTema() {
         getContentPane().setBackground(Color.LIGHT_GRAY);
