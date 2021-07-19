@@ -514,7 +514,6 @@ public class MenuView extends javax.swing.JFrame {
         dispose();
         ProfileEditView v = new ProfileEditView();
         v.setVisible(true);
-        v.emp=userLog;
     }//GEN-LAST:event_btnEmployeeConfigActionPerformed
 
     /**
@@ -591,7 +590,7 @@ public class MenuView extends javax.swing.JFrame {
             btnPedidos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/entregaIconDark.png")));
             btnLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/bttlogoutIconDark.png")));
             btnSupplier.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/bttfornIconDark.png")));
-            btnEmployeeConfig.setIcon(new javax.swing.ImageIcon((getClass().getResource("/resources/icons/editarFuncIconDark.png"))));
+            btnEmployeeConfig.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/editarfuncIconDark.png")));
             lbTextleft.setForeground(new Color (153,153,153));
             lbTexttop.setForeground(new Color (153,153,153));
             panelTop.setBackground(a);
@@ -618,7 +617,7 @@ public class MenuView extends javax.swing.JFrame {
                 btnPedidos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/entregaIconLight.png")));
                 btnLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/bttlogoutIconLight.png")));
                 btnSupplier.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/bttfornIconLight.png")));
-                btnEmployeeConfig.setIcon(new javax.swing.ImageIcon((getClass().getResource("/resources/icons/editarFuncIconLight.png"))));
+                btnEmployeeConfig.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/editarFuncIconLight.png")));
                 lbTextleft.setForeground(Color.lightGray);
                 lbTexttop.setForeground(Color.lightGray);
                 panelTop.setBackground(new Color(245, 245, 245));
