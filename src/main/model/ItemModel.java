@@ -1,8 +1,8 @@
 
 package main.model;
 
-public class ItemModel {
-    private int idItem;
+public class ItemModel extends OrderModel{
+    
     private int idFornecedor;
     private String description;
     private double unityPrice;
@@ -14,14 +14,6 @@ public class ItemModel {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
-    }
-
-    public int getIdItem() {
-        return idItem;
-    }
-
-    public void setIdItem(int idItem) {
-        this.idItem = idItem;
     }
 
     public int getIdFornecedor() {

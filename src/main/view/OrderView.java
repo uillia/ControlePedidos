@@ -27,6 +27,7 @@ import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import main.controller.OrderController;
 import main.model.EmployeeModel;
 import main.model.ItemModel;
 import main.model.OrderModel;
@@ -44,6 +45,8 @@ public class OrderView extends javax.swing.JFrame {
     Color btf;
     int xMouse, yMouse;
     int z;
+    OrderModel om = new OrderModel();
+    List<ItemModel> itemArr = new ArrayList<>();
 
     /**
      * Creates new form TelaCadFunc
@@ -80,6 +83,7 @@ public class OrderView extends javax.swing.JFrame {
         lbQuantity = new javax.swing.JLabel();
         txtQuantity = new javax.swing.JTextField();
         btnAddItem = new javax.swing.JButton();
+        btnRemoveItem = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         tableOrderItems = new javax.swing.JTable();
         panelExluirFunc = new javax.swing.JPanel();
@@ -89,15 +93,15 @@ public class OrderView extends javax.swing.JFrame {
         btnSearch = new javax.swing.JButton();
         txtId = new javax.swing.JTextField();
         lbId = new javax.swing.JLabel();
-        bttVoltar = new javax.swing.JButton();
+        btnVoltar = new javax.swing.JButton();
         lbTextleft = new javax.swing.JLabel();
         lbTextMid = new javax.swing.JLabel();
         lbTextTop = new javax.swing.JLabel();
         panelTitleBar = new javax.swing.JPanel();
         panelClose = new javax.swing.JPanel();
-        bttClose = new javax.swing.JButton();
+        btnClose = new javax.swing.JButton();
         panelIconfied = new javax.swing.JPanel();
-        bttIconfied = new javax.swing.JButton();
+        btnIconfied = new javax.swing.JButton();
         panelMin = new javax.swing.JPanel();
         bttMin = new javax.swing.JButton();
 
@@ -123,7 +127,6 @@ public class OrderView extends javax.swing.JFrame {
 
         lbPrevDays.setText("Dias para entrega");
 
-        btnRegister.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/addfuncIconLight.png"))); // NOI18N
         btnRegister.setText("Cadastrar");
         btnRegister.setBorderPainted(false);
         btnRegister.setContentAreaFilled(false);
@@ -142,6 +145,7 @@ public class OrderView extends javax.swing.JFrame {
 
         lbinitialPrice.setText("Preco inicial");
 
+        txtInitialPrice.setEditable(false);
         txtInitialPrice.setBorder(null);
 
         lbComments.setText("Comentários");
@@ -185,6 +189,18 @@ public class OrderView extends javax.swing.JFrame {
             }
         });
 
+        btnRemoveItem.setText("Excluir");
+        btnRemoveItem.setBorderPainted(false);
+        btnRemoveItem.setContentAreaFilled(false);
+        btnRemoveItem.setMaximumSize(new java.awt.Dimension(80, 25));
+        btnRemoveItem.setMinimumSize(new java.awt.Dimension(80, 25));
+        btnRemoveItem.setPreferredSize(new java.awt.Dimension(80, 25));
+        btnRemoveItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoveItemActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelItemsLayout = new javax.swing.GroupLayout(panelItems);
         panelItems.setLayout(panelItemsLayout);
         panelItemsLayout.setHorizontalGroup(
@@ -208,7 +224,9 @@ public class OrderView extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnAddItem, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnRemoveItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnAddItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         panelItemsLayout.setVerticalGroup(
@@ -222,14 +240,16 @@ public class OrderView extends javax.swing.JFrame {
                 .addGroup(panelItemsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbItemPrice)
                     .addComponent(txtItemPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelItemsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbQuantity)
                     .addComponent(txtQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelItemsLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnAddItem, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(panelItemsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAddItem, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRemoveItem, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -278,36 +298,34 @@ public class OrderView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(panelRegEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelRegEmpLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lbComments)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelRegEmpLayout.createSequentialGroup()
-                        .addGroup(panelRegEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelRegEmpLayout.createSequentialGroup()
-                                .addComponent(lbComments)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(panelRegEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelRegEmpLayout.createSequentialGroup()
-                                    .addComponent(lbinitialPrice)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(txtInitialPrice))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelRegEmpLayout.createSequentialGroup()
-                                    .addComponent(lbPrevDays)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(txtPrevDays))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelRegEmpLayout.createSequentialGroup()
-                                    .addComponent(lbidSupplierPerson, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(txtIdSupplier))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelRegEmpLayout.createSequentialGroup()
-                                    .addComponent(lbDescriptionOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(txtDescriptionOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(18, 18, 18)
-                        .addGroup(panelRegEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(panelItems, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
+                        .addComponent(lbidSupplierPerson, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtIdSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelRegEmpLayout.createSequentialGroup()
+                        .addComponent(lbDescriptionOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtDescriptionOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelRegEmpLayout.createSequentialGroup()
+                        .addComponent(lbinitialPrice)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtInitialPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelRegEmpLayout.createSequentialGroup()
+                        .addComponent(lbPrevDays)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtPrevDays, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(panelRegEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panelItems, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRegEmpLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
         );
         panelRegEmpLayout.setVerticalGroup(
             panelRegEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -445,15 +463,15 @@ public class OrderView extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        bttVoltar.setText("Voltar");
-        bttVoltar.setBorderPainted(false);
-        bttVoltar.setContentAreaFilled(false);
-        bttVoltar.setMaximumSize(new java.awt.Dimension(80, 25));
-        bttVoltar.setMinimumSize(new java.awt.Dimension(80, 25));
-        bttVoltar.setPreferredSize(new java.awt.Dimension(80, 25));
-        bttVoltar.addActionListener(new java.awt.event.ActionListener() {
+        btnVoltar.setText("Voltar");
+        btnVoltar.setBorderPainted(false);
+        btnVoltar.setContentAreaFilled(false);
+        btnVoltar.setMaximumSize(new java.awt.Dimension(80, 25));
+        btnVoltar.setMinimumSize(new java.awt.Dimension(80, 25));
+        btnVoltar.setPreferredSize(new java.awt.Dimension(80, 25));
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bttVoltarActionPerformed(evt);
+                btnVoltarActionPerformed(evt);
             }
         });
 
@@ -474,47 +492,47 @@ public class OrderView extends javax.swing.JFrame {
 
         panelTitleBar.setBackground(new java.awt.Color(242, 242, 242));
 
-        bttClose.setBackground(new java.awt.Color(255, 255, 255));
-        bttClose.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        bttClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/closeIconLight.png"))); // NOI18N
-        bttClose.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        bttClose.setBorderPainted(false);
-        bttClose.setContentAreaFilled(false);
-        bttClose.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        bttClose.setFocusPainted(false);
-        bttClose.setRequestFocusEnabled(false);
-        bttClose.setRolloverEnabled(false);
-        bttClose.setVerifyInputWhenFocusTarget(false);
+        btnClose.setBackground(new java.awt.Color(255, 255, 255));
+        btnClose.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/closeIconLight.png"))); // NOI18N
+        btnClose.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        btnClose.setBorderPainted(false);
+        btnClose.setContentAreaFilled(false);
+        btnClose.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnClose.setFocusPainted(false);
+        btnClose.setRequestFocusEnabled(false);
+        btnClose.setRolloverEnabled(false);
+        btnClose.setVerifyInputWhenFocusTarget(false);
 
         javax.swing.GroupLayout panelCloseLayout = new javax.swing.GroupLayout(panelClose);
         panelClose.setLayout(panelCloseLayout);
         panelCloseLayout.setHorizontalGroup(
             panelCloseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bttClose, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnClose, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         panelCloseLayout.setVerticalGroup(
             panelCloseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCloseLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(bttClose, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        bttIconfied.setBackground(new java.awt.Color(255, 51, 51));
-        bttIconfied.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        bttIconfied.setText("-");
-        bttIconfied.setBorder(null);
-        bttIconfied.setBorderPainted(false);
-        bttIconfied.setContentAreaFilled(false);
-        bttIconfied.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        bttIconfied.setDefaultCapable(false);
-        bttIconfied.setFocusPainted(false);
-        bttIconfied.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        bttIconfied.setRequestFocusEnabled(false);
-        bttIconfied.setRolloverEnabled(false);
-        bttIconfied.setVerifyInputWhenFocusTarget(false);
-        bttIconfied.addActionListener(new java.awt.event.ActionListener() {
+        btnIconfied.setBackground(new java.awt.Color(255, 51, 51));
+        btnIconfied.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        btnIconfied.setText("-");
+        btnIconfied.setBorder(null);
+        btnIconfied.setBorderPainted(false);
+        btnIconfied.setContentAreaFilled(false);
+        btnIconfied.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnIconfied.setDefaultCapable(false);
+        btnIconfied.setFocusPainted(false);
+        btnIconfied.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnIconfied.setRequestFocusEnabled(false);
+        btnIconfied.setRolloverEnabled(false);
+        btnIconfied.setVerifyInputWhenFocusTarget(false);
+        btnIconfied.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bttIconfiedActionPerformed(evt);
+                btnIconfiedActionPerformed(evt);
             }
         });
 
@@ -524,13 +542,13 @@ public class OrderView extends javax.swing.JFrame {
             panelIconfiedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelIconfiedLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(bttIconfied, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnIconfied, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         panelIconfiedLayout.setVerticalGroup(
             panelIconfiedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelIconfiedLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(bttIconfied, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnIconfied, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         bttMin.setBackground(new java.awt.Color(255, 51, 51));
@@ -599,7 +617,7 @@ public class OrderView extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(lbTextTop)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(bttVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(panelRegEmp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(25, 25, 25))
         );
@@ -610,7 +628,7 @@ public class OrderView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbTextTop)
-                    .addComponent(bttVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -629,14 +647,21 @@ public class OrderView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
 
-    private void bttVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttVoltarActionPerformed
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         dispose();
         MenuView x = new MenuView();
         x.setVisible(true);
-    }//GEN-LAST:event_bttVoltarActionPerformed
+    }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
 
+        om.setDescription(txtDescriptionOrder.getText());
+        om.setIdEmployee(Integer.parseInt(txtIdSupplier.getText()));
+        om.setPrevDays(Integer.parseInt(txtPrevDays.getText()));
+        om.setInitialPrice(Double.parseDouble(txtInitialPrice.getText()));
+        om.setItems(itemArr);
+        OrderController oc = new OrderController();
+        oc.registerOrder(om);
         refreshTable();
 
     }//GEN-LAST:event_btnRegisterActionPerformed
@@ -658,9 +683,9 @@ public class OrderView extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnSearchActionPerformed
 
-    private void bttIconfiedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttIconfiedActionPerformed
+    private void btnIconfiedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIconfiedActionPerformed
         this.setState(RegSupplierView.ICONIFIED);
-    }//GEN-LAST:event_bttIconfiedActionPerformed
+    }//GEN-LAST:event_btnIconfiedActionPerformed
 
     private void bttMinMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttMinMouseClicked
         if (this.getExtendedState() != RegSupplierView.MAXIMIZED_BOTH) {
@@ -676,13 +701,16 @@ public class OrderView extends javax.swing.JFrame {
     }//GEN-LAST:event_txtAreaCommentsMouseClicked
 
     private void btnAddItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddItemActionPerformed
-        ItemModel im = new ItemModel();
-
-        im.setDescription(txtDescriptionItem.getText());
-        im.setIdFornecedor(Integer.parseInt(txtIdSupplier.getText()));
-        im.setUnityPrice(Double.parseDouble(txtItemPrice.getText()));
-        im.setQuantity(Integer.parseInt(txtQuantity.getText()));
+        addItems();
+        refreshTableItems();
     }//GEN-LAST:event_btnAddItemActionPerformed
+
+    private void btnRemoveItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveItemActionPerformed
+        int index = tableOrderItems.getSelectedRow();
+        om.setInitialPrice(om.getInitialPrice() - (itemArr.get(index).getUnityPrice() * itemArr.get(index).getQuantity()));
+        itemArr.remove(index);
+        refreshTableItems();
+    }//GEN-LAST:event_btnRemoveItemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -731,20 +759,20 @@ public class OrderView extends javax.swing.JFrame {
         Theme t = new Theme();
 
         //Configuration of title bar
-        tb.configTitleBar(panelClose, panelIconfied, panelTitleBar, bttClose, bttIconfied, theme);
+        tb.configTitleBar(panelClose, panelIconfied, panelTitleBar, btnClose, btnIconfied, theme);
 
-        JButton[] btt = {btnRegister, bttVoltar, btnSearch};
+        JButton[] btn = {btnRegister, btnVoltar, btnSearch, btnAddItem,btnRemoveItem};
         JTextField[] txt = {txtDescriptionOrder, txtId, txtIdSupplier, txtPrevDays, txtInitialPrice, txtDescriptionItem,
             txtItemPrice, txtQuantity};
         JLabel[] lb = {lbPrevDays, lbId,
             lbDescriptionOrder, lbinitialPrice, lbTextMid, lbTextTop, lbTextleft, lbidSupplierPerson,
-            lbDescriptionItem, lbComments, lbItemPrice, lbItemPrice};
+            lbDescriptionItem, lbComments, lbItemPrice, lbItemPrice, lbQuantity};
         JPanel[] panel = {panelMin, panelRegEmp, panelExluirFunc, panelClose, panelIconfied,
             panelItems, panelTab, panelTitleBar};
         JTable[] tab = {tabOrders, tableOrderItems};
         JTextArea[] txtArea = {txtAreaComments};
 
-        t.refreshButtons(btt, theme);
+        t.refreshButtons(btn, theme);
         t.refreshFrame(this, theme);
         t.refreshLabels(lb, theme);
         t.refreshTextFields(txt, theme);
@@ -789,32 +817,45 @@ public class OrderView extends javax.swing.JFrame {
         fc.refreshTable(tabFmodel);
     }
 
-    public void refreshTableItems(List<ItemModel> imArr) {
+    public void addItems() {
+        try {
+            ItemModel im = new ItemModel();
+            im.setDescription(txtDescriptionItem.getText());
+            im.setIdFornecedor(Integer.parseInt(txtIdSupplier.getText()));
+            im.setUnityPrice(Double.parseDouble(txtItemPrice.getText()));
+            im.setQuantity(Integer.parseInt(txtQuantity.getText()));
+            om.setInitialPrice(om.getInitialPrice() + (im.getUnityPrice() * im.getQuantity()));
+            itemArr.add(im);
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Algum campo esta vazio"+ ex.getMessage());
+        }
+    }
 
+    public void refreshTableItems() {
         DefaultTableModel tableOrderItemsModel = new DefaultTableModel();
         tableOrderItemsModel = (DefaultTableModel) tableOrderItems.getModel();
         tableOrderItemsModel.setRowCount(0);
-        OrderModel om = new OrderModel();
-
-        for (int i = 0; i < imArr.size(); i++) {
+        txtInitialPrice.setText("R$" + om.getInitialPrice());
+        
+        for (int i = 0; i < itemArr.size(); i++) {
             tableOrderItemsModel.addRow(new Object[]{
-                imArr.get(i).getDescription(),
-                "R$" + imArr.get(i).getUnityPrice(),
-                imArr.get(i).getQuantity()
+                itemArr.get(i).getDescription(),
+                "R$" + itemArr.get(i).getUnityPrice(),
+                itemArr.get(i).getQuantity()
             });
         }
     }
 
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddItem;
+    private javax.swing.JButton btnClose;
+    private javax.swing.JButton btnIconfied;
     private javax.swing.JButton btnRegister;
+    private javax.swing.JButton btnRemoveItem;
     private javax.swing.JButton btnSearch;
-    private javax.swing.JButton bttClose;
-    private javax.swing.JButton bttIconfied;
+    private javax.swing.JButton btnVoltar;
     private javax.swing.JButton bttMin;
-    private javax.swing.JButton bttVoltar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;

@@ -1,14 +1,14 @@
 package main.model;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
-public class OrderModel {
+public class OrderModel{
 
     private int IdOrder;
     private String description;
-    private ArrayList<ItemModel> items;
+    private List<ItemModel> items;
     private Date prevDeliveryDate;
     private int IdEmployee;
     private int IdSupplierCompany;
@@ -35,11 +35,11 @@ public class OrderModel {
         this.description = description;
     }
 
-    public ArrayList<ItemModel> getItems() {
+    public List<ItemModel> getItems() {
         return items;
     }
 
-    public void setItems(ArrayList<ItemModel> itens) {
+    public void setItems(List<ItemModel> itens) {
         this.items = itens;
     }
 

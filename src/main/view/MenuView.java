@@ -55,14 +55,15 @@ public class MenuView extends javax.swing.JFrame {
         panelInstructions = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtInfoMenu = new javax.swing.JTextArea();
-        bttPedidos = new javax.swing.JButton();
+        btnPedidos = new javax.swing.JButton();
         bttEmployee = new javax.swing.JButton();
-        bttSupplier = new javax.swing.JButton();
+        btnSupplier = new javax.swing.JButton();
         lbTextleft = new javax.swing.JLabel();
         panelTop = new javax.swing.JPanel();
-        tgbttTema = new javax.swing.JToggleButton();
-        bttLogout = new javax.swing.JButton();
+        tgbtnTema = new javax.swing.JToggleButton();
+        btnLogout = new javax.swing.JButton();
         lbTexttop = new javax.swing.JLabel();
+        btnEmployeeConfig = new javax.swing.JButton();
         panelTitleBar = new javax.swing.JPanel();
         panelClose = new javax.swing.JPanel();
         bttClose = new javax.swing.JButton();
@@ -171,19 +172,20 @@ public class MenuView extends javax.swing.JFrame {
         );
         panelInstructionsLayout.setVerticalGroup(
             panelInstructionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelInstructionsLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelInstructionsLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 22, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
-        bttPedidos.setBackground(new java.awt.Color(255, 255, 255));
-        bttPedidos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/entregaIconLight.png"))); // NOI18N
-        bttPedidos.setText("Pedido");
-        bttPedidos.setContentAreaFilled(false);
-        bttPedidos.setIconTextGap(5);
-        bttPedidos.addActionListener(new java.awt.event.ActionListener() {
+        btnPedidos.setBackground(new java.awt.Color(255, 255, 255));
+        btnPedidos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/entregaIconLight.png"))); // NOI18N
+        btnPedidos.setText("Pedido");
+        btnPedidos.setContentAreaFilled(false);
+        btnPedidos.setIconTextGap(5);
+        btnPedidos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bttPedidosActionPerformed(evt);
+                btnPedidosActionPerformed(evt);
             }
         });
 
@@ -198,14 +200,14 @@ public class MenuView extends javax.swing.JFrame {
             }
         });
 
-        bttSupplier.setBackground(new java.awt.Color(255, 255, 255));
-        bttSupplier.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/bttfornIconLight.png"))); // NOI18N
-        bttSupplier.setText("Fornecedor");
-        bttSupplier.setContentAreaFilled(false);
-        bttSupplier.setIconTextGap(5);
-        bttSupplier.addActionListener(new java.awt.event.ActionListener() {
+        btnSupplier.setBackground(new java.awt.Color(255, 255, 255));
+        btnSupplier.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/bttfornIconLight.png"))); // NOI18N
+        btnSupplier.setText("Fornecedor");
+        btnSupplier.setContentAreaFilled(false);
+        btnSupplier.setIconTextGap(5);
+        btnSupplier.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bttSupplierActionPerformed(evt);
+                btnSupplierActionPerformed(evt);
             }
         });
 
@@ -221,9 +223,9 @@ public class MenuView extends javax.swing.JFrame {
                         .addGap(33, 33, 33)
                         .addComponent(panelTab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelBodyLayout.createSequentialGroup()
-                        .addComponent(bttSupplier)
+                        .addComponent(btnSupplier)
                         .addGap(1, 1, 1)
-                        .addComponent(bttPedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnPedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(1, 1, 1)
                         .addComponent(bttEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -234,8 +236,8 @@ public class MenuView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bttEmployee)
-                    .addComponent(bttPedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bttSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnPedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(panelTab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -250,30 +252,41 @@ public class MenuView extends javax.swing.JFrame {
 
         panelTop.setBackground(new java.awt.Color(242, 242, 242));
 
-        tgbttTema.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/darkIcon.png"))); // NOI18N
-        tgbttTema.setText("Tema");
-        tgbttTema.setBorderPainted(false);
-        tgbttTema.setContentAreaFilled(false);
-        tgbttTema.addActionListener(new java.awt.event.ActionListener() {
+        tgbtnTema.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/darkIcon.png"))); // NOI18N
+        tgbtnTema.setText("Tema");
+        tgbtnTema.setBorderPainted(false);
+        tgbtnTema.setContentAreaFilled(false);
+        tgbtnTema.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tgbttTemaActionPerformed(evt);
+                tgbtnTemaActionPerformed(evt);
             }
         });
 
-        bttLogout.setBackground(new java.awt.Color(255, 255, 255));
-        bttLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/bttlogoutIconLight.png"))); // NOI18N
-        bttLogout.setText("Logout");
-        bttLogout.setContentAreaFilled(false);
-        bttLogout.setIconTextGap(5);
-        bttLogout.addActionListener(new java.awt.event.ActionListener() {
+        btnLogout.setBackground(new java.awt.Color(255, 255, 255));
+        btnLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/bttlogoutIconLight.png"))); // NOI18N
+        btnLogout.setText("Logout");
+        btnLogout.setContentAreaFilled(false);
+        btnLogout.setIconTextGap(5);
+        btnLogout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bttLogoutActionPerformed(evt);
+                btnLogoutActionPerformed(evt);
             }
         });
 
         lbTexttop.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lbTexttop.setForeground(new java.awt.Color(153, 153, 153));
         lbTexttop.setText("Bem Vindo " + userLog.getName()+" !");
+
+        btnEmployeeConfig.setBackground(new java.awt.Color(255, 255, 255));
+        btnEmployeeConfig.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/editarfuncIconLight.png"))); // NOI18N
+        btnEmployeeConfig.setText("Perfil");
+        btnEmployeeConfig.setContentAreaFilled(false);
+        btnEmployeeConfig.setIconTextGap(5);
+        btnEmployeeConfig.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEmployeeConfigActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelTopLayout = new javax.swing.GroupLayout(panelTop);
         panelTop.setLayout(panelTopLayout);
@@ -283,9 +296,11 @@ public class MenuView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(lbTexttop)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(tgbttTema)
+                .addComponent(btnEmployeeConfig)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(bttLogout))
+                .addComponent(tgbtnTema, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         panelTopLayout.setVerticalGroup(
             panelTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -293,8 +308,9 @@ public class MenuView extends javax.swing.JFrame {
                 .addContainerGap(52, Short.MAX_VALUE)
                 .addGroup(panelTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(tgbttTema)
-                        .addComponent(bttLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(tgbtnTema)
+                        .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnEmployeeConfig))
                     .addComponent(lbTexttop, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(23, 23, 23))
         );
@@ -425,9 +441,9 @@ public class MenuView extends javax.swing.JFrame {
 
     }//GEN-LAST:event_bttEmployeeActionPerformed
 
-    private void tgbttTemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tgbttTemaActionPerformed
+    private void tgbtnTemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tgbtnTemaActionPerformed
 
-        if (tgbttTema.isSelected()) {
+        if (tgbtnTema.isSelected()) {
             theme = "dark";
             refreshTheme();
 
@@ -439,10 +455,10 @@ public class MenuView extends javax.swing.JFrame {
           
 //        ac.Write(path, theme);//escreve qual tema foi selecionado e é escrito no arquivo em preferencias/theme
             
-    }//GEN-LAST:event_tgbttTemaActionPerformed
+    }//GEN-LAST:event_tgbtnTemaActionPerformed
 
-    private void bttLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttLogoutActionPerformed
-        int r = JOptionPane.showConfirmDialog(bttLogout, " Tem certeza que quer deslogar?");
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+        int r = JOptionPane.showConfirmDialog(btnLogout, " Tem certeza que quer deslogar?");
         if (r == JOptionPane.YES_OPTION) {
 
             dispose();
@@ -455,13 +471,13 @@ public class MenuView extends javax.swing.JFrame {
             conf.setValue("user", "null", "C:\\Users\\"+ System.getProperty("user.name") +"\\Documents\\NetBeansProjects\\ControleEstoque\\dados\\cacheLoguin");
             System.out.println("usuario chache apagado");
         }
-    }//GEN-LAST:event_bttLogoutActionPerformed
+    }//GEN-LAST:event_btnLogoutActionPerformed
 
-    private void bttSupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttSupplierActionPerformed
+    private void btnSupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupplierActionPerformed
         dispose();
         RegSupplierView t = new RegSupplierView();
         t.setVisible(true);
-    }//GEN-LAST:event_bttSupplierActionPerformed
+    }//GEN-LAST:event_btnSupplierActionPerformed
 
     private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
         int x = evt.getXOnScreen();
@@ -487,12 +503,19 @@ public class MenuView extends javax.swing.JFrame {
         this.setState(RegSupplierView.ICONIFIED);
     }//GEN-LAST:event_bttIconfiedActionPerformed
 
-    private void bttPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttPedidosActionPerformed
+    private void btnPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPedidosActionPerformed
       dispose();
         OrderView v = new OrderView();
       v.setVisible(true);
     
-    }//GEN-LAST:event_bttPedidosActionPerformed
+    }//GEN-LAST:event_btnPedidosActionPerformed
+
+    private void btnEmployeeConfigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmployeeConfigActionPerformed
+        dispose();
+        ProfileEditView v = new ProfileEditView();
+        v.setVisible(true);
+        v.emp=userLog;
+    }//GEN-LAST:event_btnEmployeeConfigActionPerformed
 
     /**
      * @param args the command line arguments
@@ -539,7 +562,7 @@ public class MenuView extends javax.swing.JFrame {
         TitleBar tb = new TitleBar();
         tb.configTitleBar(panelClose, panelIconfied, panelTitleBar, bttClose, bttIconfied, theme);
 
-        JButton[] btt = {bttEmployee, bttPedidos, bttSupplier, bttClose, bttLogout};
+        JButton[] btt = {btnEmployeeConfig,bttEmployee, btnPedidos, btnSupplier, bttClose, btnLogout};
         JPanel[] panel = {panelTop, panelTab, panelBody, panelInstructions };
         JTable[] tab = {tabProxEntregas};
         JTextArea[] txtArea = {txtInfoMenu};
@@ -557,18 +580,18 @@ public class MenuView extends javax.swing.JFrame {
 
         if (theme.equals("dark")) {
 
-            tgbttTema.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/lightIcon.png")));
-            tgbttTema.setForeground(Color.white);
+            tgbtnTema.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/lightIcon.png")));
+            tgbtnTema.setForeground(Color.white);
 
             for (int i = 0; i < btt.length; i++) {
                 btt[i].setForeground(Color.white);
             }
 
             bttEmployee.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/funcIconDark.png")));
-            bttPedidos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/entregaIconDark.png")));
-            bttLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/bttlogoutIconDark.png")));
-            bttSupplier.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/bttfornIconDark.png")));
-
+            btnPedidos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/entregaIconDark.png")));
+            btnLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/bttlogoutIconDark.png")));
+            btnSupplier.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/bttfornIconDark.png")));
+            btnEmployeeConfig.setIcon(new javax.swing.ImageIcon((getClass().getResource("/resources/icons/editarFuncIconDark.png"))));
             lbTextleft.setForeground(new Color (153,153,153));
             lbTexttop.setForeground(new Color (153,153,153));
             panelTop.setBackground(a);
@@ -584,18 +607,18 @@ public class MenuView extends javax.swing.JFrame {
 
             if (theme.equals("light")) {
 
-                tgbttTema.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/darkIcon.png")));
-                tgbttTema.setForeground(Color.black);
+                tgbtnTema.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/darkIcon.png")));
+                tgbtnTema.setForeground(Color.black);
 
                 for (int i = 0; i < btt.length; i++) {
                     btt[i].setForeground(Color.black);
                 }
 
                 bttEmployee.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/funcIconLight.png")));
-                bttPedidos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/entregaIconLight.png")));
-                bttLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/bttlogoutIconLight.png")));
-                bttSupplier.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/bttfornIconLight.png")));
-
+                btnPedidos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/entregaIconLight.png")));
+                btnLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/bttlogoutIconLight.png")));
+                btnSupplier.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/bttfornIconLight.png")));
+                btnEmployeeConfig.setIcon(new javax.swing.ImageIcon((getClass().getResource("/resources/icons/editarFuncIconLight.png"))));
                 lbTextleft.setForeground(Color.lightGray);
                 lbTexttop.setForeground(Color.lightGray);
                 panelTop.setBackground(new Color(245, 245, 245));
@@ -622,7 +645,7 @@ public class MenuView extends javax.swing.JFrame {
 
     public void checkTheme() { // this funcion check the theme when you get back to this view
         if (theme.equals("dark")) {
-            tgbttTema.setSelected(true);
+            tgbtnTema.setSelected(true);
             refreshTheme();
         } else {
             refreshTheme();
@@ -641,12 +664,13 @@ public class MenuView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnEmployeeConfig;
+    private javax.swing.JButton btnLogout;
+    private javax.swing.JButton btnPedidos;
+    private javax.swing.JButton btnSupplier;
     private javax.swing.JButton bttClose;
     private javax.swing.JButton bttEmployee;
     private javax.swing.JButton bttIconfied;
-    private javax.swing.JButton bttLogout;
-    private javax.swing.JButton bttPedidos;
-    private javax.swing.JButton bttSupplier;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lbTextleft;
     private javax.swing.JLabel lbTexttop;
@@ -659,7 +683,7 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JPanel panelTop;
     private javax.swing.JScrollPane spTabProxEnt;
     private javax.swing.JTable tabProxEntregas;
-    private javax.swing.JToggleButton tgbttTema;
+    private javax.swing.JToggleButton tgbtnTema;
     private javax.swing.JTextArea txtInfoMenu;
     // End of variables declaration//GEN-END:variables
 }
