@@ -14,6 +14,7 @@ import java.awt.Color;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
@@ -677,13 +678,10 @@ public class OrderView extends javax.swing.JFrame {
     private void btnAddItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddItemActionPerformed
         ItemModel im = new ItemModel();
 
-            im.setDescription(txtDescriptionItem.getText());
-            im.setIdFornecedor(Integer.parseInt(txtIdSupplier.getText()));
-            im.setUnityPrice(Double.parseDouble(txtItemPrice.getText()));
-            im.setQuantity(Integer.parseInt(txtQuantity.getText()));  
-            refreshTableItems(im);
-
-
+        im.setDescription(txtDescriptionItem.getText());
+        im.setIdFornecedor(Integer.parseInt(txtIdSupplier.getText()));
+        im.setUnityPrice(Double.parseDouble(txtItemPrice.getText()));
+        im.setQuantity(Integer.parseInt(txtQuantity.getText()));
     }//GEN-LAST:event_btnAddItemActionPerformed
 
     /**
@@ -791,16 +789,14 @@ public class OrderView extends javax.swing.JFrame {
         fc.refreshTable(tabFmodel);
     }
 
-    public void refreshTableItems(ItemModel im) {
-        ArrayList<ItemModel> imArr = new ArrayList<>();
-        
+    public void refreshTableItems(List<ItemModel> imArr) {
 
         DefaultTableModel tableOrderItemsModel = new DefaultTableModel();
         tableOrderItemsModel = (DefaultTableModel) tableOrderItems.getModel();
         tableOrderItemsModel.setRowCount(0);
         OrderModel om = new OrderModel();
-       
-        for (int i = 0; i < z; i++) {
+
+        for (int i = 0; i < imArr.size(); i++) {
             tableOrderItemsModel.addRow(new Object[]{
                 imArr.get(i).getDescription(),
                 "R$" + imArr.get(i).getUnityPrice(),
@@ -808,6 +804,8 @@ public class OrderView extends javax.swing.JFrame {
             });
         }
     }
+
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddItem;

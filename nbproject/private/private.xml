@@ -5,16 +5,18 @@
         <group>
             <file>file:/C:/Users/uillia/Documents/NetBeansProjects/ControleEstoque/src/main/controller/SupplierController.java</file>
             <file>file:/C:/Users/uillia/Documents/NetBeansProjects/ControleEstoque/src/main/view/RegSupplierView.java</file>
+            <file>file:/C:/Users/uillia/Documents/NetBeansProjects/ControleEstoque/src/main/repository/SupplierRepository.java</file>
+            <file>file:/C:/Users/uillia/Documents/NetBeansProjects/ControleEstoque/src/main/view/MenuView.java</file>
+            <file>file:/C:/Users/uillia/Documents/NetBeansProjects/ControleEstoque/src/main/model/SupplierPersonModel.java</file>
+            <file>file:/C:/Users/uillia/Documents/NetBeansProjects/ControleEstoque/src/main/view/LoginView.java</file>
+            <file>file:/C:/Users/uillia/Documents/NetBeansProjects/ControleEstoque/src/main/controller/LoginController.java</file>
             <file>file:/C:/Users/uillia/Documents/NetBeansProjects/ControleEstoque/src/main/controller/EmployeeController.java</file>
             <file>file:/C:/Users/uillia/Documents/NetBeansProjects/ControleEstoque/src/main/view/OrderView.java</file>
-            <file>file:/C:/Users/uillia/Documents/NetBeansProjects/ControleEstoque/src/main/repository/SupplierRepository.java</file>
             <file>file:/C:/Users/uillia/Documents/NetBeansProjects/ControleEstoque/src/main/repository/MySqlConnection.java</file>
-            <file>file:/C:/Users/uillia/Documents/NetBeansProjects/ControleEstoque/src/main/model/SupplierPersonModel.java</file>
             <file>file:/C:/Users/uillia/Documents/NetBeansProjects/ControleEstoque/src/main/view/SplashView.java</file>
             <file>file:/C:/Users/uillia/Documents/NetBeansProjects/ControleEstoque/src/main/repository/EmployeeRepository.java</file>
-            <file>file:/C:/Users/uillia/Documents/NetBeansProjects/ControleEstoque/src/main/view/LoginView.java</file>
+            <file>file:/C:/Users/uillia/Documents/NetBeansProjects/ControleEstoque/src/main/controller/OrderController.java</file>
             <file>file:/C:/Users/uillia/Documents/NetBeansProjects/ControleEstoque/src/main/model/EmployeeModel.java</file>
-            <file>file:/C:/Users/uillia/Documents/NetBeansProjects/ControleEstoque/src/main/controller/LoginController.java</file>
         </group>
     </open-files>
 </project-private>
