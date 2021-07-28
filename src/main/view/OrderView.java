@@ -11,24 +11,17 @@ import util.FileManager;
 import util.ConfigManager;
 import main.controller.EmployeeController;
 import java.awt.Color;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JButton;
-import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import main.controller.OrderController;
-import main.model.EmployeeModel;
 import main.model.ItemModel;
 import main.model.OrderModel;
 
@@ -771,6 +764,8 @@ public class OrderView extends javax.swing.JFrame {
             panelItems, panelTab, panelTitleBar};
         JTable[] tab = {tabOrders, tableOrderItems};
         JTextArea[] txtArea = {txtAreaComments};
+        JLabel[] lbDesign={lbTextMid,lbTextTop,lbTextleft};
+        
 
         t.refreshButtons(btn, theme);
         t.refreshFrame(this, theme);
@@ -779,21 +774,18 @@ public class OrderView extends javax.swing.JFrame {
         t.refreshPanels(panel, theme);
         t.refreshTables(tab, theme);
         t.refreshTextArea(txtArea, theme);
+        t.refreshDesignLabels(lbDesign, theme);
 
         if (theme.equals("dark")) {
 
             btnRegister.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/addfuncIconDark.png")));
             btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/bttexcluirfuncIconDark.png")));
-            lbTextleft.setForeground(new Color(153, 153, 153));
-            lbTextTop.setForeground(new Color(153, 153, 153));
-            lbTextMid.setForeground(new Color(153, 153, 153));
+            
 
         } else {
 
             if (theme.equals("light")) {
-                lbTextleft.setForeground(Color.lightGray);
-                lbTextTop.setForeground(Color.lightGray);
-                lbTextMid.setForeground(Color.lightGray);
+                
 
                 btnRegister.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/addfuncIconLight.png")));
                 btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/bttexcluirfuncIconLight.png")));
@@ -809,12 +801,12 @@ public class OrderView extends javax.swing.JFrame {
         }
     }
 
-    public void refreshTable() { //envia a tabela para ser carregada
+    public void refreshTable() {
 
         DefaultTableModel tabFmodel = new DefaultTableModel();
         tabFmodel = (DefaultTableModel) tabOrders.getModel();
         tabFmodel.setRowCount(0);
-        fc.refreshTable(tabFmodel);
+        
     }
 
     public void addItems() {

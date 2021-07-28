@@ -6,6 +6,7 @@
 package main.controller;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import main.repository.SupplierRepository;
@@ -21,17 +22,23 @@ public class SupplierController {
 
     public void registerCompany(SupplierCompanyModel suppCompReg) {
 
-        if (suppCompReg.getCnpj().equals(suppRep.getDataCompanySuppByCnpj(suppCompReg.getCnpj()).getCnpj())) {
-
-            JOptionPane.showMessageDialog(null, this, "Empresa ja cadastrada", 0);
-        } else {
+//        if (suppCompReg.getCnpj().equals(suppRep.getDataCompanySuppByCnpj(suppCompReg.getCnpj()).getCnpj())) {
+//
+//            JOptionPane.showMessageDialog(null, this, "Empresa ja cadastrada", 0);
+//        } else {
             suppCompReg.setRegisterDate(LocalDate.now());
             suppRep.insertSupplierCompany(suppCompReg);
-        }
+//        }
     }
 
     public void CadastrarFpessoa() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+    }
+
+    public ArrayList<SupplierCompanyModel> getTableData() {
+        ArrayList<SupplierCompanyModel> company = new ArrayList<>();
+        company = suppRep.getAllDataCompany();
+        return company;
     }
 
     public void attTabela(DefaultTableModel tabFmodel) {

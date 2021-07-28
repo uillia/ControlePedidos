@@ -8,6 +8,7 @@ package main.repository;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -21,29 +22,28 @@ public class SupplierRepository {
     MySqlConnection c = new MySqlConnection();
 
     public void insertSupplierCompany(SupplierCompanyModel comp) {
-        
+
         try {
 
             c.Connect();
             PreparedStatement pst = c.con.prepareStatement("insert into suppliercompany "
-                    + " (idhierarchicalType,nameCompany, cnpj, phone,mainActivity, localNum, street, district, city, state, email, site, regDate) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                    + " (idhierarchicalType,nameCompany, cnpj, phone,mainActivity, adress, district, city, state, email, site, regDate) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
             pst.setInt(1, comp.getIdHierarchicaltype());
             pst.setString(2, comp.getName());
             pst.setString(3, comp.getCnpj());
             pst.setString(4, comp.getPhone());
             pst.setString(5, comp.getMainActivity());
-            pst.setInt(6, comp.getLocalnum());
-            pst.setString(7, comp.getStreet());
-            pst.setString(8, comp.getDistrict());
-            pst.setString(9, comp.getCity());
-            pst.setString(10, comp.getState());
-            pst.setString(11, comp.getEmail());
+            pst.setString(6, comp.getAdress());
+            pst.setString(7, comp.getDistrict());
+            pst.setString(8, comp.getCity());
+            pst.setString(9, comp.getState());
+            pst.setString(10, comp.getEmail());
             if (comp.getSite() != null) {
-                pst.setString(12, comp.getSite());
+                pst.setString(11, comp.getSite());
             } else {
-                pst.setString(12, "Não Registrado");
+                pst.setString(11, "Não Registrado");
             }
-            pst.setString(13, comp.getRegisterDate().toString());
+            pst.setString(12, comp.getRegisterDate().toString());
 
             pst.execute();
 
@@ -57,7 +57,7 @@ public class SupplierRepository {
     }
 
     public SupplierCompanyModel getDataCompanySuppById(int id) {
-        SupplierCompanyModel compInter = new SupplierCompanyModel();
+        SupplierCompanyModel company = new SupplierCompanyModel();
         c.Connect();
         try {
             String sql = "Select sc.*, ht.description from suppliercompany sc "
@@ -69,24 +69,29 @@ public class SupplierRepository {
 
             while (rs.next()) {
 
-                compInter.setIdCompany(rs.getInt("sc.idSupplierCompany"));
-                compInter.setName(rs.getString("sc.nameCompany"));
-                compInter.setCnpj(rs.getString("sc.cnpj"));
-                compInter.setPhone(rs.getString("sc.phone"));
-                compInter.setMainActivity(rs.getString("mainActivity"));
-                compInter.setHierarchicaltype(rs.getString("ht.description"));
-                compInter.setLocalnum(rs.getInt("localNum"));
-                compInter.setStreet(rs.getString("street"));
-                compInter.setDistrict(rs.getString("district"));
-                compInter.setCity(rs.getString("city"));
-                compInter.setState(rs.getString("state"));
-                compInter.setEmail(rs.getString("email"));
-                compInter.setSite(rs.getString("site"));
+                company.setIdCompany(rs.getInt("sc.idSupplierCompany"));
+                company.setName(rs.getString("sc.nameCompany"));
+                company.setCnpj(rs.getString("sc.cnpj"));
+                company.setPhone(rs.getString("sc.phone"));
+                company.setMainActivity(rs.getString("mainActivity"));
+                company.setHierarchicaltype(rs.getString("ht.description"));
+                company.setAdress(rs.getString("adress"));
+                company.setDistrict(rs.getString("district"));
+                company.setCity(rs.getString("city"));
+                company.setState(rs.getString("state"));
+                company.setEmail(rs.getString("email"));
+                company.setSite(rs.getString("site"));
 
             }
             pst.close();
             c.close_Connection();
-            return compInter;
+
+            if (company.getIdCompany() == id) {
+                return company;
+            } else {
+                return null;
+            }
+
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage(), "Alerta", 2);
             return null;
@@ -110,13 +115,18 @@ public class SupplierRepository {
                 while (rs.next()) {
                     id = rs.getInt("idSupplierCompany");
                 }
+                pst.close();
+                c.close_Connection();
             } catch (SQLException ex) {
                 Logger.getLogger(SupplierRepository.class.getName()).log(Level.SEVERE, null, ex);
             }
-            if (id > 0) {
-                retComp = getDataCompanySuppById(id);
-            }
 
+            if (getDataCompanySuppById(id).getCnpj().equals(cnpj)) {
+                retComp = getDataCompanySuppById(id);
+            } else {
+                retComp = null;
+                System.out.println("Cnpj invalidado");
+            }
         }
         return retComp;
     }
@@ -124,6 +134,44 @@ public class SupplierRepository {
     public void insertSupplierPerson() {
     }
 
-//    public SupplierPersonModel getDataPersonSupp() {
-//    }
+    public SupplierPersonModel getDataPersonSupp() {
+        return null;
+    }
+
+    public ArrayList<SupplierCompanyModel> getAllDataCompany() {
+        ArrayList<SupplierCompanyModel> companyArrayList = new ArrayList<>();
+
+        c.Connect();
+
+        try {
+            String sql = "Select sc.*, ht.description from suppliercompany sc "
+                    + "INNER JOIN hierarchicaltype ht on sc.idhierarchicalType = ht.idhierarchicalType "
+                    + " order by idSupplierCompany asc";
+            PreparedStatement pst = c.con.prepareStatement(sql);
+            pst.execute();
+            ResultSet rs = pst.getResultSet();
+            while (rs.next()) {
+                SupplierCompanyModel company = new SupplierCompanyModel();
+                company.setIdCompany(rs.getInt("sc.idSupplierCompany"));
+                company.setName(rs.getString("sc.nameCompany"));
+                company.setCnpj(rs.getString("sc.cnpj"));
+                company.setPhone(rs.getString("sc.phone"));
+                company.setMainActivity(rs.getString("mainActivity"));
+                company.setHierarchicaltype(rs.getString("ht.description"));
+                company.setAdress(rs.getString("adress"));
+                company.setDistrict(rs.getString("district"));
+                company.setCity(rs.getString("city"));
+                company.setState(rs.getString("state"));
+                company.setEmail(rs.getString("email"));
+                company.setSite(rs.getString("site"));
+                companyArrayList.add(company);
+            }
+            pst.close();
+            c.close_Connection();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(SupplierRepository.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return companyArrayList;
+    }
 }

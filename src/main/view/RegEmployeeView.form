@@ -224,26 +224,29 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="lbCity" alignment="0" max="32767" attributes="0"/>
-                              <Component id="lbStreet" alignment="0" max="32767" attributes="0"/>
-                              <Component id="lbDistrict" alignment="0" max="32767" attributes="0"/>
-                              <Component id="lbHomeNum" alignment="0" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="lbAdress" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="txtAdress" min="-2" pref="112" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="lbState" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="txtCity" pref="115" max="32767" attributes="0"/>
-                          <Component id="txtStreet" alignment="1" max="32767" attributes="0"/>
-                          <Component id="txtDistrict" alignment="1" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="txtState" min="-2" pref="29" max="-2" attributes="0"/>
-                                  <Component id="txtHomeNum" min="-2" pref="50" max="-2" attributes="0"/>
+                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                      <Component id="lbCity" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="lbDistrict" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Component id="lbState" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="txtState" alignment="0" min="-2" pref="29" max="-2" attributes="0"/>
+                                  <Component id="txtCity" max="32767" attributes="0"/>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                                      <Component id="txtDistrict" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -255,20 +258,17 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="lbHomeNum" max="32767" attributes="0"/>
-                          <Component id="txtHomeNum" pref="20" max="32767" attributes="0"/>
+                          <Component id="txtAdress" pref="20" max="32767" attributes="0"/>
+                          <Component id="lbAdress" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lbStreet" min="-2" pref="17" max="-2" attributes="0"/>
-                          <Component id="txtStreet" min="-2" pref="20" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lbDistrict" min="-2" pref="17" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Group type="102" attributes="0">
-                              <EmptySpace min="3" pref="3" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                               <Component id="txtDistrict" min="-2" pref="20" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="lbDistrict" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -281,20 +281,13 @@
                           <Component id="lbState" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                           <Component id="txtState" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="47" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JTextField" name="txtHomeNum">
-              <Properties>
-                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="null"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="txtStreet">
+            <Component class="javax.swing.JTextField" name="txtAdress">
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="null"/>
@@ -337,14 +330,9 @@
                 <Property name="text" type="java.lang.String" value="Bairro"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="lbStreet">
+            <Component class="javax.swing.JLabel" name="lbAdress">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Rua"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="lbHomeNum">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="N&#xb0;"/>
+                <Property name="text" type="java.lang.String" value="Endere&#xe7;o"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -508,7 +496,7 @@
                       </Group>
                       <Component id="bttDelete" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="73" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Component id="panelTab" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>

@@ -1,10 +1,17 @@
 package main.view;
 
+import java.awt.Color;
 import util.FileManager;
 import main.controller.LoginController;
-import java.awt.Color;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
 import util.ConfigManager;
+import util.GraphElementsManipulator.Theme;
 import util.GraphElementsManipulator.TitleBar;
 
 public class LoginView extends javax.swing.JFrame {
@@ -26,11 +33,11 @@ public class LoginView extends javax.swing.JFrame {
 
         panelFields = new javax.swing.JPanel();
         lbUser = new javax.swing.JLabel();
-        bttLogin = new javax.swing.JToggleButton();
         txtUser = new javax.swing.JTextField();
         lbPassword = new javax.swing.JLabel();
         txtPassword = new javax.swing.JPasswordField();
-        radbttSavelogin = new javax.swing.JRadioButton();
+        radbtnSaveLogin = new javax.swing.JRadioButton();
+        btnLogin = new javax.swing.JButton();
         lbLeft = new javax.swing.JLabel();
         panelTitleBar = new javax.swing.JPanel();
         panelClose = new javax.swing.JPanel();
@@ -57,15 +64,6 @@ public class LoginView extends javax.swing.JFrame {
 
         lbUser.setText("Usuário");
 
-        bttLogin.setBackground(new java.awt.Color(255, 255, 255));
-        bttLogin.setText("Entrar");
-        bttLogin.setContentAreaFilled(false);
-        bttLogin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bttLoginActionPerformed(evt);
-            }
-        });
-
         txtUser.setBackground(new java.awt.Color(230, 230, 230));
         txtUser.setBorder(null);
         txtUser.setSelectedTextColor(new java.awt.Color(204, 204, 204));
@@ -76,29 +74,39 @@ public class LoginView extends javax.swing.JFrame {
         txtPassword.setBackground(new java.awt.Color(230, 230, 230));
         txtPassword.setBorder(null);
 
-        radbttSavelogin.setBackground(new java.awt.Color(255, 255, 255));
-        radbttSavelogin.setText("Salvar login");
-        radbttSavelogin.setContentAreaFilled(false);
+        radbtnSaveLogin.setBackground(new java.awt.Color(255, 255, 255));
+        radbtnSaveLogin.setText("Salvar login");
+        radbtnSaveLogin.setContentAreaFilled(false);
+        radbtnSaveLogin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        btnLogin.setText("Entrar");
+        btnLogin.setBorderPainted(false);
+        btnLogin.setContentAreaFilled(false);
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelFieldsLayout = new javax.swing.GroupLayout(panelFields);
         panelFields.setLayout(panelFieldsLayout);
         panelFieldsLayout.setHorizontalGroup(
             panelFieldsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFieldsLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(bttLogin)
-                .addGap(20, 20, 20))
             .addGroup(panelFieldsLayout.createSequentialGroup()
                 .addGap(46, 46, 46)
                 .addGroup(panelFieldsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lbPassword)
                     .addComponent(lbUser))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelFieldsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(radbttSavelogin)
-                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(panelFieldsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
+                    .addComponent(txtUser, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
+                    .addComponent(radbtnSaveLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(52, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFieldsLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnLogin)
+                .addContainerGap())
         );
         panelFieldsLayout.setVerticalGroup(
             panelFieldsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -112,14 +120,14 @@ public class LoginView extends javax.swing.JFrame {
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(radbttSavelogin)
-                .addGap(26, 26, 26)
-                .addComponent(bttLogin)
-                .addGap(22, 22, 22))
+                .addComponent(radbtnSaveLogin)
+                .addGap(37, 37, 37)
+                .addComponent(btnLogin)
+                .addContainerGap())
         );
 
-        lbLeft.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        lbLeft.setForeground(new java.awt.Color(126, 126, 126));
+        lbLeft.setFont(new java.awt.Font("Cambria Math", 0, 24)); // NOI18N
+        lbLeft.setForeground(new java.awt.Color(153, 153, 153));
         lbLeft.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbLeft.setText("Login");
 
@@ -141,7 +149,7 @@ public class LoginView extends javax.swing.JFrame {
         panelClose.setLayout(panelCloseLayout);
         panelCloseLayout.setHorizontalGroup(
             panelCloseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bttClose, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+            .addComponent(bttClose, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         panelCloseLayout.setVerticalGroup(
             panelCloseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -230,10 +238,22 @@ public class LoginView extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    @SuppressWarnings("empty-statement")
+    private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
+        int x = evt.getXOnScreen();
+        int y = evt.getYOnScreen();
+        this.setLocation(x - xMouse, y - yMouse);
+    }//GEN-LAST:event_formMouseDragged
 
-    private void bttLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttLoginActionPerformed
+    private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
+        xMouse = evt.getX();
+        yMouse = evt.getY();
+    }//GEN-LAST:event_formMousePressed
 
+    private void bttIconfiedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttIconfiedActionPerformed
+        this.setState(RegSupplierView.ICONIFIED);
+    }//GEN-LAST:event_bttIconfiedActionPerformed
+
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         String user;
         String password;
         int protLog = 3; //protlog is a protocol to administrate the login in this program
@@ -242,11 +262,11 @@ public class LoginView extends javax.swing.JFrame {
 
         LoginController lc = new LoginController();
 
-        protLog = lc.login(user, password); //It get a number becomes the @loginController method.
-        //This method uses the LoginDAO, and this last make requests in the database and return a EmployeeModel if find a user
+        protLog = lc.login(user, password); //It get a number becomes the loginController method.
+        //This method uses the LoginRespository, and this last make requests in the database and return a EmployeeModel if find a user
 
         if (protLog == 1) {
-            if (radbttSavelogin.isSelected()) {
+            if (radbtnSaveLogin.isSelected()) {
                 lc.saveLogin(user, password);
 
             } else {
@@ -265,22 +285,8 @@ public class LoginView extends javax.swing.JFrame {
         if (protLog == 0) {
             JOptionPane.showMessageDialog(null, " Usuário não encontrado!");
         }
-    }//GEN-LAST:event_bttLoginActionPerformed
 
-    private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
-        int x = evt.getXOnScreen();
-        int y = evt.getYOnScreen();
-        this.setLocation(x - xMouse, y - yMouse);
-    }//GEN-LAST:event_formMouseDragged
-
-    private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
-        xMouse = evt.getX();
-        yMouse = evt.getY();
-    }//GEN-LAST:event_formMousePressed
-
-    private void bttIconfiedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttIconfiedActionPerformed
-        this.setState(RegSupplierView.ICONIFIED);
-    }//GEN-LAST:event_bttIconfiedActionPerformed
+    }//GEN-LAST:event_btnLoginActionPerformed
 
     /**
      * @param args the command line arguments
@@ -317,7 +323,8 @@ public class LoginView extends javax.swing.JFrame {
             }
         });
     }
-// auxiliar methods
+
+    // methods
     public void checkSave() {
         FileManager ac = new FileManager();
         if ((ac.Read(path).isEmpty())) {
@@ -333,25 +340,41 @@ public class LoginView extends javax.swing.JFrame {
             } else {
                 txtUser.setText(usuario);
                 txtPassword.setText(senha);
-                radbttSavelogin.setSelected(true);   
+                radbtnSaveLogin.setSelected(true);
             }
         }
     }
 
     public void refreshTema() {
+        String theme;
+        theme = conf.getValue("theme", "Light", "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\Controle de Estoque\\preferences\\theme.properties");
         TitleBar tb = new TitleBar();
-        tb.configTitleBar(panelClose, panelIconfied, panelTitleBar, bttClose, bttIconfied, "Light");
-        panelClose.setBackground(Color.lightGray);
-        panelIconfied.setBackground(Color.lightGray);
-        getContentPane().setBackground(Color.LIGHT_GRAY);
-        panelTitleBar.setBackground(Color.lightGray);
+        tb.configTitleBar(panelClose, panelIconfied, panelTitleBar, bttClose, bttIconfied, theme);
+        JTextField[] txt = {txtUser};
+        JButton[] btn = {btnLogin};
+        JPasswordField[] txtp = {txtPassword};
+        JLabel[] lb = {lbPassword, lbUser};
+        JPanel[] panel = {panelFields};
+        JRadioButton[] rb = {radbtnSaveLogin};
+        JLabel[] lbdeco = {lbLeft};
+
+        Theme t = new Theme();
+        t.refreshPasswordFields(txtp, theme);
+        t.refreshLabels(lb, theme);
+        t.refreshTextFields(txt, theme);
+        t.refreshPanels(panel, theme);
+        t.refreshFrame(this, theme);
+        t.refreshButtons(btn, theme);
+        t.refreshRadioButton(rb, theme);
+        t.refreshDesignLabels(lbdeco, theme);
+
     }
 // end auxiliar methods
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnLogin;
     private javax.swing.JButton bttClose;
     private javax.swing.JButton bttIconfied;
-    private javax.swing.JToggleButton bttLogin;
     private javax.swing.JLabel lbLeft;
     private javax.swing.JLabel lbPassword;
     private javax.swing.JLabel lbUser;
@@ -359,7 +382,7 @@ public class LoginView extends javax.swing.JFrame {
     private javax.swing.JPanel panelFields;
     private javax.swing.JPanel panelIconfied;
     private javax.swing.JPanel panelTitleBar;
-    private javax.swing.JRadioButton radbttSavelogin;
+    private javax.swing.JRadioButton radbtnSaveLogin;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables

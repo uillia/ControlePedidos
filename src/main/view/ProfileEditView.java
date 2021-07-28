@@ -63,16 +63,14 @@ public class ProfileEditView extends javax.swing.JFrame {
         txtBirthdate = new javax.swing.JFormattedTextField();
         txtCpf = new javax.swing.JFormattedTextField();
         panelAdress = new javax.swing.JPanel();
-        txtHomeNum = new javax.swing.JTextField();
-        txtStreet = new javax.swing.JTextField();
+        txtAdress = new javax.swing.JTextField();
         txtDistrict = new javax.swing.JTextField();
         txtCity = new javax.swing.JTextField();
         txtState = new javax.swing.JTextField();
         lbState = new javax.swing.JLabel();
         lbCity = new javax.swing.JLabel();
         lbDistrict = new javax.swing.JLabel();
-        lbStreet = new javax.swing.JLabel();
-        lbHomeNum = new javax.swing.JLabel();
+        lbAdress = new javax.swing.JLabel();
         btnUpdate = new javax.swing.JButton();
         panelSis = new javax.swing.JPanel();
         txtPassword = new javax.swing.JPasswordField();
@@ -144,9 +142,7 @@ public class ProfileEditView extends javax.swing.JFrame {
 
         panelAdress.setToolTipText("");
 
-        txtHomeNum.setBorder(null);
-
-        txtStreet.setBorder(null);
+        txtAdress.setBorder(null);
 
         txtDistrict.setBorder(null);
 
@@ -160,46 +156,37 @@ public class ProfileEditView extends javax.swing.JFrame {
 
         lbDistrict.setText("Bairro");
 
-        lbStreet.setText("Rua");
-
-        lbHomeNum.setText("N°");
+        lbAdress.setText("Endereço");
 
         javax.swing.GroupLayout panelAdressLayout = new javax.swing.GroupLayout(panelAdress);
         panelAdress.setLayout(panelAdressLayout);
         panelAdressLayout.setHorizontalGroup(
             panelAdressLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelAdressLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAdressLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelAdressLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelAdressLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(lbCity, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lbStreet, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lbDistrict, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lbHomeNum, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(lbAdress, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lbDistrict, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(lbState))
                 .addGap(13, 13, 13)
                 .addGroup(panelAdressLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtCity, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
-                    .addComponent(txtStreet, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtDistrict, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(panelAdressLayout.createSequentialGroup()
-                        .addGroup(panelAdressLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtState, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtHomeNum, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(58, 58, 58)))
+                        .addComponent(txtState, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(86, 86, 86))
+                    .addComponent(txtCity)
+                    .addComponent(txtAdress, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtDistrict, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
         panelAdressLayout.setVerticalGroup(
             panelAdressLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelAdressLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addGroup(panelAdressLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lbHomeNum, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtHomeNum, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addContainerGap()
                 .addGroup(panelAdressLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbStreet, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtStreet, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lbAdress, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtAdress, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelAdressLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbDistrict, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -208,13 +195,13 @@ public class ProfileEditView extends javax.swing.JFrame {
                         .addComponent(txtDistrict, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelAdressLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtCity, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
-                    .addComponent(lbCity, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txtCity)
+                    .addComponent(lbCity, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelAdressLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbState, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtState, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/addfuncIconLight.png"))); // NOI18N
@@ -508,7 +495,7 @@ public class ProfileEditView extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(panelRegEmp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(25, 25, 25))
+                .addGap(19, 19, 19))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -545,8 +532,7 @@ public class ProfileEditView extends javax.swing.JFrame {
         func.setName(txtName.getText());
         func.setCpf(txtCpf.getText());
         func.setPhone(txtPhone.getText());
-        func.setHouseNumber(txtHomeNum.getText());
-        func.setStreet(txtStreet.getText());
+        func.setAdress(txtAdress.getText());
         func.setDistrict(txtDistrict.getText());
         func.setCity(txtCity.getText());
         func.setState(txtState.getText());
@@ -638,14 +624,15 @@ public class ProfileEditView extends javax.swing.JFrame {
         tb.configTitleBar(panelClose,panelIconfied, panelTitleBar,bttClose, bttIconfied, theme);
         
         JButton[] btt = {btnUpdate, btnVoltar};
-        JTextField[] txt = {txtRole,txtName, txtHomeNum, txtDistrict, txtStreet, txtCity,
+        JTextField[] txt = {txtRole,txtName, txtAdress, txtDistrict, txtCity,
         txtState, txtLogin, };
         JFormattedTextField[] txtf = {txtCpf, txtPhone, txtBirthdate};
         JPasswordField[] txtp = {txtPassword, txtPasswordConf};
         JLabel[] lb = {lbDistrict,lbCity,lbBirthdate,lbState,lbRole,lbLogin,
-        lbName,lbHomeNum,lbPhone,lbStreet,lbTextTop,lbTextleft,lbcpf,lbPassword,lbPasswordConf};     
+        lbName,lbPhone,lbAdress,lbTextTop,lbTextleft,lbcpf,lbPassword,lbPasswordConf};     
         JPanel[] panel = {panelMin,panelRegEmp,panelAdress,panelClose,panelIconfied,
         panelSis,panelTitleBar};
+        JLabel[] lbDesign={lbTextTop,lbTextleft};
         
         
         t.refreshButtons(btt, theme);
@@ -655,28 +642,18 @@ public class ProfileEditView extends javax.swing.JFrame {
         t.refreshPasswordFields(txtp, theme);
         t.refreshFormatedTextfields(txtf, theme);
         t.refreshPanels(panel, theme);
+        t.refreshDesignLabels(lbDesign, theme);
         
         if (theme.equals("dark")) {
             
             btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/addfuncIconDark.png")));
-            
-            
-            lbTextleft.setForeground(new Color (153,153,153));
-            lbTextTop.setForeground(new Color (153,153,153));
-           
-            
-            
+ 
         } else {
 
-            
-
             if (theme.equals("light")) {
-                lbTextleft.setForeground(Color.lightGray);
-                lbTextTop.setForeground(Color.lightGray);
-               
-                
+
                 btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/addfuncIconLight.png")));
-               
+
             }
         }
     }
@@ -697,10 +674,10 @@ public class ProfileEditView extends javax.swing.JFrame {
     private javax.swing.JButton bttClose;
     private javax.swing.JButton bttIconfied;
     private javax.swing.JButton bttMin;
+    private javax.swing.JLabel lbAdress;
     private javax.swing.JLabel lbBirthdate;
     private javax.swing.JLabel lbCity;
     private javax.swing.JLabel lbDistrict;
-    private javax.swing.JLabel lbHomeNum;
     private javax.swing.JLabel lbLogin;
     private javax.swing.JLabel lbName;
     private javax.swing.JLabel lbPassword;
@@ -708,7 +685,6 @@ public class ProfileEditView extends javax.swing.JFrame {
     private javax.swing.JLabel lbPhone;
     private javax.swing.JLabel lbRole;
     private javax.swing.JLabel lbState;
-    private javax.swing.JLabel lbStreet;
     private javax.swing.JLabel lbTextTop;
     private javax.swing.JLabel lbTextleft;
     private javax.swing.JLabel lbcpf;
@@ -719,11 +695,11 @@ public class ProfileEditView extends javax.swing.JFrame {
     private javax.swing.JPanel panelRegEmp;
     private javax.swing.JPanel panelSis;
     private javax.swing.JPanel panelTitleBar;
+    private javax.swing.JTextField txtAdress;
     private javax.swing.JFormattedTextField txtBirthdate;
     private javax.swing.JTextField txtCity;
     private javax.swing.JFormattedTextField txtCpf;
     private javax.swing.JTextField txtDistrict;
-    private javax.swing.JTextField txtHomeNum;
     private javax.swing.JTextField txtLogin;
     private javax.swing.JTextField txtName;
     private javax.swing.JPasswordField txtPassword;
@@ -731,6 +707,5 @@ public class ProfileEditView extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField txtPhone;
     private javax.swing.JTextField txtRole;
     private javax.swing.JTextField txtState;
-    private javax.swing.JTextField txtStreet;
     // End of variables declaration//GEN-END:variables
 }

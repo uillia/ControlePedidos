@@ -10,8 +10,7 @@ public class EmployeeModel {
     private String cpf;
     private Date birthDate;
     private String phone;
-    private String houseNumber;
-    private String street;
+    private String adress;
     private String district;
     private String city;
     private String state;
@@ -60,20 +59,12 @@ public class EmployeeModel {
         this.phone = phone;
     }
 
-    public String getHouseNumber() {
-        return houseNumber;
+    public String getAdress() {
+        return adress;
     }
 
-    public void setHouseNumber(String houseNumber) {
-        this.houseNumber = houseNumber;
-    }
-
-    public String getStreet() {
-        return street;
-    }
-
-    public void setStreet(String street) {
-        this.street = street;
+    public void setAdress(String adress) {
+        this.adress = adress;
     }
 
     public String getDistrict() {

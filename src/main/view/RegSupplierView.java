@@ -8,6 +8,7 @@ package main.view;
 import util.FileManager;
 import util.ConfigManager;
 import java.awt.Color;
+import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -62,15 +63,13 @@ public class RegSupplierView extends javax.swing.JFrame {
         lbCnpj = new javax.swing.JLabel();
         lbPhone = new javax.swing.JLabel();
         panelAdress = new javax.swing.JPanel();
-        txtLocalNum = new javax.swing.JTextField();
-        txtStreet = new javax.swing.JTextField();
+        txtAdress = new javax.swing.JTextField();
         txtDistrict = new javax.swing.JTextField();
         txtCity = new javax.swing.JTextField();
         txtState = new javax.swing.JTextField();
         lbState = new javax.swing.JLabel();
         lbCity = new javax.swing.JLabel();
         lbDistrict = new javax.swing.JLabel();
-        lbStreet = new javax.swing.JLabel();
         lbLocalNum = new javax.swing.JLabel();
         txtMainActivity = new javax.swing.JTextField();
         lbMainActivity = new javax.swing.JLabel();
@@ -156,9 +155,7 @@ public class RegSupplierView extends javax.swing.JFrame {
 
         panelAdress.setToolTipText("");
 
-        txtLocalNum.setBorder(null);
-
-        txtStreet.setBorder(null);
+        txtAdress.setBorder(null);
 
         txtDistrict.setBorder(null);
 
@@ -172,9 +169,7 @@ public class RegSupplierView extends javax.swing.JFrame {
 
         lbDistrict.setText("Bairro");
 
-        lbStreet.setText("Rua");
-
-        lbLocalNum.setText("N°");
+        lbLocalNum.setText("Endereço");
 
         javax.swing.GroupLayout panelAdressLayout = new javax.swing.GroupLayout(panelAdress);
         panelAdress.setLayout(panelAdressLayout);
@@ -182,51 +177,41 @@ public class RegSupplierView extends javax.swing.JFrame {
             panelAdressLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelAdressLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panelAdressLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelAdressLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(lbCity, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lbStreet, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lbDistrict, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lbLocalNum, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(lbState))
+                .addGroup(panelAdressLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(lbCity, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbDistrict, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbLocalNum, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbState, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(13, 13, 13)
                 .addGroup(panelAdressLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtCity)
-                    .addComponent(txtStreet, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtDistrict, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(panelAdressLayout.createSequentialGroup()
-                        .addGroup(panelAdressLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtState, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtLocalNum, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 58, Short.MAX_VALUE)))
+                        .addComponent(txtState, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 79, Short.MAX_VALUE))
+                    .addComponent(txtAdress))
                 .addContainerGap())
         );
         panelAdressLayout.setVerticalGroup(
             panelAdressLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAdressLayout.createSequentialGroup()
-                .addContainerGap(23, Short.MAX_VALUE)
+            .addGroup(panelAdressLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
                 .addGroup(panelAdressLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lbLocalNum, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtLocalNum, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtAdress, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelAdressLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbStreet, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtStreet, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelAdressLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbDistrict, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(panelAdressLayout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(txtDistrict, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(lbDistrict, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDistrict, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelAdressLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtCity)
                     .addComponent(lbCity, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelAdressLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbState, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbState, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtState, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         txtMainActivity.setBorder(null);
@@ -283,7 +268,7 @@ public class RegSupplierView extends javax.swing.JFrame {
                 .addGap(34, 34, 34)
                 .addGroup(panelBaseInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbNameCompany, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNameCompany, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNameCompany, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelBaseInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -298,7 +283,7 @@ public class RegSupplierView extends javax.swing.JFrame {
                     .addComponent(txtMainActivity, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelBaseInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbHierarchicaltype)
+                    .addComponent(lbHierarchicaltype, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(comboHierarchicaltype, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -332,7 +317,7 @@ public class RegSupplierView extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addGroup(panelInfoAdcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbSite, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtSite, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtSite, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelInfoAdcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -417,7 +402,7 @@ public class RegSupplierView extends javax.swing.JFrame {
         panelTabLayout.setVerticalGroup(
             panelTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTabLayout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -485,7 +470,7 @@ public class RegSupplierView extends javax.swing.JFrame {
                         .addGap(75, 75, 75)
                         .addComponent(panelTab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRegSuppPersonLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap(479, Short.MAX_VALUE)
                         .addComponent(bttRegisterSuppPerson, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -510,8 +495,8 @@ public class RegSupplierView extends javax.swing.JFrame {
                         .addGroup(panelRegSuppPersonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lbRole, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtRole, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRegSuppPersonLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE))
+                    .addGroup(panelRegSuppPersonLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(panelTab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
@@ -702,7 +687,7 @@ public class RegSupplierView extends javax.swing.JFrame {
                 .addComponent(lbTextMid)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelRegSuppPerson, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         pack();
@@ -729,8 +714,7 @@ public class RegSupplierView extends javax.swing.JFrame {
         suppCompany.setEmail(txtEmail.getText());
         suppCompany.setSite(txtSite.getText());
 
-        suppCompany.setLocalnum(Integer.parseInt(txtLocalNum.getText()));
-        suppCompany.setStreet(txtStreet.getText());
+        suppCompany.setAdress((txtAdress.getText()));
         suppCompany.setDistrict(txtDistrict.getText());
         suppCompany.setCity(txtCity.getText());
         suppCompany.setState(txtState.getText());
@@ -836,18 +820,19 @@ public class RegSupplierView extends javax.swing.JFrame {
 
         JButton[] btt = {bttRegisterSuppCompany, bttRegisterSuppPerson, bttVoltar};
 
-        JTextField[] txt = {txtNameCompany, txtLocalNum, txtDistrict, txtStreet, txtCity,
+        JTextField[] txt = {txtNameCompany, txtAdress, txtDistrict, txtCity,
             txtState, txtNamePerson, txtIdCompany, txtSite, txtEmail, txtMainActivity, txtRole};
 
         JFormattedTextField[] txtf = {txtCnpj, txtPhone, txtCpf};
 
         JLabel[] lb = {lbNameCompany, lbNamePerson, lbCnpj, lbCpf, lbPhone, lbIdCompany, lbRole, lbMainActivity,
-            lbCity, lbLocalNum, lbStreet, lbDistrict, lbState, lbEmail, lbSite, lbHierarchicaltype};
+            lbCity, lbLocalNum, lbDistrict, lbState, lbEmail, lbSite, lbHierarchicaltype};
 
         JPanel[] panel = {panelAdress,
             panelBaseInfo, panelClose, panelIconfied, panelInfoAdc, panelMin,
             panelRegSuppComp, panelRegSuppPerson, panelTab, panelTitleBar};
         JTable[] tab = {tabSuppCompany};
+        JLabel[] lbDesign = {lbTextMid, lbTextTop, lbTextleft};
 
 //        JComboBox[] combo = {comboHierarchicaltype};
         t.refreshButtons(btt, theme);
@@ -857,18 +842,14 @@ public class RegSupplierView extends javax.swing.JFrame {
         t.refreshPanels(panel, theme);
         t.refreshLabels(lb, theme);
         t.refreshTables(tab, theme);
+        t.refreshDesignLabels(lbDesign, theme);
 //        t.refreshComboBox(combo, theme);
 
         if (theme.equals("dark")) {
 
             bttRegisterSuppCompany.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/addfuncIconDark.png")));
             bttRegisterSuppPerson.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/bttfornIconDark.png")));
-            lbTextleft.setForeground(new Color(153, 153, 153));
-            lbTextTop.setForeground(new Color(153, 153, 153));
-            lbTextMid.setForeground(new Color(153, 153, 153));
-            TitledBorder f = BorderFactory.createTitledBorder(null, "Tabela Fornecedores");
-            f.setTitleColor(a);
-            tabSuppCompany.setBorder(f);
+            
 
         } else {
 
@@ -876,14 +857,8 @@ public class RegSupplierView extends javax.swing.JFrame {
 
                 bttRegisterSuppCompany.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/addfuncIconLight.png")));
                 bttRegisterSuppPerson.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/bttfornIconLight.png")));
-                lbTextleft.setForeground(Color.lightGray);
-                lbTextTop.setForeground(Color.lightGray);
-                lbTextMid.setForeground(Color.lightGray);
 
-                //painel da tabela
-                TitledBorder f = BorderFactory.createTitledBorder(null, "Tabela Fornecedores");
-                f.setTitleColor(b);
-                tabSuppCompany.setBorder(f);
+            
 
             }
         }
@@ -898,11 +873,23 @@ public class RegSupplierView extends javax.swing.JFrame {
     }
 
     public void refreshTable() { //envia a tabela para ser carregada
-        SupplierCompanyModel forn = new SupplierCompanyModel();
+        ArrayList<SupplierCompanyModel> companyArray = new ArrayList<>();
         DefaultTableModel tabFmodel = new DefaultTableModel();
         tabFmodel = (DefaultTableModel) tabSuppCompany.getModel();
         tabFmodel.setRowCount(0);
-//        sc.refreshTable(tabFmodel);
+
+        companyArray = sc.getTableData();
+        for (int i = 0; i < companyArray.size(); i++) {
+            tabFmodel.addRow(new Object[]{
+                companyArray.get(i).getIdCompany(),
+                companyArray.get(i).getName(),
+                companyArray.get(i).getHierarchicaltype(),
+                companyArray.get(i).getPhone()
+            }
+            );
+
+        }
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -929,7 +916,6 @@ public class RegSupplierView extends javax.swing.JFrame {
     private javax.swing.JLabel lbRole;
     private javax.swing.JLabel lbSite;
     private javax.swing.JLabel lbState;
-    private javax.swing.JLabel lbStreet;
     private javax.swing.JLabel lbTextMid;
     private javax.swing.JLabel lbTextTop;
     private javax.swing.JLabel lbTextleft;
@@ -944,13 +930,13 @@ public class RegSupplierView extends javax.swing.JFrame {
     private javax.swing.JPanel panelTab;
     private javax.swing.JPanel panelTitleBar;
     private javax.swing.JTable tabSuppCompany;
+    private javax.swing.JTextField txtAdress;
     private javax.swing.JTextField txtCity;
     private javax.swing.JFormattedTextField txtCnpj;
     private javax.swing.JFormattedTextField txtCpf;
     private javax.swing.JTextField txtDistrict;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtIdCompany;
-    private javax.swing.JTextField txtLocalNum;
     private javax.swing.JTextField txtMainActivity;
     private javax.swing.JTextField txtNameCompany;
     private javax.swing.JTextField txtNamePerson;
@@ -958,6 +944,5 @@ public class RegSupplierView extends javax.swing.JFrame {
     private javax.swing.JTextField txtRole;
     private javax.swing.JTextField txtSite;
     private javax.swing.JTextField txtState;
-    private javax.swing.JTextField txtStreet;
     // End of variables declaration//GEN-END:variables
 }

@@ -8,9 +8,12 @@ package util.GraphElementsManipulator;
 import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JRadioButton;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -19,9 +22,9 @@ import javax.swing.table.DefaultTableCellRenderer;
 public class Theme {
 
     Color backG, foreG, frameColor, backGtxt;
+
     // backG represents BackGroudCollors and foreG represents the ForeGroundCollors
     // backGtxt represents the background collor of TextFields
-
     private void getElementsColor(String theme) { //in this function, i change the colors by sended theme
 
         if (theme.equals("dark")) {
@@ -77,7 +80,7 @@ public class Theme {
         }
     }
 
-    public void refreshFormatedTextfields(JTextField[] txtf, String theme) {
+    public void refreshFormatedTextfields(JFormattedTextField[] txtf, String theme) {
         getElementsColor(theme);
         for (int i = 0; i < txtf.length; i++) {
             txtf[i].setBackground(backGtxt);
@@ -87,7 +90,7 @@ public class Theme {
         }
     }
 
-    public void refreshPasswordFields(JTextField[] txtp, String theme) {
+    public void refreshPasswordFields(JPasswordField[] txtp, String theme) {
         getElementsColor(theme);
         for (int i = 0; i < txtp.length; i++) {
             txtp[i].setBackground(backGtxt);
@@ -132,4 +135,20 @@ public class Theme {
 
         }
     }
+
+    public void refreshRadioButton(JRadioButton[] rdbtn, String theme) {
+        getElementsColor(theme);
+        for (int i = 0; i < rdbtn.length; i++) {
+            rdbtn[i].setForeground(foreG);
+        }
+    }
+
+    public void refreshDesignLabels(JLabel[] lb, String theme) {
+        getElementsColor(theme);
+        for (int i = 0; i < lb.length; i++) {
+            lb[i].setForeground(new Color(153, 153, 153));
+            lb[i].setFont(new java.awt.Font("Cambria Math", 0, 24));
+        }
+    }
+
 }

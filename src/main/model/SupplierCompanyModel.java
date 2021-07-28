@@ -20,8 +20,7 @@ public class SupplierCompanyModel extends HierarchicalTypeModel {
     private String mainActivity;
     private String hierarchicaltype;
     private String phone;
-    private int Localnum;
-    private String street;
+    private String adress;
     private String district;
     private String city;
     private String state;
@@ -48,20 +47,12 @@ public class SupplierCompanyModel extends HierarchicalTypeModel {
         this.hierarchicaltype = hierarchicaltype;
     }
 
-    public int getLocalnum() {
-        return Localnum;
+    public String getAdress() {
+        return adress;
     }
 
-    public void setLocalnum(int Localnum) {
-        this.Localnum = Localnum;
-    }
-
-    public String getStreet() {
-        return street;
-    }
-
-    public void setStreet(String street) {
-        this.street = street;
+    public void setAdress(String adress) {
+        this.adress = adress;
     }
 
     public String getDistrict() {

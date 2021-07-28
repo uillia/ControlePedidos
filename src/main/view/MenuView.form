@@ -64,7 +64,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="231" max="-2" attributes="0"/>
                       <Component id="lbTextleft" min="-2" pref="52" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="206" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -85,18 +85,20 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Group type="102" attributes="0">
                           <Component id="panelInstructions" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                           <Component id="panelTab" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
+                      <Group type="102" attributes="0">
                           <Component id="btnSupplier" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                           <Component id="btnPedidos" min="-2" pref="100" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                          <Component id="bttEmployee" min="-2" pref="113" max="-2" attributes="0"/>
+                          <Component id="btnEmployee" min="-2" pref="113" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="lbDate" min="-2" pref="177" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
@@ -108,16 +110,17 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="bttEmployee" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnEmployee" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnPedidos" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                       <Component id="btnSupplier" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                      <Component id="lbDate" alignment="0" min="-2" pref="31" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="panelTab" max="32767" attributes="0"/>
                       <Component id="panelInstructions" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -260,13 +263,14 @@
                     <Property name="columns" type="int" value="20"/>
                     <Property name="lineWrap" type="boolean" value="true"/>
                     <Property name="rows" type="int" value="5"/>
-                    <Property name="text" type="java.lang.String" value="&#xa;   A tabela ao lado informa as entregas que est&#xe3;o mais proximas da data prevista para entrega&#xa;&#xa;   Para cadastrar funcion&#xe1;rios, clique no bot&#xe3;o &quot;funcion&#xe1;rio&quot; acima. Ap&#xf3;s isso, aparecer&#xe1; uma nova janela para cadastra-lo.&#xa;&#xa;   Para cadastrar um fornecedor, clique em fornecedor acima. Ap&#xf3;s isso, aparrecer&#xe1; uma nova janela para cadastra-lo&#xa;&#xa;   Para cadastrar ou consultar pedidos, clique no bot&#xe3;o &quot;pedido&quot;, e em seguida, cadastrar pedido" noResource="true"/>
+                    <Property name="text" type="java.lang.String" value="&#xa;   A tabela ao lado informa as entregas que est&#xe3;o mais proximas da data prevista para entrega&#xa;&#xa;   Para cadastrar funcion&#xe1;rios, clique no bot&#xe3;o &quot;funcion&#xe1;rio&quot; acima. Ap&#xf3;s isso, aparecer&#xe1; uma nova janela para cadastra-lo.&#xa;&#xa;   Para cadastrar um fornecedor, clique em fornecedor acima. Ap&#xf3;s isso, aparecer&#xe1; uma nova janela para cadastra-lo&#xa;&#xa;   Para cadastrar ou consultar pedidos, clique no bot&#xe3;o &quot;pedido&quot;, e em seguida, cadastrar pedido" noResource="true"/>
                     <Property name="wrapStyleWord" type="boolean" value="true"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
                         <BevelBorder bevelType="1"/>
                       </Border>
                     </Property>
+                    <Property name="caretPosition" type="int" value="0"/>
                     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                       <Color id="Cursor Padr&#xe3;o"/>
                     </Property>
@@ -292,7 +296,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPedidosActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="bttEmployee">
+        <Component class="javax.swing.JButton" name="btnEmployee">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -305,7 +309,7 @@
             <Property name="iconTextGap" type="int" value="5"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bttEmployeeActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEmployeeActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnSupplier">
@@ -323,6 +327,13 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSupplierActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lbDate">
+          <Properties>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="&quot;&quot;+now.getDayOfWeek()+&quot;, dia &quot;+ now.getDayOfMonth()+ &quot;  de &quot;+ now.getMonth()+ &quot; de &quot; +now.getYear()" type="code"/>
+            </Property>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>
@@ -416,7 +427,7 @@
               <Color blue="99" green="99" red="99" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="&quot;Bem Vindo &quot; + userLog.getName()+&quot; !&quot;" type="code"/>
+              <Connection code="&quot;Bem vindo &quot; + userLog.getName()+&quot; !&quot;" type="code"/>
             </Property>
           </Properties>
         </Component>
