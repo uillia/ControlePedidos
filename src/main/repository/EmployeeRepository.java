@@ -8,12 +8,15 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import main.model.EmployeeModel;
+import util.CriptoController;
 
 /**
  *
  * @author uillia
  */
 public class EmployeeRepository {
+
+    CriptoController cc = new CriptoController();
 
     MySqlConnection c = new MySqlConnection();
 
@@ -33,7 +36,7 @@ public class EmployeeRepository {
             pst.setString(7, emp.getCity());
             pst.setString(8, emp.getState());
             pst.setString(9, emp.getLogin());
-            pst.setString(10, emp.getPassword());
+            pst.setString(10, cc.encryptBase64encoder(emp.getPassword()));
             pst.setString(11, emp.getGroup());
             pst.setString(12, emp.getRegisterDate().toString());
 
@@ -88,7 +91,7 @@ public class EmployeeRepository {
         c.close_Connection();
 
     }
-    
+
     //Methods to get Data
     public EmployeeModel getDataEmployeeById(int id) {
         EmployeeModel empLog = new EmployeeModel();
@@ -111,7 +114,7 @@ public class EmployeeRepository {
                 empLog.setAdress(rs.getString("adress"));
                 empLog.setDistrict(rs.getString("district"));
                 empLog.setCity(rs.getString("city"));
-                empLog.setState("state");
+                empLog.setState(rs.getString("state"));
                 empLog.setLogin(rs.getString("login"));
                 empLog.setPassword(rs.getString("password"));
                 empLog.setGroup(rs.getString("role"));
@@ -146,7 +149,7 @@ public class EmployeeRepository {
             }
             System.out.println(id);
             pst.close();
-            
+
         } catch (SQLException e) {
             return null;
         }
@@ -174,7 +177,7 @@ public class EmployeeRepository {
             System.out.println(id);
 
             pst.close();
-            
+
         } catch (SQLException e) {
             return null;
         }
@@ -185,7 +188,7 @@ public class EmployeeRepository {
             return null;
         }
     }
-    
+
     //Methods to do verifications easly
     public boolean verifyCpfExistency(String cpf) {
         boolean a = false;

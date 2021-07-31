@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package main.view;
 
 import util.GraphElementsManipulator.Theme;
@@ -13,6 +8,8 @@ import main.controller.EmployeeController;
 import java.awt.Color;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
@@ -29,15 +26,13 @@ import main.model.EmployeeModel;
  */
 public class ProfileEditView extends javax.swing.JFrame {
 
-    
     EmployeeController empc = new EmployeeController();
     ConfigManager conf = new ConfigManager();
     FileManager ac = new FileManager();
-    String theme = conf.getValue("theme", "light", "C:\\Users\\"+System.getProperty("user.name") +"\\Documents\\Controle de Estoque\\preferences\\theme.properties");
+    String theme = conf.getValue("theme", "light", "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\Controle de Estoque\\preferences\\theme.properties");
     Color btf;
     int xMouse, yMouse;
-    EmployeeModel emp =  empc.getLoggedData(); 
-    
+    EmployeeModel emp = empc.getLoggedData();
 
     /**
      * Creates new form TelaCadFunc
@@ -45,7 +40,7 @@ public class ProfileEditView extends javax.swing.JFrame {
     public ProfileEditView() {
         initComponents();
         checkTheme();
-        
+        putData();
 
     }
 
@@ -81,6 +76,7 @@ public class ProfileEditView extends javax.swing.JFrame {
         lbPasswordConf = new javax.swing.JLabel();
         lbRole = new javax.swing.JLabel();
         txtRole = new javax.swing.JTextField();
+        lbRegisterDate = new javax.swing.JLabel();
         btnVoltar = new javax.swing.JButton();
         lbTextleft = new javax.swing.JLabel();
         lbTextTop = new javax.swing.JLabel();
@@ -231,6 +227,7 @@ public class ProfileEditView extends javax.swing.JFrame {
 
         lbRole.setText("Cargo");
 
+        txtRole.setEditable(false);
         txtRole.setBorder(null);
 
         javax.swing.GroupLayout panelSisLayout = new javax.swing.GroupLayout(panelSis);
@@ -310,7 +307,8 @@ public class ProfileEditView extends javax.swing.JFrame {
                         .addGap(16, 16, 16)
                         .addComponent(panelAdress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(panelRegEmpLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(lbRegisterDate, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(14, 14, 14))
         );
@@ -319,6 +317,11 @@ public class ProfileEditView extends javax.swing.JFrame {
             .addGroup(panelRegEmpLayout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addGroup(panelRegEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelRegEmpLayout.createSequentialGroup()
+                        .addGroup(panelRegEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(panelSis, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(panelAdress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE))
                     .addGroup(panelRegEmpLayout.createSequentialGroup()
                         .addGap(13, 13, 13)
                         .addGroup(panelRegEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -337,11 +340,11 @@ public class ProfileEditView extends javax.swing.JFrame {
                         .addGap(11, 11, 11)
                         .addGroup(panelRegEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lbBirthdate, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtBirthdate, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(panelSis, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panelAdress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtBirthdate, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(panelRegEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbRegisterDate, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -527,7 +530,7 @@ public class ProfileEditView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        String passwordRep= null;
+        String passwordRep = null;
         EmployeeModel func = new EmployeeModel();
         func.setName(txtName.getText());
         func.setCpf(txtCpf.getText());
@@ -547,7 +550,7 @@ public class ProfileEditView extends javax.swing.JFrame {
         }
         EmployeeController fc = new EmployeeController();
         fc.registerEmployee(func, passwordRep);
-        
+
 
     }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -567,11 +570,12 @@ public class ProfileEditView extends javax.swing.JFrame {
     }//GEN-LAST:event_bttIconfiedActionPerformed
 
     private void bttMinMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttMinMouseClicked
-        if (this.getExtendedState()!= RegSupplierView.MAXIMIZED_BOTH) {
+        if (this.getExtendedState() != RegSupplierView.MAXIMIZED_BOTH) {
             this.setExtendedState(RegSupplierView.MAXIMIZED_BOTH);
 
-        }else{
-            this.setExtendedState(RegSupplierView.NORMAL);}
+        } else {
+            this.setExtendedState(RegSupplierView.NORMAL);
+        }
     }//GEN-LAST:event_bttMinMouseClicked
 
     /**
@@ -619,22 +623,21 @@ public class ProfileEditView extends javax.swing.JFrame {
     public void refreshTheme() {
         TitleBar tb = new TitleBar();
         Theme t = new Theme();
-        
+
         //Configuration of title bar
-        tb.configTitleBar(panelClose,panelIconfied, panelTitleBar,bttClose, bttIconfied, theme);
-        
+        tb.configTitleBar(panelClose, panelIconfied, panelTitleBar, bttClose, bttIconfied, theme);
+
         JButton[] btt = {btnUpdate, btnVoltar};
-        JTextField[] txt = {txtRole,txtName, txtAdress, txtDistrict, txtCity,
-        txtState, txtLogin, };
+        JTextField[] txt = {txtRole, txtName, txtAdress, txtDistrict, txtCity,
+            txtState, txtLogin,};
         JFormattedTextField[] txtf = {txtCpf, txtPhone, txtBirthdate};
         JPasswordField[] txtp = {txtPassword, txtPasswordConf};
-        JLabel[] lb = {lbDistrict,lbCity,lbBirthdate,lbState,lbRole,lbLogin,
-        lbName,lbPhone,lbAdress,lbTextTop,lbTextleft,lbcpf,lbPassword,lbPasswordConf};     
-        JPanel[] panel = {panelMin,panelRegEmp,panelAdress,panelClose,panelIconfied,
-        panelSis,panelTitleBar};
-        JLabel[] lbDesign={lbTextTop,lbTextleft};
-        
-        
+        JLabel[] lb = {lbDistrict, lbCity, lbBirthdate, lbState, lbRole, lbLogin,
+            lbName, lbPhone, lbAdress, lbTextTop, lbTextleft, lbcpf, lbPassword, lbPasswordConf, lbRegisterDate};
+        JPanel[] panel = {panelMin, panelRegEmp, panelAdress, panelClose, panelIconfied,
+            panelSis, panelTitleBar};
+        JLabel[] lbDesign = {lbTextTop, lbTextleft};
+
         t.refreshButtons(btt, theme);
         t.refreshFrame(this, theme);
         t.refreshLabels(lb, theme);
@@ -643,11 +646,11 @@ public class ProfileEditView extends javax.swing.JFrame {
         t.refreshFormatedTextfields(txtf, theme);
         t.refreshPanels(panel, theme);
         t.refreshDesignLabels(lbDesign, theme);
-        
+
         if (theme.equals("dark")) {
-            
+
             btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/addfuncIconDark.png")));
- 
+
         } else {
 
             if (theme.equals("light")) {
@@ -666,7 +669,27 @@ public class ProfileEditView extends javax.swing.JFrame {
         }
     }
 
-    
+    public void putData() {
+        txtName.setText(emp.getName());
+        txtCpf.setText(emp.getCpf());
+        txtPhone.setText(emp.getPhone());
+        txtAdress.setText(emp.getAdress());
+        txtDistrict.setText(emp.getDistrict());
+        try {
+            txtBirthdate.setText(emp.getBirthDate().toLocaleString());
+        } catch (NullPointerException e) {
+            txtBirthdate.setText(null);
+        }
+        txtCity.setText(emp.getCity());
+        System.out.println(emp.getState());
+        txtState.setText(emp.getState());
+        txtLogin.setText(emp.getLogin());
+        txtRole.setText(emp.getGroup());
+        txtPassword.setText(emp.getPassword());
+        lbRegisterDate.setText("Registrado desde: " + emp.getRegisterDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)));
+
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnUpdate;
@@ -683,6 +706,7 @@ public class ProfileEditView extends javax.swing.JFrame {
     private javax.swing.JLabel lbPassword;
     private javax.swing.JLabel lbPasswordConf;
     private javax.swing.JLabel lbPhone;
+    private javax.swing.JLabel lbRegisterDate;
     private javax.swing.JLabel lbRole;
     private javax.swing.JLabel lbState;
     private javax.swing.JLabel lbTextTop;

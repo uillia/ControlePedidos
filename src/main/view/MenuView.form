@@ -333,7 +333,7 @@
         <Component class="javax.swing.JLabel" name="lbDate">
           <Properties>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="&quot;&quot;+now.getDayOfWeek()+&quot;, dia &quot;+ now.getDayOfMonth()+ &quot;  de &quot;+ now.getMonth()+ &quot; de &quot; +now.getYear()" type="code"/>
+              <Connection code="now.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL))&#xd;&#xa;" type="code"/>
             </Property>
           </Properties>
         </Component>

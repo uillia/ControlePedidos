@@ -8,9 +8,12 @@ package util.GraphElementsManipulator;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import util.ConfigManager;
+import util.EnvMap;
 
 /**
  *
@@ -35,9 +38,6 @@ public class TitleBar {
         bttClose.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent me) {
-                ConfigManager config = new ConfigManager();
-                config.setValue("user", "null", "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\NetBeansProjects\\ControlePedidos\\dados\\cacheLoguin");
-                System.out.println("usuario chache apagado");
                 System.exit(0);
             }
 
