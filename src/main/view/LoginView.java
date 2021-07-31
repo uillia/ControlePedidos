@@ -1,6 +1,10 @@
 package main.view;
 
 import java.awt.Color;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import util.FileManager;
 import main.controller.LoginController;
 import javax.swing.JButton;
@@ -11,6 +15,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import util.ConfigManager;
+import util.CriptoController;
 import util.GraphElementsManipulator.Theme;
 import util.GraphElementsManipulator.TitleBar;
 
@@ -326,20 +331,26 @@ public class LoginView extends javax.swing.JFrame {
 
     // methods
     public void checkSave() {
+        CriptoController cript = new CriptoController();
         FileManager ac = new FileManager();
+        String dir = "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\NetBeansProjects\\ControlePedidos\\dados";
+        String file = "user";
+            path= dir+"\\"+cript.encryptBase64encoder(file);
+            System.out.println(path);
         if ((ac.Read(path).isEmpty())) {
 
         } else {
-
-            String usuario = ac.Read(path);
-            path = "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\NetBeansProjects\\ControlePedidos\\dados\\senha.txt";
+           String usuario = ac.Read(path);
+             file = "password";
+             path= dir+"\\"+cript.encryptBase64encoder(file);
+            
             String senha = ac.Read(path);
 
             if (usuario.equals("null")) {
                 System.out.println("Nenhum usuario salvo");
             } else {
-                txtUser.setText(usuario);
-                txtPassword.setText(senha);
+                txtUser.setText(cript.decryptBase64Decoder(usuario));
+                txtPassword.setText(cript.decryptBase64Decoder(senha));
                 radbtnSaveLogin.setSelected(true);
             }
         }

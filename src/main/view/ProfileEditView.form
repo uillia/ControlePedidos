@@ -95,7 +95,7 @@
                                   <EmptySpace min="2" pref="2" max="-2" attributes="0"/>
                                   <Component id="txtPhone" min="-2" pref="111" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="102" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
                                   <Component id="lbBirthdate" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="4" pref="4" max="-2" attributes="0"/>
                                   <Component id="txtBirthdate" min="-2" pref="65" max="-2" attributes="0"/>
@@ -107,7 +107,8 @@
                           <Component id="panelAdress" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Component id="lbRegisterDate" min="-2" pref="230" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Component id="btnUpdate" min="-2" pref="128" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -121,6 +122,13 @@
                   <EmptySpace min="28" pref="28" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="panelSis" max="32767" attributes="0"/>
+                              <Component id="panelAdress" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="18" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="13" pref="13" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="lbName" min="-2" pref="20" max="-2" attributes="0"/>
@@ -144,12 +152,13 @@
                               <Component id="lbBirthdate" min="-2" pref="20" max="-2" attributes="0"/>
                               <Component id="txtBirthdate" min="-2" pref="20" max="-2" attributes="0"/>
                           </Group>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
-                      <Component id="panelSis" max="32767" attributes="0"/>
-                      <Component id="panelAdress" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="18" max="32767" attributes="0"/>
-                  <Component id="btnUpdate" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="btnUpdate" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="lbRegisterDate" min="-2" pref="20" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -458,6 +467,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="txtRole">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="null"/>
                 </Property>
@@ -465,6 +475,8 @@
             </Component>
           </SubComponents>
         </Container>
+        <Component class="javax.swing.JLabel" name="lbRegisterDate">
+        </Component>
       </SubComponents>
     </Container>
     <Component class="javax.swing.JButton" name="btnVoltar">

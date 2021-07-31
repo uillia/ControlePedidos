@@ -4,32 +4,36 @@ import java.io.*;
 import java.util.Scanner;
 
 public class FileManager {
+    CriptoController opt = new CriptoController();
 
-    public String Read(String Caminho) {
-        String conteudo = "";
+    public String Read(String dir) {
+        String value = "";
         try {
-            File arquivo = new File(Caminho);
-            Scanner leitor = new Scanner(arquivo);
+            File file = new File(dir);
+            Scanner reader = new Scanner(file);
 
-            while (leitor.hasNextLine()) {
-                conteudo = leitor.nextLine();
+            while (reader.hasNextLine()) {
+                value = reader.nextLine();
             }
-            return conteudo;
+            return value;
         } catch (FileNotFoundException ex) {
             System.out.println("Erro: Arquivo não encontrado!");
             return "";
         }
     }
 
-    public boolean Write(String path, String Texto) {
+    public boolean Write(String dir, String Texto, String File ) {
         try {
-            FileWriter arq = new FileWriter(path);
-            File login = new File(path);
-
-            //Se o arquivo já existir, então abrir para concatenação, caso contrário criar novo arquivo
-            arq = new FileWriter(login, login.exists());
             
+            File directory = new File(dir);
 
+            boolean mkdir = directory.mkdir();
+            String path = dir +"\\"+ File;
+            
+            File file = new File(path);
+            boolean newFile = file.createNewFile();
+//            arq = new FileWriter(directory, directory.exists());
+            FileWriter arq = new FileWriter(path);
             PrintWriter write = new PrintWriter(arq);
 
             write.println(Texto);

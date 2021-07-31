@@ -53,7 +53,8 @@ public class EmployeeController {
 
     public EmployeeModel getLoggedData() {
 
-        String user = config.getValue("user", null, "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\NetBeansProjects\\ControlePedidos\\dados\\cacheLogin");
+//        String user = config.getValue("user", null, "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\NetBeansProjects\\ControlePedidos\\dados\\cacheLogin");
+        String user = System.getenv().get("user");
         EmployeeModel emp = new EmployeeModel();
         emp = empRep.getDataEmployeeByUser(user);
         if (emp == null) {

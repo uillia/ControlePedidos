@@ -10,6 +10,8 @@ import util.ConfigManager;
 import main.controller.LoginController;
 import java.awt.Color;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -217,7 +219,8 @@ public class MenuView extends javax.swing.JFrame {
             }
         });
 
-        lbDate.setText(""+now.getDayOfWeek()+", dia "+ now.getDayOfMonth()+ "  de "+ now.getMonth()+ " de " +now.getYear());
+        lbDate.setText(now.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL))
+        );
 
         javax.swing.GroupLayout panelBodyLayout = new javax.swing.GroupLayout(panelBody);
         panelBody.setLayout(panelBodyLayout);
