@@ -4,18 +4,18 @@ Projeto desktop criado em Java com Swing com o objetivo de administrar pedidos d
 ## Telas:
 Splash View
 
-![image](https://user-images.githubusercontent.com/50975425/126091289-84bdee6b-391e-41cc-9604-2fbd6d85394d.png)
+![image](https://user-images.githubusercontent.com/50975425/127753115-9e148854-503f-4b9d-bc74-be7d691f347e.png)
 
 login
 
-![image](https://user-images.githubusercontent.com/50975425/126092165-dfc2cf08-7857-4d62-8a25-e70212b65b9c.png)
+![image](https://user-images.githubusercontent.com/50975425/127753136-f8a88f62-5c97-4783-a72a-5d7ffac95130.png)
 
 Principal
 
-![image](https://user-images.githubusercontent.com/50975425/126090935-5d167092-a5af-4255-a598-8f84a23e1ded.png)
+![image](https://user-images.githubusercontent.com/50975425/127753143-95ae254c-9d6d-4a79-9e0d-f0c18e6079b0.png)
 
-Cadastro de funcionários
+Cadastro de pedidos
+![image](https://user-images.githubusercontent.com/50975425/127753151-3dac7b81-41a9-4648-b175-1efcdad7a670.png)
 
-![image](https://user-images.githubusercontent.com/50975425/126091021-329620b1-2812-4171-8db0-b7d4ec46a44a.png)
 
 Feito por <a href="https://github.com/uillia" target="_blank">Willian Torres</a>
