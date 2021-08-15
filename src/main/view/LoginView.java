@@ -24,7 +24,8 @@ public class LoginView extends javax.swing.JFrame {
     int xMouse, yMouse;
     ConfigManager conf = new ConfigManager();
     public String path = "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\NetBeansProjects\\ControlePedidos\\dados\\usuario.txt";
-
+    CriptoController cript = new CriptoController();
+    
     public LoginView() {
         initComponents();
         refreshTema();
@@ -277,7 +278,6 @@ public class LoginView extends javax.swing.JFrame {
             } else {
 
             }
-            lc.saveLogcache(txtUser.getText()); // calls the auxiliar method to save the user name 
             dispose();
             MenuView t = new MenuView();
             t.setVisible(true);
@@ -331,7 +331,7 @@ public class LoginView extends javax.swing.JFrame {
 
     // methods
     public void checkSave() {
-        CriptoController cript = new CriptoController();
+        
         FileManager ac = new FileManager();
         String dir = "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\NetBeansProjects\\ControlePedidos\\dados";
         String file = "user";
@@ -343,14 +343,12 @@ public class LoginView extends javax.swing.JFrame {
            String usuario = ac.Read(path);
              file = "password";
              path= dir+"\\"+cript.encryptBase64encoder(file);
-            
-            String senha = ac.Read(path);
 
             if (usuario.equals("null")) {
                 System.out.println("Nenhum usuario salvo");
             } else {
                 txtUser.setText(cript.decryptBase64Decoder(usuario));
-                txtPassword.setText(cript.decryptBase64Decoder(senha));
+                
                 radbtnSaveLogin.setSelected(true);
             }
         }

@@ -31,7 +31,7 @@ public class MenuView extends javax.swing.JFrame {
     LoginController lc = new LoginController();
     FileManager ac = new FileManager();
     ConfigManager conf = new ConfigManager();
-    LocalDateTime now = LocalDateTime.now(); 
+    LocalDateTime now = LocalDateTime.now();
     EmployeeController empc = new EmployeeController();
     EmployeeModel userLog = empc.getLoggedData();// this Global instacy get data from the logged user in this system 
     String path = "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\Controle de Estoque\\preferences\\theme.properties";
@@ -483,7 +483,6 @@ public class MenuView extends javax.swing.JFrame {
 
             LoginView t = new LoginView();
             t.setVisible(true);
-            conf.setValue("user", "null", "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\NetBeansProjects\\ControlePedidos\\dados\\cacheLoguin");
             System.out.println("usuario chache apagado");
         }
     }//GEN-LAST:event_btnLogoutActionPerformed
@@ -656,7 +655,7 @@ public class MenuView extends javax.swing.JFrame {
 
     public void checkGroup() { // this function check if the logged user is a Administrator
 
-        String group = userLog.getGroup(); //get the group in the global Employee instacy
+        String group = userLog.getRole(); //get the group in the global Employee instacy
         System.out.println(group);
         if (group.equals("Administrador") || group.equals("Dev")) {
             btnEmployee.setVisible(true);

@@ -19,6 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import main.model.EmployeeModel;
+import util.CriptoController;
 
 /**
  *
@@ -33,6 +34,7 @@ public class ProfileEditView extends javax.swing.JFrame {
     Color btf;
     int xMouse, yMouse;
     EmployeeModel emp = empc.getLoggedData();
+    CriptoController cript = new CriptoController();
 
     /**
      * Creates new form TelaCadFunc
@@ -628,15 +630,17 @@ public class ProfileEditView extends javax.swing.JFrame {
         tb.configTitleBar(panelClose, panelIconfied, panelTitleBar, bttClose, bttIconfied, theme);
 
         JButton[] btt = {btnUpdate, btnVoltar};
-        JTextField[] txt = {txtRole, txtName, txtAdress, txtDistrict, txtCity,
+        JTextField[] txt = {txtAdress, txtDistrict, txtCity,
             txtState, txtLogin,};
-        JFormattedTextField[] txtf = {txtCpf, txtPhone, txtBirthdate};
+        JFormattedTextField[] txtf = {txtPhone};
         JPasswordField[] txtp = {txtPassword, txtPasswordConf};
         JLabel[] lb = {lbDistrict, lbCity, lbBirthdate, lbState, lbRole, lbLogin,
             lbName, lbPhone, lbAdress, lbTextTop, lbTextleft, lbcpf, lbPassword, lbPasswordConf, lbRegisterDate};
         JPanel[] panel = {panelMin, panelRegEmp, panelAdress, panelClose, panelIconfied,
             panelSis, panelTitleBar};
         JLabel[] lbDesign = {lbTextTop, lbTextleft};
+        JTextField[] txtUnEdit = {txtName, txtRole};
+        JFormattedTextField[] txtfUnEdit = {txtCpf, txtBirthdate};
 
         t.refreshButtons(btt, theme);
         t.refreshFrame(this, theme);
@@ -646,6 +650,8 @@ public class ProfileEditView extends javax.swing.JFrame {
         t.refreshFormatedTextfields(txtf, theme);
         t.refreshPanels(panel, theme);
         t.refreshDesignLabels(lbDesign, theme);
+        t.refreshTextFieldUnEditable(txtUnEdit, theme);
+        t.refreshFormatedTextfieldsUnEditable(txtfUnEdit, theme);
 
         if (theme.equals("dark")) {
 
@@ -681,11 +687,9 @@ public class ProfileEditView extends javax.swing.JFrame {
             txtBirthdate.setText(null);
         }
         txtCity.setText(emp.getCity());
-        System.out.println(emp.getState());
         txtState.setText(emp.getState());
         txtLogin.setText(emp.getLogin());
-        txtRole.setText(emp.getGroup());
-        txtPassword.setText(emp.getPassword());
+        txtRole.setText(emp.getRole());
         lbRegisterDate.setText("Registrado desde: " + emp.getRegisterDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)));
 
     }

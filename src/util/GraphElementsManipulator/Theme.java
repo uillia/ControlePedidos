@@ -151,4 +151,20 @@ public class Theme {
         }
     }
 
+    public void refreshTextFieldUnEditable(JTextField[] txtUnEdit, String theme) {
+        getElementsColor(theme);
+        for (int i = 0; i < txtUnEdit.length; i++) {
+            txtUnEdit[i].setBackground(backG);
+            txtUnEdit[i].setForeground(foreG);   
+        }
+    }
+
+    public void refreshFormatedTextfieldsUnEditable(JFormattedTextField[] txtfUnEdit, String theme) {
+        getElementsColor(theme);
+        for (int i = 0; i < txtfUnEdit.length; i++) {
+            txtfUnEdit[i].setBackground(backG);
+            txtfUnEdit[i].setForeground(foreG);   
+        }
+    }
+
 }

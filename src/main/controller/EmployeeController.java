@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import main.repository.EmployeeRepository;
 import java.util.InputMismatchException;
+import java.util.List;
 import javax.swing.JOptionPane;
 import main.model.EmployeeModel;
 import util.ConfigManager;
@@ -14,40 +15,17 @@ public class EmployeeController {
     EmployeeRepository empRep = new EmployeeRepository();
 
     public void registerEmployee(EmployeeModel employee, String password2) {
-        if (employee.getPassword().equals(password2)) {
-            if (empRep.verifyUserExistency(employee.getLogin()) == false) {
-                if (empRep.verifyCpfExistency(employee.getCpf()) == false) {
-                    LocalDate today = LocalDate.now();//gets the today date 
-                    employee.setRegisterDate(today);
-                    empRep.insertEmployee(employee);
-                    JOptionPane.showMessageDialog(null, "Cadastro Realizado com Sucesso");
-                } else {
-                    JOptionPane.showMessageDialog(null, "Cpf ja registrado");
-                }
-            } else {
-                JOptionPane.showMessageDialog(null, "Usuário ja registrado");;
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "As senhas não se coencidem");
-        }
+        empRep.insertEmployee(employee);
+    }
+
+    public void editEmployee(EmployeeModel emp) {
+        empRep.editEmployee(emp);
 
     }
 
-    public void deleteEmployee(int id) {
-        try {
-            if (id >= 0) {
-                empRep.deleteEmployee(id);
-            }
-        } catch (InputMismatchException ex) {
-            JOptionPane.showMessageDialog(null, "Id Invalido");
-        }
-
-    }
-
-    public ArrayList< EmployeeModel> refreshTable() {
-        ArrayList< EmployeeModel> ArrayListEmp = new ArrayList<>();
-        ArrayListEmp = empRep.getAllEmployeesData();
-        return ArrayListEmp;
+    public List< EmployeeModel> getAllData() {
+        List< EmployeeModel> ListEmp = empRep.getAllEmployeesData();
+        return ListEmp;
 
     }
 
@@ -63,6 +41,17 @@ public class EmployeeController {
         }
 
         return emp;
+    }
+
+    public EmployeeModel getDataById(int id) {
+        EmployeeModel emp = new EmployeeModel();
+       emp=empRep.getDataEmployeeById(id);
+       return emp;
+    }
+
+    public List<EmployeeModel> getEmployeeByName(String name) {
+        List<EmployeeModel> empArrList =empRep.getDataEmployeeByName(name);
+       return empArrList;
     }
 
 }

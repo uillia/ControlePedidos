@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.Date;
 
 public class EmployeeModel {
-
+    
     private int idEmployee;
     private String name;
     private String cpf;
@@ -16,7 +16,8 @@ public class EmployeeModel {
     private String state;
     private String Login;
     private String password;
-    private String group;
+    private String role;
+    private int idStatus;
     private LocalDate registerDate;
 
     public int getIdEmployee() {
@@ -107,12 +108,20 @@ public class EmployeeModel {
         this.password = password;
     }
 
-    public String getGroup() {
-        return group;
+    public String getRole() {
+        return role;
     }
 
-    public void setGroup(String group) {
-        this.group = group;
+    public void setRole(String group) {
+        this.role = group;
+    }
+
+    public int getIdStatus() {
+        return idStatus;
+    }
+
+    public void setIdStatus(int idStatus) {
+        this.idStatus = idStatus;
     }
 
     public LocalDate getRegisterDate() {

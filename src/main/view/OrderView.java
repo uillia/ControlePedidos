@@ -11,8 +11,11 @@ import util.FileManager;
 import util.ConfigManager;
 import main.controller.EmployeeController;
 import java.awt.Color;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -21,9 +24,12 @@ import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import main.controller.ItemController;
 import main.controller.OrderController;
+import main.model.EmployeeModel;
 import main.model.ItemModel;
 import main.model.OrderModel;
+import main.repository.ItemRepository;
 
 /**
  *
@@ -31,7 +37,9 @@ import main.model.OrderModel;
  */
 public class OrderView extends javax.swing.JFrame {
 
-    EmployeeController fc = new EmployeeController();
+    EmployeeController empc = new EmployeeController();
+    EmployeeModel emp = empc.getLoggedData();
+
     ConfigManager conf = new ConfigManager();
     FileManager ac = new FileManager();
     String theme = conf.getValue("theme", "light", "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\Controle de Estoque\\preferences\\theme.properties");
@@ -647,15 +655,31 @@ public class OrderView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
+        Random r = new Random();
+        LocalTime nowtime = LocalTime.now();
+        LocalDate now = LocalDate.now();
+        
 
-        om.setDescription(txtDescriptionOrder.getText());
-        om.setIdEmployee(Integer.parseInt(txtIdSupplier.getText()));
-        om.setPrevDays(Integer.parseInt(txtPrevDays.getText()));
-        om.setInitialPrice(Double.parseDouble(txtInitialPrice.getText()));
-        om.setItems(itemArr);
+        int idOrder = + now.getDayOfMonth() + now.getMonthValue() + now.getYear() + nowtime.toSecondOfDay();
+        try {
+            System.out.println(idOrder);
+            om.setIdOrder(idOrder);
+            om.setDescription(txtDescriptionOrder.getText());
+            om.setIdSupplierPerson(Integer.parseInt(txtIdSupplier.getText()));
+            om.setIdEmployee(emp.getIdEmployee());
+            om.setComments(txtAreaComments.getText());
+
+            om.setPrevDays(Integer.parseInt(txtPrevDays.getText()));
+            om.setRegisterDate(LocalDate.now());
+//            om.setPrevDeliveryDate(om.getRegisterDate().plusDays(om.getPrevDays()));
+            om.setItems(itemArr);
+        } catch (NumberFormatException nfe) {
+            JOptionPane.showMessageDialog(this, "Há um ou mais campos preechidos com valores inadequados! Erro:" + nfe.getMessage());
+        }
         OrderController oc = new OrderController();
         oc.registerOrder(om);
         refreshTable();
+        JOptionPane.showMessageDialog(this, "Pedido cadastrado! ");
 
     }//GEN-LAST:event_btnRegisterActionPerformed
 
@@ -754,7 +778,7 @@ public class OrderView extends javax.swing.JFrame {
         //Configuration of title bar
         tb.configTitleBar(panelClose, panelIconfied, panelTitleBar, btnClose, btnIconfied, theme);
 
-        JButton[] btn = {btnRegister, btnVoltar, btnSearch, btnAddItem,btnRemoveItem};
+        JButton[] btn = {btnRegister, btnVoltar, btnSearch, btnAddItem, btnRemoveItem};
         JTextField[] txt = {txtDescriptionOrder, txtId, txtIdSupplier, txtPrevDays, txtInitialPrice, txtDescriptionItem,
             txtItemPrice, txtQuantity};
         JLabel[] lb = {lbPrevDays, lbId,
@@ -764,8 +788,7 @@ public class OrderView extends javax.swing.JFrame {
             panelItems, panelTab, panelTitleBar};
         JTable[] tab = {tabOrders, tableOrderItems};
         JTextArea[] txtArea = {txtAreaComments};
-        JLabel[] lbDesign={lbTextMid,lbTextTop,lbTextleft};
-        
+        JLabel[] lbDesign = {lbTextMid, lbTextTop, lbTextleft};
 
         t.refreshButtons(btn, theme);
         t.refreshFrame(this, theme);
@@ -780,12 +803,10 @@ public class OrderView extends javax.swing.JFrame {
 
             btnRegister.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/addfuncIconDark.png")));
             btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/bttexcluirfuncIconDark.png")));
-            
 
         } else {
 
             if (theme.equals("light")) {
-                
 
                 btnRegister.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/addfuncIconLight.png")));
                 btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/bttexcluirfuncIconLight.png")));
@@ -806,21 +827,24 @@ public class OrderView extends javax.swing.JFrame {
         DefaultTableModel tabFmodel = new DefaultTableModel();
         tabFmodel = (DefaultTableModel) tabOrders.getModel();
         tabFmodel.setRowCount(0);
-        
+
     }
 
     public void addItems() {
+        ItemController ic = new ItemController();
         try {
             ItemModel im = new ItemModel();
             im.setDescription(txtDescriptionItem.getText());
-            im.setIdFornecedor(Integer.parseInt(txtIdSupplier.getText()));
+            im.setIdSupplierPerson(Integer.parseInt(txtIdSupplier.getText()));
             im.setUnityPrice(Double.parseDouble(txtItemPrice.getText()));
             im.setQuantity(Integer.parseInt(txtQuantity.getText()));
             om.setInitialPrice(om.getInitialPrice() + (im.getUnityPrice() * im.getQuantity()));
             itemArr.add(im);
+            ic.addItemsPlus(im);
         } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(null, "Algum campo esta vazio"+ ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Algum campo esta vazio" + ex.getMessage());
         }
+
     }
 
     public void refreshTableItems() {
@@ -828,11 +852,11 @@ public class OrderView extends javax.swing.JFrame {
         tableOrderItemsModel = (DefaultTableModel) tableOrderItems.getModel();
         tableOrderItemsModel.setRowCount(0);
         txtInitialPrice.setText("R$" + om.getInitialPrice());
-        
+
         for (int i = 0; i < itemArr.size(); i++) {
             tableOrderItemsModel.addRow(new Object[]{
                 itemArr.get(i).getDescription(),
-                "R$" + itemArr.get(i).getUnityPrice(),
+                "R$ " + itemArr.get(i).getUnityPrice(),
                 itemArr.get(i).getQuantity()
             });
         }
