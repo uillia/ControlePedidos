@@ -5,10 +5,10 @@ import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import main.model.EmployeeModel;
-import util.CriptoController;
 
 /**
  *
@@ -16,41 +16,44 @@ import util.CriptoController;
  */
 public class EmployeeRepository {
 
-    CriptoController cc = new CriptoController();
-
     MySqlConnection c = new MySqlConnection();
 
     public void insertEmployee(EmployeeModel emp) {
+        if (verifyEmployeeUserExistency(emp.getLogin()) == false) {
+            if (verifyEmployeeCpfExistency(emp.getCpf()) == false) {
+                try {
 
-        try {
+                    c.Connect();
+                    PreparedStatement pst = c.con.prepareStatement("insert into employees "
+                            + " (name, cpf, birthDate, phone, adress, district, city, state, login, password, role, registerDate) VALUES (?,?,?,?,?,?,?,?,?,MD5(?),?,?)");
+                    pst.setString(1, emp.getName());
+                    pst.setString(2, emp.getCpf());
+                    pst.setDate(3, new java.sql.Date(emp.getBirthDate().getTime()));
+                    pst.setString(4, emp.getPhone());
+                    pst.setString(5, emp.getAdress());
+                    pst.setString(6, emp.getDistrict());
+                    pst.setString(7, emp.getCity());
+                    pst.setString(8, emp.getState());
+                    pst.setString(9, emp.getLogin());
+                    pst.setString(10, emp.getPassword());
+                    pst.setString(11, emp.getRole());
+                    pst.setString(12, emp.getRegisterDate().toString());
 
-            c.Connect();
-            PreparedStatement pst = c.con.prepareStatement("insert into employees "
-                    + " (name, cpf, birthDate, phone, adress, district, city, state, login, password, role, registerDate) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
-            pst.setString(1, emp.getName());
-            pst.setString(2, emp.getCpf());
-            pst.setDate(3, new java.sql.Date(emp.getBirthDate().getTime()));
-            pst.setString(4, emp.getPhone());
-            pst.setString(5, emp.getAdress());
-            pst.setString(6, emp.getDistrict());
-            pst.setString(7, emp.getCity());
-            pst.setString(8, emp.getState());
-            pst.setString(9, emp.getLogin());
-            pst.setString(10, cc.encryptBase64encoder(emp.getPassword()));
-            pst.setString(11, emp.getGroup());
-            pst.setString(12, emp.getRegisterDate().toString());
+                    pst.execute();
 
-            pst.execute();
-
-            pst.close();
-            c.close_Connection();
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage(), "Alerta", 2);
+                    pst.close();
+                    c.close_Connection();
+                } catch (SQLException e) {
+                    JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage(), "Alerta", 2);
+                }
+            } else {
+            }
+        } else {
         }
     }
 
-    public ArrayList<EmployeeModel> getAllEmployeesData() {
-        ArrayList<EmployeeModel> arrayListEmp = new ArrayList< EmployeeModel>();
+    public List<EmployeeModel> getAllEmployeesData() {
+        List<EmployeeModel> arrayListEmp = new ArrayList< EmployeeModel>();
         c.Connect();
         try {
 
@@ -64,8 +67,18 @@ public class EmployeeRepository {
                 EmployeeModel emp = new EmployeeModel();
                 emp.setIdEmployee(rs.getInt("idEmployee"));
                 emp.setName(rs.getString("name"));
+                emp.setCpf(rs.getString("cpf"));
                 emp.setPhone(rs.getString("phone"));
-                emp.setGroup(rs.getString("role"));
+                emp.setBirthDate(rs.getDate("birthDate"));
+                emp.setAdress(rs.getString("adress"));
+                emp.setDistrict(rs.getString("district"));
+                emp.setCity(rs.getString("city"));
+                emp.setState(rs.getString("state"));
+                
+                emp.setRole(rs.getString("role"));
+                emp.setRegisterDate(rs.getDate("registerDate").toLocalDate());
+                emp.setIdStatus(rs.getInt("idStatus"));
+                
                 arrayListEmp.add(emp);
             }
 
@@ -77,12 +90,26 @@ public class EmployeeRepository {
         return arrayListEmp;
     }
 
-    public void deleteEmployee(int id) {
+    public void editEmployee(EmployeeModel emp) {
         c.Connect();
         try {
-            String sql = "delete from employees where idEmployee = " + id + "";
+            String sql = "update employees set phone = ?, adress = ?, district = ?, city = ?,"
+                    + " state = ?, role = ?, idStatus=? where idEmployee ='" + emp.getIdEmployee() + "'";
             PreparedStatement pst = c.con.prepareStatement(sql);
-            pst.execute();
+            pst.setString(1, emp.getPhone());
+            pst.setString(2, emp.getAdress());
+            pst.setString(3, emp.getDistrict());
+            pst.setString(4, emp.getCity());
+            pst.setString(5, emp.getState());
+            pst.setString(6, emp.getRole());
+            pst.setInt(7, emp.getIdStatus());
+
+            if (verifyEmployeeIdExistency(emp.getIdEmployee())) {
+                pst.execute();
+            } else {
+                Logger.getLogger(EmployeeRepository.class.getName()).log(Level.SEVERE, "ID inválido");
+            }
+
             pst.close();
 
         } catch (SQLException e) {
@@ -117,7 +144,7 @@ public class EmployeeRepository {
                 empLog.setState(rs.getString("state"));
                 empLog.setLogin(rs.getString("login"));
                 empLog.setPassword(rs.getString("password"));
-                empLog.setGroup(rs.getString("role"));
+                empLog.setRole(rs.getString("role"));
                 empLog.setRegisterDate(rs.getDate("registerDate").toLocalDate());
             }
             pst.close();
@@ -189,8 +216,52 @@ public class EmployeeRepository {
         }
     }
 
-    //Methods to do verifications easly
-    public boolean verifyCpfExistency(String cpf) {
+    public List<EmployeeModel> getDataEmployeeByName(String name) {
+
+        List<EmployeeModel> empArrList = null;
+        c.Connect();
+
+        try {
+            String sql = "Select em.*, st.description from employees em join employeestatus st on em.idEmployeeStatus = st.idEmployeeStatus where name ='" + name + "'";
+            PreparedStatement pst = c.con.prepareStatement(sql);
+            pst.execute();
+
+            ResultSet rs = pst.getResultSet();
+
+            while (rs.next()) {
+                EmployeeModel emp = new EmployeeModel();
+                emp.setIdEmployee(rs.getInt("idEmployee"));
+                emp.setName(rs.getString("name"));
+                emp.setCpf(rs.getString("cpf"));
+                emp.setPhone(rs.getString("phone"));
+                emp.setBirthDate(rs.getDate("birthDate"));
+                emp.setAdress(rs.getString("adress"));
+                emp.setDistrict(rs.getString("district"));
+                emp.setCity(rs.getString("city"));
+                emp.setState(rs.getString("state"));
+                emp.setLogin(rs.getString("login"));
+                emp.setPassword(rs.getString("password"));
+                emp.setRole(rs.getString("role"));
+                emp.setRegisterDate(rs.getDate("registerDate").toLocalDate());
+                emp.setIdStatus(rs.getInt("idStatus"));
+
+                if (name.equals(emp.getName())) {
+                    empArrList.add(emp);
+                }
+
+            }
+
+            pst.close();
+
+        } catch (SQLException e) {
+            return null;
+        }
+
+        return empArrList;
+    }
+
+//Functions to do verifications easly
+    public boolean verifyEmployeeCpfExistency(String cpf) {
         boolean a = false;
         c.Connect();
         try {
@@ -203,17 +274,19 @@ public class EmployeeRepository {
                 a = true;
             } else {
                 a = false;
+
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(EmployeeRepository.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EmployeeRepository.class
+                    .getName()).log(Level.SEVERE, null, ex);
 
         }
         c.close_Connection();
         return a;
     }
 
-    public boolean verifyUserExistency(String user) {
+    public boolean verifyEmployeeUserExistency(String user) {
         boolean a = false;
         c.Connect();
         try {
@@ -225,13 +298,41 @@ public class EmployeeRepository {
                 a = true;
             } else {
                 a = false;
+
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(EmployeeRepository.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EmployeeRepository.class
+                    .getName()).log(Level.SEVERE, null, ex);
 
         }
         c.close_Connection();
         return a;
     }
+
+    public boolean verifyEmployeeIdExistency(int id) {
+        boolean a = false;
+        c.Connect();
+        try {
+            String sql = "Select * from employees where idEmployee ='" + id + "'";
+            PreparedStatement pst;
+            pst = c.con.prepareStatement(sql);
+            pst.execute();
+
+            if (pst.getResultSet().next()) {
+                a = true;
+            } else {
+                a = false;
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EmployeeRepository.class
+                    .getName()).log(Level.SEVERE, null, ex);
+
+        }
+        c.close_Connection();
+        return a;
+    }
+
 }

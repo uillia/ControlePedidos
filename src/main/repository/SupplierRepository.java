@@ -20,6 +20,8 @@ public class SupplierRepository {
     SupplierCompanyModel compInter = new SupplierCompanyModel();
     SupplierPersonModel personInter = new SupplierPersonModel();
     MySqlConnection c = new MySqlConnection();
+    
+    //Supplier Company
 
     public void insertSupplierCompany(SupplierCompanyModel comp) {
 
@@ -131,12 +133,7 @@ public class SupplierRepository {
         return retComp;
     }
 
-    public void insertSupplierPerson() {
-    }
-
-    public SupplierPersonModel getDataPersonSupp() {
-        return null;
-    }
+    
 
     public ArrayList<SupplierCompanyModel> getAllDataCompany() {
         ArrayList<SupplierCompanyModel> companyArrayList = new ArrayList<>();
@@ -174,4 +171,34 @@ public class SupplierRepository {
         }
         return companyArrayList;
     }
+    //SupplierPerson
+    
+    
+    
+    public void insertSupplierPerson(SupplierPersonModel supplierPerson) {
+        try {
+
+            c.Connect();
+            PreparedStatement pst = c.con.prepareStatement("insert into supplierperson "
+                    + " (idSupplierCompany, name, cpf, role) VALUES (?,?,?)");
+            
+            pst.setInt(1, supplierPerson.getIdCompany());
+            pst.setString(2, supplierPerson.getName());
+            pst.setString(3, supplierPerson.getCpf());
+            pst.setString(4, supplierPerson.getRole());
+
+            pst.execute();
+
+            JOptionPane.showMessageDialog(null, "Funcionário cadatrada com sucesso ", "", 1);
+
+            pst.close();
+            } catch (SQLException ex) {
+            Logger.getLogger(SupplierRepository.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public SupplierPersonModel getDataPersonSupp() {
+        return null;
+    }
+    public void verifySupplierExistence(int idSupplierPerson){}
 }

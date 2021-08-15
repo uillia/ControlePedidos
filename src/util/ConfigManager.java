@@ -48,7 +48,7 @@ public class ConfigManager { // classe criada exclusivamente para ler e escrever
     
 
     public void setValue(String key, String value, String path) {
-        FileInputStream fis = null;
+        
         File arquivo = new File(path);
         if (arquivo.exists()) {
 

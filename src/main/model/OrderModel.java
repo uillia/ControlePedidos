@@ -9,7 +9,7 @@ public class OrderModel{
     private int IdOrder;
     private String description;
     private List<ItemModel> items;
-    private Date prevDeliveryDate;
+    private LocalDate prevDeliveryDate;
     private int IdEmployee;
     private int IdSupplierCompany;
     private int IdSupplierPerson;
@@ -43,11 +43,12 @@ public class OrderModel{
         this.items = itens;
     }
 
-    public Date getPrevDeliveryDate() {
+    public LocalDate getPrevDeliveryDate() {
+        this.prevDeliveryDate = this.registerDate.plusDays(this.prevDays);
         return prevDeliveryDate;
     }
 
-    public void setPrevDeliveryDate(Date prevDeliveryDate) {
+    public void setPrevDeliveryDate(LocalDate prevDeliveryDate) {
         this.prevDeliveryDate = prevDeliveryDate;
     }
 

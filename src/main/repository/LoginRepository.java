@@ -3,10 +3,8 @@ import util.CriptoController;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Map;
 import javax.swing.JOptionPane;
 import main.model.EmployeeModel;
-import util.EnvMap;
 
 public class LoginRepository {
     
@@ -38,7 +36,7 @@ public class LoginRepository {
 
         if ((empLog.getLogin() != null && empLog.getLogin().equals(user))) {
 
-            if (empLog.getPassword().equals(otp.encryptBase64encoder(password))) {
+            if (empLog.getPassword().equals((password))) {
                 System.out.println("as senhas bateram");
                 
                 
