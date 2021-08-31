@@ -5,6 +5,7 @@
  */
 package main.controller;
 
+import java.util.List;
 import main.model.ItemModel;
 import main.repository.ItemRepository;
 
@@ -16,7 +17,14 @@ public class ItemController {
     ItemRepository ir = new ItemRepository();
 
     public void addItemsPlus(ItemModel im) {
-        ir.addItemsPlus(im);
+        
     }
+    public void addItems(List<ItemModel> imArr){
+        ir.addItems(imArr);}
+
+    public List<ItemModel> getItemsByIdOrder(int idOrder) {
+        List<ItemModel> items = ir.getItensByIdOrder(idOrder);
+        
+    return items;}
     
 }

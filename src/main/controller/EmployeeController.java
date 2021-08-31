@@ -1,9 +1,6 @@
 package main.controller;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
 import main.repository.EmployeeRepository;
-import java.util.InputMismatchException;
 import java.util.List;
 import javax.swing.JOptionPane;
 import main.model.EmployeeModel;
@@ -19,12 +16,12 @@ public class EmployeeController {
     }
 
     public void editEmployee(EmployeeModel emp) {
-        empRep.editEmployee(emp);
+        empRep.updateEmployee(emp);
 
     }
 
-    public List< EmployeeModel> getAllData() {
-        List< EmployeeModel> ListEmp = empRep.getAllEmployeesData();
+    public List<EmployeeModel> getAllData() {
+        List<EmployeeModel> ListEmp = empRep.getAllEmployeesData();
         return ListEmp;
 
     }
@@ -32,7 +29,7 @@ public class EmployeeController {
     public EmployeeModel getLoggedData() {
 
 //        String user = config.getValue("user", null, "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\NetBeansProjects\\ControlePedidos\\dados\\cacheLogin");
-        String user = System.getenv().get("user");
+        String user = System.getenv().get("user"); // get the user if it is stored in the environment variables
         EmployeeModel emp = new EmployeeModel();
         emp = empRep.getDataEmployeeByUser(user);
         if (emp == null) {
@@ -53,5 +50,10 @@ public class EmployeeController {
         List<EmployeeModel> empArrList =empRep.getDataEmployeeByName(name);
        return empArrList;
     }
+
+//    public boolean verifyEmployeeEx() {
+//        boolean a = empRep.verifyEmployeeUserExistency("' or '' = '");
+//        return a; 
+//    }
 
 }

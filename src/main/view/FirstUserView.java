@@ -16,7 +16,6 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -30,7 +29,7 @@ import util.CriptoController;
  *
  * @author uillia
  */
-public class RegEmployeeView extends javax.swing.JFrame {
+public class FirstUserView extends javax.swing.JFrame {
 
     CriptoController cript = new CriptoController();
     EmployeeController fc = new EmployeeController();
@@ -43,7 +42,7 @@ public class RegEmployeeView extends javax.swing.JFrame {
     /**
      * Creates new form TelaCadFunc
      */
-    public RegEmployeeView() {
+    public FirstUserView() {
         initComponents();
         checkTheme();
 
@@ -81,7 +80,6 @@ public class RegEmployeeView extends javax.swing.JFrame {
         lbPasswordConf = new javax.swing.JLabel();
         lbRole = new javax.swing.JLabel();
         comboRole = new javax.swing.JComboBox<>();
-        bttVoltar = new javax.swing.JButton();
         lbTextleft = new javax.swing.JLabel();
         lbTextTop = new javax.swing.JLabel();
         panelTitleBar = new javax.swing.JPanel();
@@ -91,7 +89,6 @@ public class RegEmployeeView extends javax.swing.JFrame {
         bttIconfied = new javax.swing.JButton();
         panelMin = new javax.swing.JPanel();
         bttMin = new javax.swing.JButton();
-        bttDelete = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -348,22 +345,10 @@ public class RegEmployeeView extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        bttVoltar.setText("Voltar");
-        bttVoltar.setBorderPainted(false);
-        bttVoltar.setContentAreaFilled(false);
-        bttVoltar.setMaximumSize(new java.awt.Dimension(80, 25));
-        bttVoltar.setMinimumSize(new java.awt.Dimension(80, 25));
-        bttVoltar.setPreferredSize(new java.awt.Dimension(80, 25));
-        bttVoltar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bttVoltarActionPerformed(evt);
-            }
-        });
-
         lbTextleft.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lbTextleft.setForeground(new java.awt.Color(153, 153, 153));
         lbTextleft.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbTextleft.setText(" Funcionários");
+        lbTextleft.setText("Bem Vindo");
 
         lbTextTop.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lbTextTop.setForeground(new java.awt.Color(153, 153, 153));
@@ -483,15 +468,6 @@ public class RegEmployeeView extends javax.swing.JFrame {
             .addComponent(panelClose, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        bttDelete.setText("Editar Funcionário");
-        bttDelete.setBorderPainted(false);
-        bttDelete.setContentAreaFilled(false);
-        bttDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bttDeleteActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -500,14 +476,9 @@ public class RegEmployeeView extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(lbTextleft, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(lbTextTop, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(bttDelete)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(bttVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(panelRegEmp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbTextTop, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(panelRegEmp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -515,11 +486,7 @@ public class RegEmployeeView extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(panelTitleBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbTextTop)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(bttVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(bttDelete)))
+                .addComponent(lbTextTop)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(panelRegEmp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -534,12 +501,6 @@ public class RegEmployeeView extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-
-    private void bttVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttVoltarActionPerformed
-        dispose();
-        MenuView x = new MenuView();
-        x.setVisible(true);
-    }//GEN-LAST:event_bttVoltarActionPerformed
 
     private void bttRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttRegisterActionPerformed
         String passwordRep = null;
@@ -561,11 +522,14 @@ public class RegEmployeeView extends javax.swing.JFrame {
         try {
             employee.setBirthDate(new SimpleDateFormat("dd/MM/yyyy").parse(txtBirthdate.getText()));
         } catch (ParseException ex) {
-            Logger.getLogger(RegEmployeeView.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FirstUserView.class.getName()).log(Level.SEVERE, null, ex);
         }
         EmployeeController fc = new EmployeeController();
         if (employee.getPassword().equals(passwordRep)) {
             fc.registerEmployee(employee, passwordRep);
+            this.dispose();
+            LoginView lv = new LoginView();
+            lv.setVisible(true);
             JOptionPane.showMessageDialog(this, "Funcionário cadastrado!");
         } else {
             JOptionPane.showMessageDialog(this, "As senhas não se coincidem");
@@ -584,15 +548,6 @@ public class RegEmployeeView extends javax.swing.JFrame {
         xMouse = evt.getX();
         yMouse = evt.getY();
     }//GEN-LAST:event_formMousePressed
-
-    private void bttDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttDeleteActionPerformed
-
-        EmployeeEditView eev = new EmployeeEditView();
-        eev.setVisible(true);
-        this.dispose();
-
-
-    }//GEN-LAST:event_bttDeleteActionPerformed
 
     private void bttIconfiedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttIconfiedActionPerformed
         this.setState(RegSupplierView.ICONIFIED);
@@ -624,14 +579,18 @@ public class RegEmployeeView extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RegEmployeeView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FirstUserView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RegEmployeeView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FirstUserView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RegEmployeeView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FirstUserView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RegEmployeeView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FirstUserView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -640,7 +599,7 @@ public class RegEmployeeView extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RegEmployeeView().setVisible(true);
+                new FirstUserView().setVisible(true);
             }
         });
     }
@@ -652,7 +611,7 @@ public class RegEmployeeView extends javax.swing.JFrame {
         //Configuration of title bar
         tb.configTitleBar(panelClose, panelIconfied, panelTitleBar, bttClose, bttIconfied, theme);
 
-        JButton[] btt = {bttRegister, bttVoltar, bttDelete};
+
         JTextField[] txt = {txtName, txtAdress, txtDistrict, txtCity,
             txtState, txtLogin,};
         JFormattedTextField[] txtf = {txtCpf, txtPhone, txtBirthdate};
@@ -665,7 +624,7 @@ public class RegEmployeeView extends javax.swing.JFrame {
         JLabel[] lbDesign = {lbTextTop, lbTextleft};
 //        JComboBox[] combo = {comboRole};
 
-        t.refreshButtons(btt, theme);
+
         t.refreshFrame(this, theme);
         t.refreshLabels(lb, theme);
         t.refreshTextFields(txt, theme);
@@ -701,11 +660,9 @@ public class RegEmployeeView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bttClose;
-    private javax.swing.JButton bttDelete;
     private javax.swing.JButton bttIconfied;
     private javax.swing.JButton bttMin;
     private javax.swing.JButton bttRegister;
-    private javax.swing.JButton bttVoltar;
     private javax.swing.JComboBox<String> comboRole;
     private javax.swing.JLabel lbAdress;
     private javax.swing.JLabel lbBirthdate;

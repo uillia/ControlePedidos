@@ -20,10 +20,9 @@ public class SupplierRepository {
     SupplierCompanyModel compInter = new SupplierCompanyModel();
     SupplierPersonModel personInter = new SupplierPersonModel();
     MySqlConnection c = new MySqlConnection();
-    
-    //Supplier Company
 
-    public void insertSupplierCompany(SupplierCompanyModel comp) {
+    //Supplier Company
+    public void registerSupplierCompany(SupplierCompanyModel comp) {
 
         try {
 
@@ -49,12 +48,10 @@ public class SupplierRepository {
 
             pst.execute();
 
-            JOptionPane.showMessageDialog(null, "Empresa Cadatrada com sucesso ", "", 1);
-
             pst.close();
             c.close_Connection();
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage(), "Alerta", 2);
+            Logger.getLogger(EmployeeRepository.class.getName()).log(Level.SEVERE, "não foi possivel cadastrar a empresa");
         }
     }
 
@@ -92,6 +89,7 @@ public class SupplierRepository {
                 return company;
             } else {
                 return null;
+
             }
 
         } catch (SQLException e) {
@@ -133,8 +131,6 @@ public class SupplierRepository {
         return retComp;
     }
 
-    
-
     public ArrayList<SupplierCompanyModel> getAllDataCompany() {
         ArrayList<SupplierCompanyModel> companyArrayList = new ArrayList<>();
 
@@ -171,34 +167,115 @@ public class SupplierRepository {
         }
         return companyArrayList;
     }
-    //SupplierPerson
-    
-    
-    
-    public void insertSupplierPerson(SupplierPersonModel supplierPerson) {
+
+    public boolean verifySupplierCompanyExistencyByID(int id) {
+        boolean a = false;
+        c.Connect();
         try {
-
-            c.Connect();
-            PreparedStatement pst = c.con.prepareStatement("insert into supplierperson "
-                    + " (idSupplierCompany, name, cpf, role) VALUES (?,?,?)");
-            
-            pst.setInt(1, supplierPerson.getIdCompany());
-            pst.setString(2, supplierPerson.getName());
-            pst.setString(3, supplierPerson.getCpf());
-            pst.setString(4, supplierPerson.getRole());
-
+            String sql = "Select * from suppliercompany where idSupplierCompany ='" + id + "'";
+            PreparedStatement pst;
+            pst = c.con.prepareStatement(sql);
             pst.execute();
 
-            JOptionPane.showMessageDialog(null, "Funcionário cadatrada com sucesso ", "", 1);
+            if (pst.getResultSet().next()) {
+                a = true;
+            } else {
+                a = false;
 
-            pst.close();
-            } catch (SQLException ex) {
-            Logger.getLogger(SupplierRepository.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EmployeeRepository.class
+                    .getName()).log(Level.SEVERE, null, ex);
+
+        }
+        c.close_Connection();
+        return a;
+    }
+
+    //SupplierPerson
+    public void registerSupplierPerson(SupplierPersonModel supplierPerson) {
+        if (verifySupplierExistenceByCpf(supplierPerson.getCpf())) {
+            Logger.getLogger(EmployeeRepository.class.getName()).log(Level.SEVERE, "Cpf já Existente");
+
+        } else {
+            if (verifySupplierCompanyExistencyByID(supplierPerson.getIdCompany())) {
+
+                try {
+
+                    c.Connect();
+                    PreparedStatement pst = c.con.prepareStatement("insert into supplierperson "
+                            + " (idSupplierCompany, name, cpf, role) VALUES (?,?,?,?)");
+
+                    pst.setInt(1, supplierPerson.getIdCompany());
+                    pst.setString(2, supplierPerson.getName());
+                    pst.setString(3, supplierPerson.getCpf());
+                    pst.setString(4, supplierPerson.getRole());
+
+                    pst.execute();
+
+                    JOptionPane.showMessageDialog(null, "Funcionário cadatrada com sucesso ", "", 1);
+
+                    pst.close();
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, "Erro: " + ex.getMessage(), "Alerta", 2);
+                    Logger.getLogger(SupplierRepository.class.getName()).log(Level.SEVERE, "Erro: Não foi possivel cadastrar este fornecedor");
+                }
+            } else {
+                Logger.getLogger(EmployeeRepository.class.getName()).log(Level.SEVERE, "ID inválido ou Empresa não cadastrado");
+            }
         }
     }
 
     public SupplierPersonModel getDataPersonSupp() {
         return null;
     }
-    public void verifySupplierExistence(int idSupplierPerson){}
+
+    public boolean verifySupplierExistenceByCpf(String cpf) {
+        boolean a = false;
+        c.Connect();
+        try {
+            String sql = "Select * from supplierperson where cpf ='" + cpf + "'";
+            PreparedStatement pst;
+            pst = c.con.prepareStatement(sql);
+            pst.execute();
+
+            if (pst.getResultSet().next()) {
+                a = true;
+            } else {
+                a = false;
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EmployeeRepository.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        c.close_Connection();
+        return a;
+    }
+
+    boolean verifySupplierExistenceById(int idSupplierPerson) {
+        boolean a = false;
+        c.Connect();
+        try {
+            String sql = "Select * from supplierperson where idSupplierPerson ='" + idSupplierPerson + "'";
+            PreparedStatement pst;
+            pst = c.con.prepareStatement(sql);
+            pst.execute();
+
+            if (pst.getResultSet().next()) {
+                a = true;
+            } else {
+                a = false;
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EmployeeRepository.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        c.close_Connection();
+        return a;
+
+    }
+
 }

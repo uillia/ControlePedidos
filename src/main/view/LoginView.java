@@ -1,10 +1,5 @@
 package main.view;
 
-import java.awt.Color;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import util.FileManager;
 import main.controller.LoginController;
 import javax.swing.JButton;

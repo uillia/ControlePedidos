@@ -97,7 +97,7 @@ public class EmployeeEditView extends javax.swing.JFrame {
         bttMin = new javax.swing.JButton();
         panelTable = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        tabEmployeeEdit = new javax.swing.JTable();
+        tabOrderEdit = new javax.swing.JTable();
         txtNameSearch = new javax.swing.JTextField();
         btnSearch = new javax.swing.JButton();
 
@@ -454,7 +454,7 @@ public class EmployeeEditView extends javax.swing.JFrame {
 
         jScrollPane3.setBackground(new java.awt.Color(255, 255, 255));
 
-        tabEmployeeEdit.setModel(new javax.swing.table.DefaultTableModel(
+        tabOrderEdit.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -491,15 +491,15 @@ public class EmployeeEditView extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tabEmployeeEdit.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        tabEmployeeEdit.setMinimumSize(new java.awt.Dimension(60, 100));
-        tabEmployeeEdit.setPreferredSize(new java.awt.Dimension(215, 200));
-        tabEmployeeEdit.addMouseListener(new java.awt.event.MouseAdapter() {
+        tabOrderEdit.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tabOrderEdit.setMinimumSize(new java.awt.Dimension(60, 100));
+        tabOrderEdit.setPreferredSize(new java.awt.Dimension(215, 200));
+        tabOrderEdit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabEmployeeEditMouseClicked(evt);
+                tabOrderEditMouseClicked(evt);
             }
         });
-        jScrollPane3.setViewportView(tabEmployeeEdit);
+        jScrollPane3.setViewportView(tabOrderEdit);
 
         txtNameSearch.setBorder(null);
 
@@ -564,7 +564,7 @@ public class EmployeeEditView extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(panelTitleBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbTextTop)
                     .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -576,7 +576,7 @@ public class EmployeeEditView extends javax.swing.JFrame {
                         .addComponent(lbTextleft, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(panelTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addGap(23, 23, 23))
         );
 
         pack();
@@ -645,13 +645,13 @@ public class EmployeeEditView extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnSearchActionPerformed
 
-    private void tabEmployeeEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabEmployeeEditMouseClicked
+    private void tabOrderEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabOrderEditMouseClicked
         try {
             putData();
         } catch (ArrayIndexOutOfBoundsException ax) {
-            System.out.println("Erro: ax.getMessage()");
+            System.out.println("Erro:"+ ax.getMessage());
         }
-    }//GEN-LAST:event_tabEmployeeEditMouseClicked
+    }//GEN-LAST:event_tabOrderEditMouseClicked
 
     /**
      * @param args the command line arguments
@@ -716,7 +716,7 @@ public class EmployeeEditView extends javax.swing.JFrame {
         JLabel[] lbDesign = {lbTextTop, lbTextleft};
         JTextField[] txtUnEdit = {txtName};
         JFormattedTextField[] txtfUnEdit = {txtCpf, txtBirthdate};
-        JTable[] jtabel = {tabEmployeeEdit};
+        JTable[] jtabel = {tabOrderEdit};
 
         t.refreshButtons(btt, theme);
         t.refreshFrame(this, theme);
@@ -756,15 +756,16 @@ public class EmployeeEditView extends javax.swing.JFrame {
 
     public void putData() {
         try {
-            Object idO = tabEmployeeEdit.getValueAt(tabEmployeeEdit.getSelectedRow(), 0); //i get the real id of the employee when i clicled in the table
+            Object idO = tabOrderEdit.getValueAt(tabOrderEdit.getSelectedRow(), 0); //i get the real id of the employee when i clicled in the table
             String id = idO.toString();
 
             int idEmp = Integer.parseInt(id);
             int indexArr = 0;
 
             for (int i = 0; i < AllemployeeArr.size(); i++) {
-                if (AllemployeeArr.get(i).getIdEmployee() == idEmp) {
+                if (AllemployeeArr.get(i).getIdEmployee() == idEmp) { 
                     indexArr = i;
+                    //get the index of the order that is selected in the table to search and get the data that is in the list AllemployeeArr
                 }
 
             }
@@ -796,7 +797,7 @@ public class EmployeeEditView extends javax.swing.JFrame {
     public void refreshTable(String name) { //envia a tabela para ser carregada
 
         DefaultTableModel tabFmodel = new DefaultTableModel();
-        tabFmodel = (DefaultTableModel) tabEmployeeEdit.getModel();
+        tabFmodel = (DefaultTableModel) tabOrderEdit.getModel();
         tabFmodel.setRowCount(0);
 
         for (int i = 0; i < AllemployeeArr.size(); i++) {
@@ -823,8 +824,6 @@ public class EmployeeEditView extends javax.swing.JFrame {
     private javax.swing.JButton bttMin;
     private javax.swing.JComboBox<String> comboRole;
     private javax.swing.JComboBox<String> comboStatus;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel lbAdress;
     private javax.swing.JLabel lbBirthdate;
@@ -841,18 +840,12 @@ public class EmployeeEditView extends javax.swing.JFrame {
     private javax.swing.JLabel lbcpf;
     private javax.swing.JPanel panelAdress;
     private javax.swing.JPanel panelClose;
-    private javax.swing.JPanel panelExluirFunc;
-    private javax.swing.JPanel panelExluirFunc1;
     private javax.swing.JPanel panelIconfied;
     private javax.swing.JPanel panelMin;
     private javax.swing.JPanel panelRegEmp;
-    private javax.swing.JPanel panelTab;
-    private javax.swing.JPanel panelTab1;
     private javax.swing.JPanel panelTable;
     private javax.swing.JPanel panelTitleBar;
-    private javax.swing.JTable tabEmployeeEdit;
-    private javax.swing.JTable tabEmployees;
-    private javax.swing.JTable tabEmployees1;
+    private javax.swing.JTable tabOrderEdit;
     private javax.swing.JTextField txtAdress;
     private javax.swing.JFormattedTextField txtBirthdate;
     private javax.swing.JTextField txtCity;

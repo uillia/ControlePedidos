@@ -90,7 +90,7 @@ public class EmployeeRepository {
         return arrayListEmp;
     }
 
-    public void editEmployee(EmployeeModel emp) {
+    public void updateEmployee(EmployeeModel emp) {
         c.Connect();
         try {
             String sql = "update employees set phone = ?, adress = ?, district = ?, city = ?,"

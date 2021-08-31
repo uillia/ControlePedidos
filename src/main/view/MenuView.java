@@ -12,6 +12,8 @@ import java.awt.Color;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -20,8 +22,11 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.border.TitledBorder;
+import javax.swing.table.DefaultTableModel;
 import main.controller.EmployeeController;
+import main.controller.OrderController;
 import main.model.EmployeeModel;
+import main.model.OrderModel;
 import util.GraphElementsManipulator.Theme;
 import util.GraphElementsManipulator.TitleBar;
 
@@ -36,7 +41,8 @@ public class MenuView extends javax.swing.JFrame {
     EmployeeModel userLog = empc.getLoggedData();// this Global instacy get data from the logged user in this system 
     String path = "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\Controle de Estoque\\preferences\\theme.properties";
     String theme = conf.getValue("theme", "light", path);
-
+    OrderController oc = new OrderController();
+    List<OrderModel> AllordersArr;
 //Para ler o valor que esta em um arquivo é importante mandar seu valor padrão. Caso ele não exista, ele sea craido com este valorrr padrão;
 //To read a file value, is important to send the default value. So if the file doesn't exist, it will be created with the this defauld value
     Color btf;
@@ -47,6 +53,8 @@ public class MenuView extends javax.swing.JFrame {
         initComponents();
         checkTheme();
         checkGroup();
+        getAllDataEmp();
+        refreshOrderTable();
 
     }
 
@@ -118,7 +126,7 @@ public class MenuView extends javax.swing.JFrame {
                 {null, null, null}
             },
             new String [] {
-                "Descrição", "Fornecedor", "Data Entrega Prevista"
+                "Código", "Descrição", "Data Entrega"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -142,9 +150,9 @@ public class MenuView extends javax.swing.JFrame {
         panelTab.setLayout(panelTabLayout);
         panelTabLayout.setHorizontalGroup(
             panelTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTabLayout.createSequentialGroup()
-                .addContainerGap(18, Short.MAX_VALUE)
-                .addComponent(spTabProxEnt, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(panelTabLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(spTabProxEnt, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addContainerGap())
         );
         panelTabLayout.setVerticalGroup(
@@ -161,13 +169,13 @@ public class MenuView extends javax.swing.JFrame {
         txtInfoMenu.setEditable(false);
         txtInfoMenu.setColumns(20);
         txtInfoMenu.setLineWrap(true);
-        txtInfoMenu.setRows(5);
-        txtInfoMenu.setText("\n   A tabela ao lado informa as entregas que estão mais proximas da data prevista para entrega\n\n   Para cadastrar funcionários, clique no botão \"funcionário\" acima. Após isso, aparecerá uma nova janela para cadastra-lo.\n\n   Para cadastrar um fornecedor, clique em fornecedor acima. Após isso, aparecerá uma nova janela para cadastra-lo\n\n   Para cadastrar ou consultar pedidos, clique no botão \"pedido\", e em seguida, cadastrar pedido"); // NOI18N
+        txtInfoMenu.setText("\n   A tabela ao lado informa as entregas que estão mais próximas da data prevista para entrega\n\n   Para cadastrar ou editar funcionários (Apenas administradores terão essa opção), clique no botão \"funcionário\" acima. Após isso, aparecerá uma nova janela para cadastra-lo.\n\n   Para cadastrar um fornecedor, clique em fornecedor acima. Após isso, aparecerá uma nova janela para cadastra-lo\n\n   Para cadastrar ou consultar pedidos, clique no botão \"pedido\", e em seguida, cadastrar pedido"); // NOI18N
         txtInfoMenu.setWrapStyleWord(true);
         txtInfoMenu.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         txtInfoMenu.setCaretPosition(0);
         txtInfoMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane2.setViewportView(txtInfoMenu);
+        txtInfoMenu.getAccessibleContext().setAccessibleParent(panelInstructions);
 
         javax.swing.GroupLayout panelInstructionsLayout = new javax.swing.GroupLayout(panelInstructions);
         panelInstructions.setLayout(panelInstructionsLayout);
@@ -175,8 +183,8 @@ public class MenuView extends javax.swing.JFrame {
             panelInstructionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelInstructionsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
+                .addContainerGap())
         );
         panelInstructionsLayout.setVerticalGroup(
             panelInstructionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -228,20 +236,20 @@ public class MenuView extends javax.swing.JFrame {
             panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBodyLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelBodyLayout.createSequentialGroup()
                         .addComponent(panelInstructions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33)
-                        .addComponent(panelTab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(panelTab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(panelBodyLayout.createSequentialGroup()
                         .addComponent(btnSupplier)
                         .addGap(1, 1, 1)
                         .addComponent(btnPedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(1, 1, 1)
                         .addComponent(btnEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lbDate, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(239, 239, 239)
+                        .addComponent(lbDate, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         panelBodyLayout.setVerticalGroup(
             panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -320,7 +328,7 @@ public class MenuView extends javax.swing.JFrame {
         panelTopLayout.setVerticalGroup(
             panelTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTopLayout.createSequentialGroup()
-                .addContainerGap(52, Short.MAX_VALUE)
+                .addContainerGap(37, Short.MAX_VALUE)
                 .addGroup(panelTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(tgbtnTema)
@@ -416,10 +424,10 @@ public class MenuView extends javax.swing.JFrame {
                 .addGap(6, 6, 6)
                 .addComponent(lbTextleft, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(panelTop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panelBody, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(13, 13, 13))
             .addComponent(panelTitleBar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -430,7 +438,7 @@ public class MenuView extends javax.swing.JFrame {
                         .addComponent(panelTitleBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(panelTop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(panelBody, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(231, 231, 231)
@@ -662,6 +670,32 @@ public class MenuView extends javax.swing.JFrame {
 
         } else {
             btnEmployee.setVisible(false);
+        }
+    }
+
+    public void getAllDataEmp() {
+        AllordersArr = oc.getAllData();
+    }
+
+    public void refreshOrderTable() {
+
+        DefaultTableModel tabFmodel = new DefaultTableModel();
+        tabFmodel = (DefaultTableModel) tabProxEntregas.getModel();
+        tabFmodel.setRowCount(0);
+        try {
+            for (int i = 0; i < AllordersArr.size(); i++) {
+                if (AllordersArr.get(i).getIdStatus() == 0) {
+
+                    tabFmodel.addRow(new Object[]{
+                        AllordersArr.get(i).getIdOrder(),
+                        AllordersArr.get(i).getDescription(),
+                        AllordersArr.get(i).getPrevDeliveryDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT))
+                    });
+
+                }
+            }
+        } catch (NullPointerException ne) {
+            System.out.println("Não foi possivel preencher a tabela; Erro: " + ne.getMessage());
         }
     }
 
