@@ -1,9 +1,13 @@
 package main.view;
+
 import java.awt.Color;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.UnsupportedLookAndFeelException;
+import main.controller.EmployeeController;
+import main.model.EmployeeModel;
 import util.ConfigManager;
 import util.GraphElementsManipulator.Theme;
 
@@ -12,9 +16,12 @@ import util.GraphElementsManipulator.Theme;
  * @author uillia
  */
 public class SplashView extends javax.swing.JFrame {
-     ConfigManager conf = new ConfigManager();
+
+    ConfigManager conf = new ConfigManager();
     String path = "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\Controle de Estoque\\preferences\\theme.properties";
     String theme = conf.getValue("theme", "light", path);
+    private static boolean users = false;
+
     public SplashView() {
         initComponents();
         attTema();
@@ -76,51 +83,73 @@ public class SplashView extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    
     public static void main(String args[]) throws UnsupportedLookAndFeelException {
 
         try {
             try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                System.out.println(info);
-                if ("Windows".equals(info.getName())) {
-                    
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                    
+                for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                    System.out.println(info);
+                    if ("Windows".equals(info.getName())) {
+
+                        javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                        break;
+
+                    }
                 }
+            } catch (ClassNotFoundException ex) {
+                java.util.logging.Logger.getLogger(SplashView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            } catch (InstantiationException ex) {
+                java.util.logging.Logger.getLogger(SplashView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            } catch (IllegalAccessException ex) {
+                java.util.logging.Logger.getLogger(SplashView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+                java.util.logging.Logger.getLogger(SplashView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SplashView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SplashView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SplashView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SplashView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
 
             SplashView sv = new SplashView();
             sv.setVisible(true);
-            try {
 
-                for (int i = 0; i < 100; i++) {
-                    Thread.sleep(10);
-                    sv.pbProgress.setValue(i);
-                    sv.lbPerc.setText(Integer.toString(i) + "%");
+            Thread verifyUsers = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    EmployeeController empc = new EmployeeController();
+                    if (empc.getAllData().isEmpty()) {
+                        users = false;
+                    } else {
+                        users = true;
+                    }
 
                 }
+            });
+
+            try {
+                verifyUsers.run();
+                for (int i = 0; i < 100; i++) {
+                    Thread.sleep(10);
+                    
+                    sv.pbProgress.setValue(i);
+                    sv.lbPerc.setText(Integer.toString(i) + "%");
+                    
+                }
+                verifyUsers.interrupt();
             } catch (Exception e) {
-                Logger.getLogger(SplashView.class
-                        .getName()).log(Level.SEVERE, null, e);
+                Logger.getLogger(SplashView.class.getName()).log(Level.SEVERE, null, e);
 
             }
             sv.dispose();
-            LoginView lv = new LoginView();
-            lv.setVisible(true);
-        }catch (Exception e) {
-            System.out.println("Erro ao contruir o frame, "+ "erro: "+ e.getMessage());
-        }}
+
+            if (users) {
+                LoginView lv = new LoginView();
+                lv.setVisible(true);
+            } else {
+                FirstUserView fuv = new FirstUserView();
+                fuv.setVisible(true);
+            }
+
+        } catch (Exception e) {
+            System.out.println("Erro ao contruir o frame, " + "erro: " + e.getMessage());
+        }
+    }
 
     public void attTema() {
         JLabel[] lb = {lbPerc};
@@ -132,11 +161,11 @@ public class SplashView extends javax.swing.JFrame {
         if (theme.equals("Dark")) {
             pbProgress.setBackground(Color.BLACK);
             pbProgress.setForeground(Color.darkGray);
-            
-        }else{
+
+        } else {
             pbProgress.setBackground(Color.white);
             pbProgress.setForeground(Color.darkGray);
-            }
+        }
     }
 
 

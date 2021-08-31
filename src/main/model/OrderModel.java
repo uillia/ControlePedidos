@@ -4,8 +4,8 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
-public class OrderModel{
-    
+public class OrderModel {
+
     private int IdOrder;
     private String description;
     private List<ItemModel> items;
@@ -18,6 +18,7 @@ public class OrderModel{
     private String comments;
     private int prevDays;
     private LocalDate registerDate;
+    private int IdStatus;
 
     public int getIdOrder() {
         return IdOrder;
@@ -44,7 +45,7 @@ public class OrderModel{
     }
 
     public LocalDate getPrevDeliveryDate() {
-        this.prevDeliveryDate = this.registerDate.plusDays(this.prevDays);
+
         return prevDeliveryDate;
     }
 
@@ -114,6 +115,14 @@ public class OrderModel{
 
     public void setPrevDays(int prevDays) {
         this.prevDays = prevDays;
+    }
+
+    public int getIdStatus() {
+        return IdStatus;
+    }
+
+    public void setIdStatus(int IdStatus) {
+        this.IdStatus = IdStatus;
     }
 
 }

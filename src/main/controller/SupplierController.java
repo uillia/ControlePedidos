@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import main.repository.SupplierRepository;
 import main.model.SupplierCompanyModel;
+import main.model.SupplierPersonModel;
 
 /**
  *
@@ -26,12 +27,13 @@ public class SupplierController {
 //
 //            JOptionPane.showMessageDialog(null, this, "Empresa ja cadastrada", 0);
 //        } else {
-            suppCompReg.setRegisterDate(LocalDate.now());
-            suppRep.insertSupplierCompany(suppCompReg);
+        suppCompReg.setRegisterDate(LocalDate.now());
+        suppRep.registerSupplierCompany(suppCompReg);
 //        }
     }
 
-    public void CadastrarFpessoa() {
+    public void registerSupplierPerson(SupplierPersonModel sp) {
+        suppRep.registerSupplierPerson(sp);
 
     }
 

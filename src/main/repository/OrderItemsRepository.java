@@ -14,7 +14,7 @@ public class OrderItemsRepository {
 
         try {
             PreparedStatement pstItens = c.con.prepareStatement(
-                    "insert into orderitems(idItem, quantity, idOrder)VALUES(?,?,?)");
+                    "insert into orderitems(idItem, quantity, idOrder, purchasePrice)VALUES(?,?,?,?)");
             ItemRepository ir = new ItemRepository();
 //            ir.addItems(om.getItems());//add items if they aren't in the bd 
             for (int i = 0; i < om.getItems().size(); i++) {
@@ -25,6 +25,7 @@ public class OrderItemsRepository {
                 pstItens.setInt(2, om.getItems().get(i).getQuantity());
                 System.out.println("id order: "+om.getIdOrder());//
                 pstItens.setInt(3, om.getIdOrder());
+                pstItens.setDouble(4, om.getItems().get(i).getUnityPrice());
                 pstItens.execute();
 
             }

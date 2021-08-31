@@ -17,20 +17,21 @@ public class LoginController {
     ConfigManager config = new ConfigManager();
     LoginRepository ld = new LoginRepository();
     EmployeeRepository empRep = new EmployeeRepository();
-    String cachePath = "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\NetBeansProjects\\ControlePedidos\\dados\\cacheLogin";
+    
     LoginRepository logRep = new LoginRepository();
     CriptoController cript = new CriptoController();
     String fileUser = "user";
-    String dir = "C:\\Users\\uillia\\Documents\\NetBeansProjects\\ControlePedidos\\dados";
+    String dir = "C:\\Users\\"+System.getProperty("user.name")+"\\Documents\\NetBeansProjects\\ControlePedidos\\dados";
 
     public int login(String user, String password) {
         EnvMap em = new EnvMap();
-        int protLog = logRep.authLogin(user, DigestUtils.md5Hex(password).toLowerCase()); // here e send convert the password to MD5 hash to compare in database
+        
+        int protLog = logRep.authLogin(user, DigestUtils.md5Hex(password).toLowerCase()); // here send convert the password to MD5 hash to compare in database
 
         Map<String, String> var = null;
         var = new HashMap<>();
         var.put("user", user);
-        var.put("password", password);
+//        var.put("password", password);
 
         try {
             em.set(var);

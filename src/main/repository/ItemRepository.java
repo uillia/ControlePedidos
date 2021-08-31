@@ -15,7 +15,6 @@ public class ItemRepository {
     public void addItems(List<ItemModel> items) {
 
         for (int i = 0; i < items.size(); i++) {
-
             if (verifyItemExistence(items.get(i).getDescription()) == false) {
                 c.Connect();
                 try {
@@ -24,16 +23,37 @@ public class ItemRepository {
                     pst = c.con.prepareStatement(slq);
 
                     pst.setInt(1, items.get(i).getIdSupplierPerson());
+
                     pst.setString(2, items.get(i).getDescription());
                     pst.setDouble(3, items.get(i).getUnityPrice());
-
+                    pst.setInt(4, items.get(i).getQuantity());
                     pst.execute();
+                    c.close_Connection();
 
                 } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(null, "Erro: " + ex.getMessage(), "Alerta", 2);
                 }
 
+            } else {
+                c.Connect();
+                try {
+                    
+                    String slq = "Update items set price = ?, storage = storage + ? where description ='" + items.get(i).getDescription() + "'";
+                    PreparedStatement pst;
+                    pst = c.con.prepareStatement(slq);
+
+                    pst.setDouble(1, items.get(i).getUnityPrice());
+
+                    pst.setInt(2, items.get(i).getQuantity());
+
+                    pst.execute();
+                    c.close_Connection();
+
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, "Erro: " + ex.getMessage(), "Alerta", 2);
+                }
             }
+
         }
 
     }
@@ -53,7 +73,7 @@ public class ItemRepository {
 
             while (rs.next()) {
                 id = rs.getInt("idItem");
-                System.out.println("id do item"+id);
+                System.out.println("id do item" + id);
             }
             rs.close();
             pst.close();
@@ -71,6 +91,7 @@ public class ItemRepository {
         List<ItemModel> items = null;
 
         c.Connect();
+
         try {
             String sql = "Select * from items order by idItem asc";
             PreparedStatement pst;
@@ -122,26 +143,84 @@ public class ItemRepository {
         return a;
     }
 
-    public void addItemsPlus(ItemModel im) {
-       
-            if (verifyItemExistence(im.getDescription()) == false) {
-                c.Connect();
-                try {
-                    String slq = "Insert into items(idSupplierEmployee, description, price) VALUES(?,?,?)";
-                    PreparedStatement pst;
-                    pst = c.con.prepareStatement(slq);
+//    public void addItemsPlus(ItemModel im) {
+//
+//        if (verifyItemExistence(im.getDescription()) == false) {
+//            c.Connect();
+//            try {
+//                String sql = "Insert into items(idSupplierEmployee, description, price) VALUES(?,?,?)";
+//                PreparedStatement pst;
+//                pst = c.con.prepareStatement(sql);
+//
+//                pst.setInt(1, im.getIdSupplierPerson());
+//
+//                pst.setString(2, im.getDescription());
+//                pst.setDouble(3, im.getUnityPrice());
+//
+//                pst.execute();
+//
+//            } catch (SQLException ex) {
+//                JOptionPane.showMessageDialog(null, "Erro: " + ex.getMessage(), "Alerta", 2);
+//            }
+//
+//        }
+//    }
 
-                    pst.setInt(1, im.getIdSupplierPerson());
-
-                    pst.setString(2, im.getDescription());
-                    pst.setDouble(3, im.getUnityPrice());
-
-                    pst.execute();
-
-                } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null, "Erro: " + ex.getMessage(), "Alerta", 2);
+    public int getStorage(String desc) {
+        int total = 0;
+        c.Connect();
+        if (verifyItemExistence(desc) == true) {
+            try {
+                String sql = "Select storage where description ='" + desc + "'";
+                PreparedStatement pst;
+                pst = c.con.prepareStatement(sql);
+                pst.execute();
+                ResultSet rs = pst.getResultSet();
+                while (rs.next()) {
+                    rs.getInt(total);
                 }
 
+            } catch (SQLException ex) {
             }
+
+        }
+        return total;
+    }
+
+    public List<ItemModel> getItensByIdOrder(int idOrder) {
+        
+         List<ItemModel> items = new ArrayList<>();
+        c.Connect();
+        
+        try {
+            String sql = "Select it.description, oi.quantity, oi.purchasePrice from orderitems oi join items it on oi.idItem = it.idItem where idOrder ='" + idOrder + "'";
+            
+            PreparedStatement pst;
+            pst = c.con.prepareStatement(sql);
+            pst.execute();
+            ResultSet rs = pst.getResultSet();
+            
+            while (rs.next()) {
+                
+                 
+                ItemModel item = new ItemModel();
+                item.setDescription(rs.getString("description"));
+                item.setQuantity(rs.getInt("quantity"));
+                item.setUnityPrice(rs.getDouble("purchasePrice"));
+                
+                items.add(item);
+                
+                
+              
+            }
+            rs.close();
+            pst.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro: " + ex.getMessage(), "Alerta", 2);
+        }
+        c.close_Connection();
+        return items;
+        
     }
 }

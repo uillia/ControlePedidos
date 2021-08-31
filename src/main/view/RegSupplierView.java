@@ -9,16 +9,12 @@ import util.FileManager;
 import util.ConfigManager;
 import java.awt.Color;
 import java.util.ArrayList;
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import main.controller.SupplierController;
 import main.model.SupplierPersonModel;
@@ -741,7 +737,7 @@ public class RegSupplierView extends javax.swing.JFrame {
         fp.setName(txtNamePerson.getText());
         fp.setCpf(txtCpf.getText());
         fp.setIdCompany(Integer.parseInt(txtIdCompany.getText()));
-        sc.CadastrarFpessoa();
+        sc.registerSupplierPerson(fp);
 
 
     }//GEN-LAST:event_bttRegisterSuppPersonActionPerformed
