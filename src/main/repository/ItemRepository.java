@@ -35,23 +35,9 @@ public class ItemRepository {
                 }
 
             } else {
-                c.Connect();
-                try {
-                    
-                    String slq = "Update items set price = ?, storage = storage + ? where description ='" + items.get(i).getDescription() + "'";
-                    PreparedStatement pst;
-                    pst = c.con.prepareStatement(slq);
-
-                    pst.setDouble(1, items.get(i).getUnityPrice());
-
-                    pst.setInt(2, items.get(i).getQuantity());
-
-                    pst.execute();
-                    c.close_Connection();
-
-                } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null, "Erro: " + ex.getMessage(), "Alerta", 2);
-                }
+                
+                ItemModel item = items.get(i);
+                updateItemsBydescription(item);
             }
 
         }
@@ -193,7 +179,7 @@ public class ItemRepository {
         c.Connect();
         
         try {
-            String sql = "Select it.description, oi.quantity, oi.purchasePrice from orderitems oi join items it on oi.idItem = it.idItem where idOrder ='" + idOrder + "'";
+            String sql = "Select it.description, oi.quantity, oi.purchasePrice, it.storage from orderitems oi join items it on oi.idItem = it.idItem where idOrder ='" + idOrder + "'";
             
             PreparedStatement pst;
             pst = c.con.prepareStatement(sql);
@@ -222,5 +208,43 @@ public class ItemRepository {
         c.close_Connection();
         return items;
         
+    }
+
+    public void updateItemsBydescription(ItemModel item) {
+        c.Connect();
+                try {
+                    
+                    String slq = "Update items set price = ?, storage = storage + ? where description ='" + item.getDescription() + "'";
+                    PreparedStatement pst;
+                    pst = c.con.prepareStatement(slq);
+
+                    pst.setDouble(1, item.getUnityPrice());
+
+                    pst.setInt(2, item.getQuantity());
+
+                    pst.execute();
+                    c.close_Connection();
+
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, "Erro: " + ex.getMessage(), "Alerta", 2);
+                }
+    }
+
+    public void updateItemsRetireStorage(ItemModel item) {
+            c.Connect();
+                try {
+                    
+                    String slq = "Update items set  storage = storage - ? where description ='" + item.getDescription() + "'";
+                    PreparedStatement pst;
+                    pst = c.con.prepareStatement(slq);
+
+                    pst.setDouble(1, item.getQuantity());
+
+                    pst.execute();
+                    c.close_Connection();
+
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, "Erro: " + ex.getMessage(), "Alerta", 2);
+                }
     }
 }

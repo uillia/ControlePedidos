@@ -25,6 +25,7 @@ import main.controller.OrderController;
 import main.model.EmployeeModel;
 import main.model.ItemModel;
 import main.model.OrderModel;
+import main.repository.ItemRepository;
 
 /**
  *
@@ -37,13 +38,16 @@ public class ConfirmDeliveryView extends javax.swing.JFrame {
     ItemController ic = new ItemController();
     ConfigManager conf = new ConfigManager();
     FileManager ac = new FileManager();
-    String theme = conf.getValue("theme", "light", "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\Controle de Estoque\\preferences\\theme.properties");
+    String dir= "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\Controle de Estoque";
+    String file= "theme.properties";
+    String theme = conf.getValue("theme", "light", dir, file);
     Color btf;
-    List<OrderModel> AllordersArr;
+    List<OrderModel> AllordersArr; //list of all orders in the database
+    List<ItemModel> itemsArr; // 
 
     int xMouse, yMouse;
 
-    OrderModel orderEdit = new OrderModel();//get the data
+    OrderModel orderEdit = new OrderModel();// the selected order from the table
 
     /**
      * Creates new form TelaCadFunc
@@ -659,13 +663,17 @@ public class ConfirmDeliveryView extends javax.swing.JFrame {
             if (orderEdit.getIdStatus() == 0) {
                 confirmOrder();
             } else {
-                JOptionPane.showMessageDialog(this, "Esse Pedido ja foi finalizado ou foi cancelado");
+                JOptionPane.showMessageDialog(this, "Esse Pedido ja foi finalizado");
             }
         }
     }//GEN-LAST:event_btnFinalizeOrderActionPerformed
 
     private void btnCancelOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelOrderActionPerformed
-        cancelOrder();
+        if (orderEdit.getIdStatus()==0) {
+            cancelOrder();
+        }else{
+        JOptionPane.showMessageDialog(this, "Esse pedido já foi foi cancelado");}
+
     }//GEN-LAST:event_btnCancelOrderActionPerformed
 
     /**
@@ -760,7 +768,7 @@ public class ConfirmDeliveryView extends javax.swing.JFrame {
 
     public void putData() {
         try {
-            Object idO = tabOrderEdit.getValueAt(tabOrderEdit.getSelectedRow(), 0); //i get the real id of the employee when i clicled in the table
+            Object idO = tabOrderEdit.getValueAt(tabOrderEdit.getSelectedRow(), 0); // get the real id of the employee when someone clickled in the any row of table
             String id = idO.toString();
 
             int idOrder = Integer.parseInt(id);
@@ -769,12 +777,12 @@ public class ConfirmDeliveryView extends javax.swing.JFrame {
             for (int i = 0; i < AllordersArr.size(); i++) {
                 if (AllordersArr.get(i).getIdOrder() == idOrder) {
                     indexArr = i;
-                    //get the index of the order that is selected in the table to search and get the data that is in the list AllemployeeArr
+                    //get the index of the list <ordermodel> that is selected in the table
                 }
 
             }
 
-            orderEdit = AllordersArr.get(indexArr); // The global EmployeeEdit get the data in array
+            orderEdit = AllordersArr.get(indexArr); // The global EmployeeEdit get the data from the list
 
             txtDescription.setText(orderEdit.getDescription());
             txtRegDate.setText(orderEdit.getRegisterDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)));
@@ -803,8 +811,8 @@ public class ConfirmDeliveryView extends javax.swing.JFrame {
 
             txtEmployee.setText("" + orderEdit.getIdEmployee());
             txtSupplierPerson.setText("" + orderEdit.getIdSupplierPerson());
-            List<ItemModel> itemsArr = ic.getItemsByIdOrder(orderEdit.getIdOrder());
-            refreshItemsTable(itemsArr);
+            itemsArr = ic.getItemsByIdOrder(orderEdit.getIdOrder()); // get all Items data from the selected order in the table 
+            refreshItemsTable();
 
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
@@ -834,7 +842,7 @@ public class ConfirmDeliveryView extends javax.swing.JFrame {
         }
     }
 
-    public void refreshItemsTable(List<ItemModel> itemsArr) {
+    public void refreshItemsTable() {
 
         DefaultTableModel tabFmodel = new DefaultTableModel();
         tabFmodel = (DefaultTableModel) tableOrderItems.getModel();
@@ -893,7 +901,13 @@ public class ConfirmDeliveryView extends javax.swing.JFrame {
         order.setIdStatus(2);
 
         oc.finalizeOrder(order);
-        JOptionPane.showMessageDialog(this, "Ordem finalizada com sucesso");
+        ItemRepository ir = new ItemRepository();
+        for (int i = 0; i < itemsArr.size(); i++) {
+           
+            oc.cancelOrder(orderEdit, itemsArr.get(i));
+        }
+        
+        JOptionPane.showMessageDialog(this, "Ordem cancelada com sucesso");
         getAllDataEmp();
         refreshOrderTable("");
     }

@@ -18,8 +18,9 @@ import util.GraphElementsManipulator.Theme;
 public class SplashView extends javax.swing.JFrame {
 
     ConfigManager conf = new ConfigManager();
-    String path = "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\Controle de Estoque\\preferences\\theme.properties";
-    String theme = conf.getValue("theme", "light", path);
+    String dir= "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\Controle de Estoque";
+    String file= "theme.properties";
+    String theme = conf.getValue("theme", "light", dir, file);
     private static boolean users = false;
 
     public SplashView() {

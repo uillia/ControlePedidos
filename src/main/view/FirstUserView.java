@@ -35,7 +35,9 @@ public class FirstUserView extends javax.swing.JFrame {
     EmployeeController fc = new EmployeeController();
     ConfigManager conf = new ConfigManager();
     FileManager ac = new FileManager();
-    String theme = conf.getValue("theme", "light", "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\Controle de Estoque\\preferences\\theme.properties");
+    String dir= "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\Controle de Estoque";
+    String file= "theme.properties";
+    String theme = conf.getValue("theme", "light", dir, file);
     Color btf;
     int xMouse, yMouse;
 

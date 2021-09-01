@@ -7,7 +7,17 @@ public class ItemModel extends OrderModel {
     private String description;
     private double unityPrice;
     private int quantity;
+    private int storage;
 
+    public int getStorage() {
+        return storage;
+    }
+
+    public void setStorage(int storage) {
+        this.storage = storage;
+    }
+
+    
     public int getIdItem() {
         return idItem;
     }

@@ -37,7 +37,9 @@ public class EmployeeEditView extends javax.swing.JFrame {
 
     ConfigManager conf = new ConfigManager();
     FileManager ac = new FileManager();
-    String theme = conf.getValue("theme", "light", "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\Controle de Estoque\\preferences\\theme.properties");
+    String dir= "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\Controle de Estoque";
+    String file= "theme.properties";
+    String theme = conf.getValue("theme", "light", dir, file);
     Color btf;
     List<EmployeeModel> AllemployeeArr;
 
