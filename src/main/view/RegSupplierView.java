@@ -880,7 +880,7 @@ public class RegSupplierView extends javax.swing.JFrame {
                 companyArray.get(i).getIdCompany(),
                 companyArray.get(i).getName(),
                 companyArray.get(i).getHierarchicaltype(),
-                companyArray.get(i).getPhone()
+                companyArray.get(i).getMainActivity()
             }
             );
 

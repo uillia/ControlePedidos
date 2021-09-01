@@ -18,7 +18,7 @@ public class ItemRepository {
             if (verifyItemExistence(items.get(i).getDescription()) == false) {
                 c.Connect();
                 try {
-                    String slq = "Insert into items(idSupplierEmployee, description, price) VALUES(?,?,?)";
+                    String slq = "Insert into items(idSupplierEmployee, description, price, storage) VALUES(?,?,?,?)";
                     PreparedStatement pst;
                     pst = c.con.prepareStatement(slq);
 

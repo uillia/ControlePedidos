@@ -51,7 +51,7 @@ public class SupplierRepository {
             pst.close();
             c.close_Connection();
         } catch (SQLException e) {
-            Logger.getLogger(EmployeeRepository.class.getName()).log(Level.SEVERE, "não foi possivel cadastrar a empresa");
+            Logger.getLogger(EmployeeRepository.class.getName()).log(Level.SEVERE, "não foi possivel cadastrar a empresa, Erro: "+ e.getMessage());
         }
     }
 
