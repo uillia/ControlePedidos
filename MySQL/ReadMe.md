@@ -1,6 +1,12 @@
 ## Os scripts da estrutura do banco de dados estão disponiveis na pasta "Structure"
 
-Para que o sistema funcione corretamente, voce terá que preencher tabelas:
+Para que o sistema funcione corretamente, primeiro crie o database com o nome "market"
+```
+CREATE DATABASE  IF NOT EXISTS `market` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `market`;
+```
+
+voce também terá que preencher tabelas:
 
 statusorder:
 ```
