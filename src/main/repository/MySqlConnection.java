@@ -14,8 +14,9 @@ public class MySqlConnection {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             System.out.println("Driver Conectado");
-
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mercado?serverTimezone=UTC", "root", "160600");
+            String user = "root";
+            String password = "password"; 
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/market?serverTimezone=UTC", user, password);
             System.out.println("Conexão Realizada");
             
             
