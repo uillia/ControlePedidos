@@ -49,7 +49,8 @@ INSERT INTO employeestatus (idEmployeeStatus, description) VALUES ('1', 'Desempr
 INSERT INTO hierarchicaltype (idhierarchicalType, description) VALUES ('0', 'Matriz');
 INSERT INTO hierarchicaltype (idhierarchicalType, description) VALUES ('1', 'Filial');
 ```
-agora, selecione tudo e clique no icone de raio: 
+agora, selecione tudo e clique no icone de executar: 
+
 ![image](https://user-images.githubusercontent.com/50975425/131746344-1a5195ce-6694-45d9-a791-984bae579521.png)
 
 Para que o sistema se comunique com o my sql, será necessario fazer algumas alterções no projeto
