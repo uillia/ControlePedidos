@@ -56,6 +56,7 @@ agora, selecione tudo e clique no icone de executar:
 Para que o sistema se comunique com o my sql, será necessario fazer algumas alterções no projeto
 
 Dentro do netbeans, adicione o driver JDBC que está na pasta de instalção do MySQL:
+
 ![image](https://user-images.githubusercontent.com/50975425/131748812-fd2f8dcd-5c6a-4b2d-a945-f5c0a82b65b1.png)
 
 Nas propriedades, Vá em Bibliotecas e clique em Adicionar JAR/Pasta
