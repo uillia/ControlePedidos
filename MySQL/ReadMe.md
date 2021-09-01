@@ -1,7 +1,7 @@
 ## Para criar o banco de dados, siga as instruções em ordem:
 
-primeiramente voce precisara do <a href="https://dev.mysql.com/downloads/file/?id=506568" target="_blank">MySQL</a> Community server e  MySQL Worckbanch,
-
+primeiramente voce precisara do Community server e MySQL Worckbanch,
+Disponível em: https://dev.mysql.com/get/Downloads/MySQLInstaller/mysql-installer-community-8.0.26.0.msi
 
 Apos o dowload, crie uma localinstace, entre no ambiente e siga os passos:
 
@@ -37,10 +37,8 @@ para isso crie uma Query:
 
 ![image](https://user-images.githubusercontent.com/50975425/131745968-19f68270-5090-47bc-a28b-6fdcf79d12c5.png)
 
-agora copie e cole os codigos abaixo :
+agora copie e cole na Query os códigos abaixo :
 
-
-statusorder:
 ```
 use market;
 INSERT INTO statusorder (idStatusOrder, description) VALUES ('0', 'Ativo');
@@ -54,4 +52,24 @@ INSERT INTO hierarchicaltype (idhierarchicalType, description) VALUES ('1', 'Fil
 agora, selecione tudo e clique no icone de raio: 
 ![image](https://user-images.githubusercontent.com/50975425/131746344-1a5195ce-6694-45d9-a791-984bae579521.png)
 
+Para que o sistema se comunique com o my sql, será necessario fazer algumas alterções no projeto
+
+Dentro do netbeans, adicione o driver JDBC que está na pasta de instalção do MySQL:
+![image](https://user-images.githubusercontent.com/50975425/131748812-fd2f8dcd-5c6a-4b2d-a945-f5c0a82b65b1.png)
+
+Nas propriedades, Vá em Bibliotecas e clique em Adicionar JAR/Pasta
+![image](https://user-images.githubusercontent.com/50975425/131749028-98e71c05-3860-4a5f-a755-5168bfeda9ea.png)
+
+copie e cole o seguinte caminho em "Nome do Arquivo":
+
+```
+C:\Program Files (x86)\MySQL\Connector J 8.0\mysql-connector-java-8.0.26.jar
+```
+
+![image](https://user-images.githubusercontent.com/50975425/131749371-37ec6a60-df3e-4bcf-bb46-630256655509.png)
+
+
+
+por ultimo, edite o arquivo MySqlConnection , que esta em scr/main/repository, colocando o usuário na varivel user e a senha em password
+![image](https://user-images.githubusercontent.com/50975425/131748446-ee46f710-53c6-4d6d-afe8-f8be66406b10.png)
 
