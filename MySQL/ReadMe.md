@@ -24,7 +24,7 @@ ou voce pode também clica com o botão direito no mouse e ir em na opção crea
 Passo 2- faça o dowload do projeto e vá em server/data import dentro do MySQL Workbanch:
 ![image](https://user-images.githubusercontent.com/50975425/131742004-6e608d9a-fd22-4431-bcfa-d2fccf5b3e3d.png)
 
-Passo 3- Selecione a opção Import from Dump project folder e vá até o diretório de dowload do projeto que voce realizou no passo anterior e selecione o diretório Struture, dentro do Diretório MySQL
+Passo 3- Selecione a opção Import from Dump project folder e vá até o diretório de dowload do projeto que voce realizou no passo anterior e selecione o diretório Structure, dentro do Diretório MySQL
 ![image](https://user-images.githubusercontent.com/50975425/131743255-83aaa249-a11c-40df-888b-2178a217adfc.png)
 
 Passo 4- Agora clique na opção Dump only structure
@@ -33,24 +33,26 @@ Passo 4- Agora clique na opção Dump only structure
 Clique em start Import e se o banco de dados com o nome "market" foi criado no passo 1, certamente funcionará
 
 
-Passo 5- Você também terá que preencher tabelas:
+Passo 5- Você também terá que preencher tabelas, 
+para isso crie uma Query:
+
+![image](https://user-images.githubusercontent.com/50975425/131745968-19f68270-5090-47bc-a28b-6fdcf79d12c5.png)
+
+agora copie e cole os codigos abaixo :
+
 
 statusorder:
 ```
+use market;
 INSERT INTO statusorder (idStatusOrder, description) VALUES ('0', 'Ativo');
 INSERT INTO statusorder (idStatusOrder, description) VALUES ('1', 'Finalizado');
 INSERT INTO statusorder (idStatusOrder, description) VALUES ('2', 'Cancelado');
-```
-
-employeestatus:
-```
 INSERT INTO employeestatus (idEmployeeStatus, description) VALUES ('0', 'Empregado');
 INSERT INTO employeestatus (idEmployeeStatus, description) VALUES ('1', 'Desempregado');
-```
-
-hierarchicaltype:
-```
 INSERT INTO hierarchicaltype (idhierarchicalType, description) VALUES ('0', 'Matriz');
 INSERT INTO hierarchicaltype (idhierarchicalType, description) VALUES ('1', 'Filial');
 ```
-por ultimo, 
+agora, selecione tudo e clique no icone de raio: 
+![image](https://user-images.githubusercontent.com/50975425/131746344-1a5195ce-6694-45d9-a791-984bae579521.png)
+
+
