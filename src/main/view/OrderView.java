@@ -86,6 +86,8 @@ public class OrderView extends javax.swing.JFrame {
         btnRemoveItem = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         tableOrderItems = new javax.swing.JTable();
+        lbItensTitle = new javax.swing.JLabel();
+        lbInfoTitle = new javax.swing.JLabel();
         btnVoltar = new javax.swing.JButton();
         lbTextleft = new javax.swing.JLabel();
         lbTextTop = new javax.swing.JLabel();
@@ -100,6 +102,7 @@ public class OrderView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(962, 412));
         setResizable(false);
         addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
@@ -111,6 +114,8 @@ public class OrderView extends javax.swing.JFrame {
                 formMousePressed(evt);
             }
         });
+
+        panelRegEmp.setPreferredSize(new java.awt.Dimension(600, 313));
 
         txtDescriptionOrder.setBorder(null);
 
@@ -202,6 +207,14 @@ public class OrderView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(panelItemsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelItemsLayout.createSequentialGroup()
+                        .addComponent(lbQuantity)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnRemoveItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnAddItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelItemsLayout.createSequentialGroup()
                         .addGroup(panelItemsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(panelItemsLayout.createSequentialGroup()
                                 .addComponent(lbDescriptionItem, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -211,38 +224,32 @@ public class OrderView extends javax.swing.JFrame {
                                 .addComponent(lbItemPrice)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtItemPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(panelItemsLayout.createSequentialGroup()
-                        .addComponent(lbQuantity)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnRemoveItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnAddItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         panelItemsLayout.setVerticalGroup(
             panelItemsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelItemsLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(panelItemsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbDescriptionItem, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDescriptionItem, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelItemsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbItemPrice)
-                    .addComponent(txtItemPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelItemsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbQuantity)
-                    .addComponent(txtQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(29, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelItemsLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(panelItemsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAddItem, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnRemoveItem, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(panelItemsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelItemsLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(panelItemsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lbDescriptionItem, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtDescriptionItem, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(panelItemsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lbItemPrice)
+                            .addComponent(txtItemPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(panelItemsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lbQuantity)
+                            .addComponent(txtQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 29, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelItemsLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(panelItemsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnAddItem, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnRemoveItem, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
 
@@ -283,25 +290,25 @@ public class OrderView extends javax.swing.JFrame {
         tableOrderItems.setPreferredSize(new java.awt.Dimension(215, 200));
         jScrollPane3.setViewportView(tableOrderItems);
 
+        lbItensTitle.setText("Itens");
+
+        lbInfoTitle.setText("Informações");
+
         javax.swing.GroupLayout panelRegEmpLayout = new javax.swing.GroupLayout(panelRegEmp);
         panelRegEmp.setLayout(panelRegEmpLayout);
         panelRegEmpLayout.setHorizontalGroup(
             panelRegEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRegEmpLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
             .addGroup(panelRegEmpLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(19, 19, 19)
                 .addGroup(panelRegEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelRegEmpLayout.createSequentialGroup()
-                        .addComponent(lbComments)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelRegEmpLayout.createSequentialGroup()
                         .addComponent(lbidSupplierPerson, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtIdSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelRegEmpLayout.createSequentialGroup()
-                        .addComponent(lbDescriptionOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtDescriptionOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelRegEmpLayout.createSequentialGroup()
                         .addComponent(lbinitialPrice)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -309,27 +316,37 @@ public class OrderView extends javax.swing.JFrame {
                     .addGroup(panelRegEmpLayout.createSequentialGroup()
                         .addComponent(lbPrevDays)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtPrevDays, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtPrevDays, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelRegEmpLayout.createSequentialGroup()
+                        .addComponent(lbDescriptionOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtDescriptionOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lbInfoTitle)
+                    .addGroup(panelRegEmpLayout.createSequentialGroup()
+                        .addComponent(lbComments)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(panelRegEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelRegEmpLayout.createSequentialGroup()
+                        .addComponent(lbItensTitle)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(panelItems, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRegEmpLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
         );
         panelRegEmpLayout.setVerticalGroup(
             panelRegEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelRegEmpLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(panelRegEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(panelRegEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelRegEmpLayout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(lbInfoTitle)
+                        .addGap(24, 24, 24)
                         .addGroup(panelRegEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lbDescriptionOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtDescriptionOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(12, 12, 12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(panelRegEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lbidSupplierPerson, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtIdSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -341,14 +358,18 @@ public class OrderView extends javax.swing.JFrame {
                         .addGroup(panelRegEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lbinitialPrice)
                             .addComponent(txtInitialPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(panelItems, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRegEmpLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lbItensTitle)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(panelItems, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelRegEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelRegEmpLayout.createSequentialGroup()
                         .addComponent(lbComments, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -502,19 +523,21 @@ public class OrderView extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelTitleBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(lbTextleft, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(lbTextTop)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(323, 323, 323)
                         .addComponent(btnEditOrders)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(panelRegEmp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(13, Short.MAX_VALUE))
+                        .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(panelRegEmp, javax.swing.GroupLayout.DEFAULT_SIZE, 681, Short.MAX_VALUE)
+                        .addContainerGap())))
+            .addComponent(panelTitleBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -528,12 +551,13 @@ public class OrderView extends javax.swing.JFrame {
                         .addComponent(btnEditOrders)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(panelRegEmp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(112, 112, 112)
-                        .addComponent(lbTextleft, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(lbTextleft, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(217, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(panelRegEmp, javax.swing.GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
 
         pack();
@@ -546,37 +570,6 @@ public class OrderView extends javax.swing.JFrame {
         MenuView x = new MenuView();
         x.setVisible(true);
     }//GEN-LAST:event_btnVoltarActionPerformed
-
-    private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
-        Random r = new Random();
-        LocalTime nowtime = LocalTime.now();
-        LocalDate now = LocalDate.now();
-
-        int idOrder = +now.getDayOfMonth() + now.getMonthValue() + now.getYear() + nowtime.toSecondOfDay();
-        try {
-            ItemController ic = new ItemController();
-            System.out.println(idOrder);
-            om.setIdOrder(idOrder);
-            om.setDescription(txtDescriptionOrder.getText());
-            om.setIdSupplierPerson(Integer.parseInt(txtIdSupplier.getText()));
-            om.setIdEmployee(emp.getIdEmployee());
-            om.setComments(txtAreaComments.getText());
-
-            om.setPrevDays(Integer.parseInt(txtPrevDays.getText()));
-            om.setRegisterDate(LocalDate.now());
-
-            om.setIdStatus(0);
-
-            om.setPrevDeliveryDate(om.getRegisterDate().plusDays(om.getPrevDays()));
-            ic.addItems(itemArr);
-            om.setItems(itemArr);
-        } catch (NumberFormatException nfe) {
-            JOptionPane.showMessageDialog(this, "Há um ou mais campos preechidos com valores inadequados! Erro:" + nfe.getMessage());
-        }
-        OrderController oc = new OrderController();
-        oc.registerOrder(om);
-
-    }//GEN-LAST:event_btnRegisterActionPerformed
 
     private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
         int x = evt.getXOnScreen();
@@ -609,21 +602,51 @@ public class OrderView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_bttMinMouseClicked
 
-    private void txtAreaCommentsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtAreaCommentsMouseClicked
-        txtAreaComments.setText(null);
-    }//GEN-LAST:event_txtAreaCommentsMouseClicked
-
-    private void btnAddItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddItemActionPerformed
-        addItems();
-        refreshTableItems();
-    }//GEN-LAST:event_btnAddItemActionPerformed
-
     private void btnRemoveItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveItemActionPerformed
         int index = tableOrderItems.getSelectedRow();
         om.setInitialPrice(om.getInitialPrice() - (itemArr.get(index).getUnityPrice() * itemArr.get(index).getQuantity()));
         itemArr.remove(index);
         refreshTableItems();
     }//GEN-LAST:event_btnRemoveItemActionPerformed
+
+    private void btnAddItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddItemActionPerformed
+        addItems();
+        refreshTableItems();
+    }//GEN-LAST:event_btnAddItemActionPerformed
+
+    private void txtAreaCommentsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtAreaCommentsMouseClicked
+        txtAreaComments.setText(null);
+    }//GEN-LAST:event_txtAreaCommentsMouseClicked
+
+    private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
+        Random r = new Random();
+        LocalTime nowtime = LocalTime.now();
+        LocalDate now = LocalDate.now();
+
+        int idOrder = +now.getDayOfMonth() + now.getMonthValue() + now.getYear() + nowtime.toSecondOfDay();
+        try {
+            ItemController ic = new ItemController();
+            System.out.println(idOrder);
+            om.setIdOrder(idOrder);
+            om.setDescription(txtDescriptionOrder.getText());
+            om.setIdSupplierPerson(Integer.parseInt(txtIdSupplier.getText()));
+            om.setIdEmployee(emp.getIdEmployee());
+            om.setComments(txtAreaComments.getText());
+
+            om.setPrevDays(Integer.parseInt(txtPrevDays.getText()));
+            om.setRegisterDate(LocalDate.now());
+
+            om.setIdStatus(0);
+
+            om.setPrevDeliveryDate(om.getRegisterDate().plusDays(om.getPrevDays()));
+            ic.addItems(itemArr);
+            om.setItems(itemArr);
+        } catch (NumberFormatException nfe) {
+            JOptionPane.showMessageDialog(this, "Há um ou mais campos preechidos com valores inadequados! Erro:" + nfe.getMessage());
+        }
+        OrderController oc = new OrderController();
+        oc.registerOrder(om);
+    }//GEN-LAST:event_btnRegisterActionPerformed
 
     /**
      * @param args the command line arguments
@@ -683,7 +706,7 @@ public class OrderView extends javax.swing.JFrame {
             panelItems, panelTitleBar};
         JTable[] tab = {tableOrderItems};
         JTextArea[] txtArea = {txtAreaComments};
-        JLabel[] lbDesign = {lbTextTop, lbTextleft};
+        JLabel[] lbDesign = {lbTextTop, lbTextleft,lbItensTitle,lbInfoTitle};
 
         t.refreshButtons(btn, theme);
         t.refreshFrame(this, theme);
@@ -751,7 +774,9 @@ public class OrderView extends javax.swing.JFrame {
     private javax.swing.JLabel lbComments;
     private javax.swing.JLabel lbDescriptionItem;
     private javax.swing.JLabel lbDescriptionOrder;
+    private javax.swing.JLabel lbInfoTitle;
     private javax.swing.JLabel lbItemPrice;
+    private javax.swing.JLabel lbItensTitle;
     private javax.swing.JLabel lbPrevDays;
     private javax.swing.JLabel lbQuantity;
     private javax.swing.JLabel lbTextTop;
