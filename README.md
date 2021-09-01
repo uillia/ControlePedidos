@@ -3,7 +3,7 @@ Projeto desktop criado em Java com Swing com o objetivo de administrar pedidos d
 
 Disponivel somente para Windows.
 
-Siga as <a href="https://github.com/uillia/ControlePedidos/MySQL" target="_blank">Instruções</a> para criar o banco de dados
+Siga as <a href="https://github.com/uillia/ControlePedidos/tree/main/MySQL" target="_blank">Instruções</a> para criar o banco de dados.
 
 ps: O sistema possiu tema escuro também. 
 ## Algumas Telas:
