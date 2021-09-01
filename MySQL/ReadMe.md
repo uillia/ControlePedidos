@@ -1,6 +1,6 @@
 Os scripts da estrutura do banco de dados estão disponiveis na pasta "Structure"
 
--Para que o sistema funcione corretamente, voce terá que preencher tabelas:
+#Para que o sistema funcione corretamente, voce terá que preencher tabelas:
 
 statusorder:
 INSERT INTO statusorder (idStatusOrder, description) VALUES ('0', 'Ativo');
