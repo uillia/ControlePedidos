@@ -1,8 +1,7 @@
 ## Para criar o banco de dados, siga as instruções em ordem:
 
-primeiramente voce precisara do MySQL  Community server e  MySQL Worckbanch,
+primeiramente voce precisara do <a href="https://dev.mysql.com/downloads/file/?id=506568" target="_blank">MySQL</a> Community server e  MySQL Worckbanch,
 
-disponivel em: https://dev.mysql.com/downloads/file/?id=506568
 
 Apos o dowload, crie uma localinstace, entre no ambiente e siga os passos:
 
