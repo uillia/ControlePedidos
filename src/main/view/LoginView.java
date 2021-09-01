@@ -20,7 +20,7 @@ public class LoginView extends javax.swing.JFrame {
     ConfigManager conf = new ConfigManager();
     public String path = "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\NetBeansProjects\\ControlePedidos\\dados\\usuario.txt";
     CriptoController cript = new CriptoController();
-    
+
     public LoginView() {
         initComponents();
         refreshTema();
@@ -326,32 +326,34 @@ public class LoginView extends javax.swing.JFrame {
 
     // methods
     public void checkSave() {
-        
+
         FileManager ac = new FileManager();
         String dir = "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\NetBeansProjects\\ControlePedidos\\dados";
         String file = "user";
-            path= dir+"\\"+cript.encryptBase64encoder(file);
-            System.out.println(path);
+        path = dir + "\\" + cript.encryptBase64encoder(file);
+        System.out.println(path);
         if ((ac.Read(path).isEmpty())) {
 
         } else {
-           String usuario = ac.Read(path);
-             file = "password";
-             path= dir+"\\"+cript.encryptBase64encoder(file);
+            String usuario = ac.Read(path);
+            file = "password";
+            path = dir + "\\" + cript.encryptBase64encoder(file);
 
             if (usuario.equals("null")) {
                 System.out.println("Nenhum usuario salvo");
             } else {
                 txtUser.setText(cript.decryptBase64Decoder(usuario));
-                
+
                 radbtnSaveLogin.setSelected(true);
             }
         }
     }
 
     public void refreshTema() {
-        String theme;
-        theme = conf.getValue("theme", "Light", "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\Controle de Estoque\\preferences\\theme.properties");
+
+        String dir = "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\Controle de Estoque";
+        String file = "theme.properties";
+        String theme = conf.getValue("theme", "light", dir, file);
         TitleBar tb = new TitleBar();
         tb.configTitleBar(panelClose, panelIconfied, panelTitleBar, bttClose, bttIconfied, theme);
         JTextField[] txt = {txtUser};

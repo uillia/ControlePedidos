@@ -8,12 +8,8 @@ package util.GraphElementsManipulator;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import util.ConfigManager;
-import util.EnvMap;
 
 /**
  *
@@ -21,7 +17,7 @@ import util.EnvMap;
  */
 public class TitleBar {
 
-    public void configTitleBar(JPanel panelClose, JPanel panelIconfied, JPanel Titlebar, JButton bttClose, JButton bttIconfied, String theme) {
+    public void configTitleBar(JPanel panelClose, JPanel panelIconfied, JPanel Titlebar, JButton btnClose, JButton btnIconfied, String theme) {
 
         Color a;
         if (theme.equals("dark")) {
@@ -35,7 +31,7 @@ public class TitleBar {
         panelClose.setBackground(a);
         panelIconfied.setBackground(a);
 
-        bttClose.addMouseListener(new MouseListener() {
+        btnClose.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent me) {
                 System.exit(0);
@@ -59,7 +55,7 @@ public class TitleBar {
             }
 
         });
-        bttIconfied.addMouseListener(new MouseListener() {
+        btnIconfied.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent me) {
 

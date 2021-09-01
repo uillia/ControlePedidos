@@ -39,8 +39,10 @@ public class MenuView extends javax.swing.JFrame {
     LocalDateTime now = LocalDateTime.now();
     EmployeeController empc = new EmployeeController();
     EmployeeModel userLog = empc.getLoggedData();// this Global instacy get data from the logged user in this system 
-    String path = "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\Controle de Estoque\\preferences\\theme.properties";
-    String theme = conf.getValue("theme", "light", path);
+    String dir= "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\Controle de Estoque";
+    String file= "theme.properties";
+    String theme = conf.getValue("theme", "light", dir, file);
+    
     OrderController oc = new OrderController();
     List<OrderModel> AllordersArr;
 //Para ler o valor que esta em um arquivo é importante mandar seu valor padrão. Caso ele não exista, ele sea craido com este valorrr padrão;
@@ -474,7 +476,7 @@ public class MenuView extends javax.swing.JFrame {
             theme = "light";
             refreshTheme();
         }
-        conf.setValue("theme", theme, path); // Write in a file the theme 
+        conf.setValue("theme", theme, dir+"\\"+file); // Write in a file the theme 
 
 //        ac.Write(path, theme);//escreve qual tema foi selecionado e é escrito no arquivo em preferencias/theme
 
