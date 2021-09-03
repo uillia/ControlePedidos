@@ -355,7 +355,7 @@ public class FirstUserView extends javax.swing.JFrame {
         lbTextTop.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lbTextTop.setForeground(new java.awt.Color(153, 153, 153));
         lbTextTop.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lbTextTop.setText("Cadastrar Funcionário");
+        lbTextTop.setText("Cadastro do primeiro usuário");
 
         panelTitleBar.setBackground(new java.awt.Color(242, 242, 242));
 
@@ -479,8 +479,8 @@ public class FirstUserView extends javax.swing.JFrame {
                 .addComponent(lbTextleft, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbTextTop, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(panelRegEmp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(panelRegEmp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbTextTop))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -532,7 +532,7 @@ public class FirstUserView extends javax.swing.JFrame {
             this.dispose();
             LoginView lv = new LoginView();
             lv.setVisible(true);
-            JOptionPane.showMessageDialog(this, "Funcionário cadastrado!");
+            
         } else {
             JOptionPane.showMessageDialog(this, "As senhas não se coincidem");
         }

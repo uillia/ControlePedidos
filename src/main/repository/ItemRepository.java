@@ -31,7 +31,7 @@ public class ItemRepository {
                     c.close_Connection();
 
                 } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null, "Erro: " + ex.getMessage(), "Alerta", 2);
+                    System.out.println("Erro: "+ex.getMessage());
                 }
 
             } else {
