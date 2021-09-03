@@ -18,7 +18,7 @@ public class LoginView extends javax.swing.JFrame {
 
     int xMouse, yMouse;
     ConfigManager conf = new ConfigManager();
-    public String path = "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\NetBeansProjects\\ControlePedidos\\dados\\usuario.txt";
+   
     CriptoController cript = new CriptoController();
 
     public LoginView() {
@@ -150,7 +150,7 @@ public class LoginView extends javax.swing.JFrame {
         panelClose.setLayout(panelCloseLayout);
         panelCloseLayout.setHorizontalGroup(
             panelCloseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bttClose, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(bttClose, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         panelCloseLayout.setVerticalGroup(
             panelCloseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -328,9 +328,9 @@ public class LoginView extends javax.swing.JFrame {
     public void checkSave() {
 
         FileManager ac = new FileManager();
-        String dir = "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\NetBeansProjects\\ControlePedidos\\dados";
+        String dir = "C:\\ProgramData\\Controle de Estoque";
         String file = "user";
-        path = dir + "\\" + cript.encryptBase64encoder(file);
+        String path = dir + "\\" + cript.encryptBase64encoder(file);
         System.out.println(path);
         if ((ac.Read(path).isEmpty())) {
 

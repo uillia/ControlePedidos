@@ -21,7 +21,7 @@ public class LoginController {
     LoginRepository logRep = new LoginRepository();
     CriptoController cript = new CriptoController();
     String fileUser = "user";
-    String dir = "C:\\Users\\"+System.getProperty("user.name")+"\\Documents\\NetBeansProjects\\ControlePedidos\\dados";
+    String dir = "C:\\ProgramData\\Controle de Estoque";
 
     public int login(String user, String password) {
         EnvMap em = new EnvMap();

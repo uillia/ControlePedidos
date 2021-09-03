@@ -44,7 +44,7 @@
                           <Component id="panelRegSuppPerson" alignment="0" max="32767" attributes="0"/>
                           <Component id="panelRegSuppComp" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -73,7 +73,7 @@
               <Component id="lbTextMid" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="panelRegSuppPerson" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="33" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -518,7 +518,7 @@
                           <Component id="panelTab" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace pref="479" max="32767" attributes="0"/>
+                          <EmptySpace pref="494" max="32767" attributes="0"/>
                           <Component id="bttRegisterSuppPerson" min="-2" pref="128" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -778,7 +778,7 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="bttClose" alignment="1" max="32767" attributes="0"/>
+                  <Component id="bttClose" alignment="1" min="-2" pref="45" max="-2" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
