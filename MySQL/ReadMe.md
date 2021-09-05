@@ -1,6 +1,6 @@
 ## Para criar o banco de dados, siga as instruções em ordem:
 
-primeiramente voce precisara do Community server e MySQL Worckbanch,
+primeiramente voce precisara do Community server e MySQL Worckbench,
 Disponível em: https://dev.mysql.com/get/Downloads/MySQLInstaller/mysql-installer-community-8.0.26.0.msi
 
 Apos o dowload, crie uma localinstace, entre no ambiente e siga os passos:
@@ -15,12 +15,12 @@ CREATE DATABASE  IF NOT EXISTS `market` /*!40100 DEFAULT CHARACTER SET utf8mb4 C
 USE `market`;
 ```
 
-ou voce pode também clica com o botão direito no mouse e ir em na opção create schema
+ou voce pode também clicar com o botão direito no mouse e ir em na opção create schema
 
 ![image](https://user-images.githubusercontent.com/50975425/131745163-7495305c-8699-4742-b41b-e90558cb7e16.png)
 ![image](https://user-images.githubusercontent.com/50975425/131745226-e09f0530-0a36-411b-830e-a7553b9c9d65.png)
 
-Passo 2- faça o dowload do projeto e vá em server/data import dentro do MySQL Workbanch:
+Passo 2- faça o dowload do projeto e vá em server/data import dentro do MySQL Workbench:
 ![image](https://user-images.githubusercontent.com/50975425/131742004-6e608d9a-fd22-4431-bcfa-d2fccf5b3e3d.png)
 
 Passo 3- Selecione a opção Import from Dump project folder e vá até o diretório de dowload do projeto que voce realizou no passo anterior e selecione o diretório Structure, dentro do Diretório MySQL
