@@ -4,7 +4,7 @@ Projeto desktop criado em Java com Swing com o objetivo de administrar pedidos d
 Disponivel somente para Windows.
 
 Siga as <a href="https://github.com/uillia/ControlePedidos/tree/main/MySQL" target="_blank">Instruções</a> para criar o banco de dados.
-Para rodar esse sistema sera necessario a versão Java SE 8. Você pode baixar um pacote que contem o netbeans e o java 8 clicando <a href="https://www.java.com/pt-BR/download/ie_manual.jsp?locale=pt_BR" target="_blank">aqui</a>
+Para rodar esse sistema sera necessario a versão Java SE 8. Você pode baixar o java 8 clicando <a href="https://www.java.com/pt-BR/download/ie_manual.jsp?locale=pt_BR" target="_blank">aqui</a>
 
 
 ps: O sistema possiu tema escuro também. 
