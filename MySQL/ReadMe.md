@@ -1,7 +1,7 @@
 ## Para criar o banco de dados, siga as instruções em ordem:
 
 primeiramente voce precisara do Community server e MySQL Worckbench,
-Disponível em: https://dev.mysql.com/get/Downloads/MySQLInstaller/mysql-installer-community-8.0.26.0.msi
+Disponível em: https://dev.mysql.com/downloads/mysql/
 
 Apos o dowload, crie uma localinstace, entre no ambiente e siga os passos:
 
